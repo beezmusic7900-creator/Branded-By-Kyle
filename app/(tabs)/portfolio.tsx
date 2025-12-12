@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Modal, Platform, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Modal, Platform, Dimensions, ImageBackground } from 'react-native';
 import { colors, commonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 
@@ -64,121 +64,131 @@ export default function PortfolioScreen() {
     : portfolioItems.filter(item => item.category === selectedCategory);
 
   return (
-    <View style={commonStyles.container}>
-      <ScrollView 
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.header}>
-          <IconSymbol 
-            ios_icon_name="photo.fill" 
-            android_material_icon_name="photo_library" 
-            size={48} 
-            color={colors.primary} 
-          />
-          <Text style={commonStyles.title}>Portfolio</Text>
-          <Text style={[commonStyles.text, commonStyles.textCenter]}>
-            Browse through my recent work and custom designs
-          </Text>
-        </View>
-
-        {/* Category Filter */}
+    <ImageBackground
+      source={require('@/assets/images/f17fedc1-b2a1-4b83-8bc6-33e74e0d6fa7.png')}
+      style={commonStyles.container}
+      resizeMode="cover"
+    >
+      <View style={styles.overlay}>
         <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          style={styles.categoryContainer}
-          contentContainerStyle={styles.categoryContent}
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
         >
-          {categories.map((category, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[
-                styles.categoryButton,
-                selectedCategory === category && styles.categoryButtonActive
-              ]}
-              onPress={() => setSelectedCategory(category)}
-            >
-              <Text style={[
-                styles.categoryButtonText,
-                selectedCategory === category && styles.categoryButtonTextActive
-              ]}>
-                {category}
-              </Text>
-            </TouchableOpacity>
-          ))}
+          <View style={styles.header}>
+            <IconSymbol 
+              ios_icon_name="photo.fill" 
+              android_material_icon_name="photo_library" 
+              size={48} 
+              color={colors.primary} 
+            />
+            <Text style={commonStyles.title}>Portfolio</Text>
+            <Text style={[commonStyles.text, commonStyles.textCenter]}>
+              Browse through my recent work and custom designs
+            </Text>
+          </View>
+
+          {/* Category Filter */}
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.categoryContainer}
+            contentContainerStyle={styles.categoryContent}
+          >
+            {categories.map((category, index) => (
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.categoryButton,
+                  selectedCategory === category && styles.categoryButtonActive
+                ]}
+                onPress={() => setSelectedCategory(category)}
+              >
+                <Text style={[
+                  styles.categoryButtonText,
+                  selectedCategory === category && styles.categoryButtonTextActive
+                ]}>
+                  {category}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+
+          {/* Portfolio Grid */}
+          <View style={styles.grid}>
+            {filteredItems.map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.gridItem}
+                onPress={() => setSelectedImage(item)}
+              >
+                <Image 
+                  source={{ uri: item.imageUrl }}
+                  style={styles.gridImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.gridOverlay}>
+                  <Text style={styles.gridCategory}>{item.category}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          <View style={styles.bottomPadding} />
         </ScrollView>
 
-        {/* Portfolio Grid */}
-        <View style={styles.grid}>
-          {filteredItems.map((item, index) => (
-            <TouchableOpacity
-              key={index}
-              style={styles.gridItem}
-              onPress={() => setSelectedImage(item)}
+        {/* Image Modal */}
+        <Modal
+          visible={selectedImage !== null}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => setSelectedImage(null)}
+        >
+          <View style={styles.modalContainer}>
+            <TouchableOpacity 
+              style={styles.modalBackdrop}
+              activeOpacity={1}
+              onPress={() => setSelectedImage(null)}
             >
-              <Image 
-                source={{ uri: item.imageUrl }}
-                style={styles.gridImage}
-                resizeMode="cover"
-              />
-              <View style={styles.gridOverlay}>
-                <Text style={styles.gridCategory}>{item.category}</Text>
+              <View style={styles.modalContent}>
+                {selectedImage && (
+                  <>
+                    <Image 
+                      source={{ uri: selectedImage.imageUrl }}
+                      style={styles.modalImage}
+                      resizeMode="contain"
+                    />
+                    <View style={styles.modalInfo}>
+                      <Text style={styles.modalCategory}>{selectedImage.category}</Text>
+                      <Text style={styles.modalDescription}>{selectedImage.description}</Text>
+                    </View>
+                    <TouchableOpacity 
+                      style={styles.closeButton}
+                      onPress={() => setSelectedImage(null)}
+                    >
+                      <IconSymbol 
+                        ios_icon_name="xmark.circle.fill" 
+                        android_material_icon_name="cancel" 
+                        size={36} 
+                        color={colors.textBright} 
+                      />
+                    </TouchableOpacity>
+                  </>
+                )}
               </View>
             </TouchableOpacity>
-          ))}
-        </View>
-
-        <View style={styles.bottomPadding} />
-      </ScrollView>
-
-      {/* Image Modal */}
-      <Modal
-        visible={selectedImage !== null}
-        transparent={true}
-        animationType="fade"
-        onRequestClose={() => setSelectedImage(null)}
-      >
-        <View style={styles.modalContainer}>
-          <TouchableOpacity 
-            style={styles.modalBackdrop}
-            activeOpacity={1}
-            onPress={() => setSelectedImage(null)}
-          >
-            <View style={styles.modalContent}>
-              {selectedImage && (
-                <>
-                  <Image 
-                    source={{ uri: selectedImage.imageUrl }}
-                    style={styles.modalImage}
-                    resizeMode="contain"
-                  />
-                  <View style={styles.modalInfo}>
-                    <Text style={styles.modalCategory}>{selectedImage.category}</Text>
-                    <Text style={styles.modalDescription}>{selectedImage.description}</Text>
-                  </View>
-                  <TouchableOpacity 
-                    style={styles.closeButton}
-                    onPress={() => setSelectedImage(null)}
-                  >
-                    <IconSymbol 
-                      ios_icon_name="xmark.circle.fill" 
-                      android_material_icon_name="cancel" 
-                      size={36} 
-                      color={colors.textBright} 
-                    />
-                  </TouchableOpacity>
-                </>
-              )}
-            </View>
-          </TouchableOpacity>
-        </View>
-      </Modal>
-    </View>
+          </View>
+        </Modal>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  },
   scrollView: {
     flex: 1,
   },

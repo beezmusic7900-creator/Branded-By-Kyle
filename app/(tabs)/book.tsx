@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform, Alert, ImageBackground } from 'react-native';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -52,167 +52,177 @@ export default function BookScreen() {
   };
 
   return (
-    <View style={commonStyles.container}>
-      <ScrollView 
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.header}>
-          <IconSymbol 
-            ios_icon_name="calendar.badge.plus" 
-            android_material_icon_name="event" 
-            size={48} 
-            color={colors.primary} 
-          />
-          <Text style={commonStyles.title}>Book Your Appointment</Text>
-          <Text style={[commonStyles.text, commonStyles.textCenter]}>
-            Fill out the form below to request an appointment. A deposit will be required to secure your booking.
-          </Text>
-        </View>
-
-        <View style={styles.formSection}>
-          <Text style={commonStyles.subtitle}>Contact Information</Text>
-          
-          <Text style={commonStyles.label}>Full Name *</Text>
-          <TextInput
-            style={commonStyles.input}
-            placeholder="Enter your full name"
-            placeholderTextColor={colors.grey}
-            value={name}
-            onChangeText={setName}
-          />
-
-          <Text style={commonStyles.label}>Email *</Text>
-          <TextInput
-            style={commonStyles.input}
-            placeholder="your.email@example.com"
-            placeholderTextColor={colors.grey}
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-
-          <Text style={commonStyles.label}>Phone Number *</Text>
-          <TextInput
-            style={commonStyles.input}
-            placeholder="(555) 123-4567"
-            placeholderTextColor={colors.grey}
-            value={phone}
-            onChangeText={setPhone}
-            keyboardType="phone-pad"
-          />
-        </View>
-
-        <View style={styles.formSection}>
-          <Text style={commonStyles.subtitle}>Appointment Details</Text>
-          
-          <Text style={commonStyles.label}>Preferred Date</Text>
-          <TouchableOpacity 
-            style={styles.dateButton}
-            onPress={() => setShowDatePicker(true)}
-          >
+    <ImageBackground
+      source={require('@/assets/images/f17fedc1-b2a1-4b83-8bc6-33e74e0d6fa7.png')}
+      style={commonStyles.container}
+      resizeMode="cover"
+    >
+      <View style={styles.overlay}>
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.header}>
             <IconSymbol 
-              ios_icon_name="calendar" 
-              android_material_icon_name="calendar_today" 
-              size={20} 
+              ios_icon_name="calendar.badge.plus" 
+              android_material_icon_name="event" 
+              size={48} 
               color={colors.primary} 
             />
-            <Text style={styles.dateButtonText}>
-              {date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+            <Text style={commonStyles.title}>Book Your Appointment</Text>
+            <Text style={[commonStyles.text, commonStyles.textCenter]}>
+              Fill out the form below to request an appointment. A deposit will be required to secure your booking.
             </Text>
-          </TouchableOpacity>
+          </View>
 
-          {showDatePicker && (
-            <DateTimePicker
-              value={date}
-              mode="date"
-              display="default"
-              onChange={handleDateChange}
-              minimumDate={new Date()}
+          <View style={styles.formSection}>
+            <Text style={commonStyles.subtitle}>Contact Information</Text>
+            
+            <Text style={commonStyles.label}>Full Name *</Text>
+            <TextInput
+              style={commonStyles.input}
+              placeholder="Enter your full name"
+              placeholderTextColor={colors.grey}
+              value={name}
+              onChangeText={setName}
             />
-          )}
-        </View>
 
-        <View style={styles.formSection}>
-          <Text style={commonStyles.subtitle}>Tattoo Details</Text>
-          
-          <Text style={commonStyles.label}>Description *</Text>
-          <TextInput
-            style={[commonStyles.input, commonStyles.inputMultiline]}
-            placeholder="Describe your tattoo idea in detail..."
-            placeholderTextColor={colors.grey}
-            value={description}
-            onChangeText={setDescription}
-            multiline
-            numberOfLines={4}
-          />
+            <Text style={commonStyles.label}>Email *</Text>
+            <TextInput
+              style={commonStyles.input}
+              placeholder="your.email@example.com"
+              placeholderTextColor={colors.grey}
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
 
-          <Text style={commonStyles.label}>Placement</Text>
-          <TextInput
-            style={commonStyles.input}
-            placeholder="e.g., Upper arm, back, chest"
-            placeholderTextColor={colors.grey}
-            value={placement}
-            onChangeText={setPlacement}
-          />
+            <Text style={commonStyles.label}>Phone Number *</Text>
+            <TextInput
+              style={commonStyles.input}
+              placeholder="(555) 123-4567"
+              placeholderTextColor={colors.grey}
+              value={phone}
+              onChangeText={setPhone}
+              keyboardType="phone-pad"
+            />
+          </View>
 
-          <Text style={commonStyles.label}>Approximate Size</Text>
-          <TextInput
-            style={commonStyles.input}
-            placeholder="e.g., 4x6 inches, palm-sized"
-            placeholderTextColor={colors.grey}
-            value={size}
-            onChangeText={setSize}
-          />
+          <View style={styles.formSection}>
+            <Text style={commonStyles.subtitle}>Appointment Details</Text>
+            
+            <Text style={commonStyles.label}>Preferred Date</Text>
+            <TouchableOpacity 
+              style={styles.dateButton}
+              onPress={() => setShowDatePicker(true)}
+            >
+              <IconSymbol 
+                ios_icon_name="calendar" 
+                android_material_icon_name="calendar_today" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={styles.dateButtonText}>
+                {date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+              </Text>
+            </TouchableOpacity>
 
-          <Text style={commonStyles.label}>Reference Images</Text>
-          <TouchableOpacity 
-            style={styles.imagePickerButton}
-            onPress={pickImage}
-          >
+            {showDatePicker && (
+              <DateTimePicker
+                value={date}
+                mode="date"
+                display="default"
+                onChange={handleDateChange}
+                minimumDate={new Date()}
+              />
+            )}
+          </View>
+
+          <View style={styles.formSection}>
+            <Text style={commonStyles.subtitle}>Tattoo Details</Text>
+            
+            <Text style={commonStyles.label}>Description *</Text>
+            <TextInput
+              style={[commonStyles.input, commonStyles.inputMultiline]}
+              placeholder="Describe your tattoo idea in detail..."
+              placeholderTextColor={colors.grey}
+              value={description}
+              onChangeText={setDescription}
+              multiline
+              numberOfLines={4}
+            />
+
+            <Text style={commonStyles.label}>Placement</Text>
+            <TextInput
+              style={commonStyles.input}
+              placeholder="e.g., Upper arm, back, chest"
+              placeholderTextColor={colors.grey}
+              value={placement}
+              onChangeText={setPlacement}
+            />
+
+            <Text style={commonStyles.label}>Approximate Size</Text>
+            <TextInput
+              style={commonStyles.input}
+              placeholder="e.g., 4x6 inches, palm-sized"
+              placeholderTextColor={colors.grey}
+              value={size}
+              onChangeText={setSize}
+            />
+
+            <Text style={commonStyles.label}>Reference Images</Text>
+            <TouchableOpacity 
+              style={styles.imagePickerButton}
+              onPress={pickImage}
+            >
+              <IconSymbol 
+                ios_icon_name="photo.badge.plus" 
+                android_material_icon_name="add_photo_alternate" 
+                size={24} 
+                color={colors.primary} 
+              />
+              <Text style={styles.imagePickerText}>
+                {referenceImages.length > 0 
+                  ? `${referenceImages.length} image(s) selected` 
+                  : 'Add Reference Images'}
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.depositInfo}>
             <IconSymbol 
-              ios_icon_name="photo.badge.plus" 
-              android_material_icon_name="add_photo_alternate" 
+              ios_icon_name="info.circle.fill" 
+              android_material_icon_name="info" 
               size={24} 
               color={colors.primary} 
             />
-            <Text style={styles.imagePickerText}>
-              {referenceImages.length > 0 
-                ? `${referenceImages.length} image(s) selected` 
-                : 'Add Reference Images'}
+            <Text style={styles.depositText}>
+              A non-refundable deposit will be required to secure your appointment. 
+              You will receive payment instructions via email after Kyle reviews your request.
             </Text>
+          </View>
+
+          <TouchableOpacity 
+            style={[buttonStyles.primaryButton, styles.submitButton]}
+            onPress={handleSubmit}
+          >
+            <Text style={buttonStyles.primaryButtonText}>Submit Booking Request</Text>
           </TouchableOpacity>
-        </View>
 
-        <View style={styles.depositInfo}>
-          <IconSymbol 
-            ios_icon_name="info.circle.fill" 
-            android_material_icon_name="info" 
-            size={24} 
-            color={colors.primary} 
-          />
-          <Text style={styles.depositText}>
-            A non-refundable deposit will be required to secure your appointment. 
-            You will receive payment instructions via email after Kyle reviews your request.
-          </Text>
-        </View>
-
-        <TouchableOpacity 
-          style={[buttonStyles.primaryButton, styles.submitButton]}
-          onPress={handleSubmit}
-        >
-          <Text style={buttonStyles.primaryButtonText}>Submit Booking Request</Text>
-        </TouchableOpacity>
-
-        <View style={styles.bottomPadding} />
-      </ScrollView>
-    </View>
+          <View style={styles.bottomPadding} />
+        </ScrollView>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  },
   scrollView: {
     flex: 1,
   },

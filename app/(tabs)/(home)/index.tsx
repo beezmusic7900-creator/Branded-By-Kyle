@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Platform, ImageBackground } from 'react-native';
 import { useRouter } from 'expo-router';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
@@ -9,122 +9,132 @@ export default function HomeScreen() {
   const router = useRouter();
 
   return (
-    <View style={[commonStyles.container]}>
-      <ScrollView 
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Logo Section */}
-        <View style={styles.logoContainer}>
-          <Image
-            source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-          <Text style={styles.brandName}>Branded By Kyle</Text>
-          <Text style={styles.tagline}>Premium Tattoo Artistry</Text>
-        </View>
-
-        {/* Welcome Section */}
-        <View style={styles.welcomeSection}>
-          <Text style={styles.welcomeText}>
-            Welcome to my exclusive tattoo studio. I specialize in custom designs that tell your unique story through ink.
-          </Text>
-        </View>
-
-        {/* Quick Actions */}
-        <View style={styles.actionsContainer}>
-          <TouchableOpacity 
-            style={[buttonStyles.primaryButton, styles.actionButton]}
-            onPress={() => router.push('/(tabs)/book')}
-          >
-            <IconSymbol 
-              ios_icon_name="calendar.badge.plus" 
-              android_material_icon_name="event" 
-              size={24} 
-              color="#FFFFFF" 
+    <ImageBackground
+      source={require('@/assets/images/f17fedc1-b2a1-4b83-8bc6-33e74e0d6fa7.png')}
+      style={[commonStyles.container]}
+      resizeMode="cover"
+    >
+      <View style={styles.overlay}>
+        <ScrollView 
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {/* Logo Section */}
+          <View style={styles.logoContainer}>
+            <Image
+              source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
+              style={styles.logo}
+              resizeMode="contain"
             />
-            <Text style={[buttonStyles.primaryButtonText, styles.actionButtonText]}>
-              Book Appointment
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity 
-            style={[buttonStyles.secondaryButton, styles.actionButton]}
-            onPress={() => router.push('/(tabs)/portfolio')}
-          >
-            <IconSymbol 
-              ios_icon_name="photo.fill" 
-              android_material_icon_name="photo_library" 
-              size={24} 
-              color={colors.primary} 
-            />
-            <Text style={[buttonStyles.secondaryButtonText, styles.actionButtonText]}>
-              View Portfolio
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Info Cards */}
-        <View style={styles.infoCardsContainer}>
-          <View style={commonStyles.card}>
-            <View style={styles.cardHeader}>
-              <IconSymbol 
-                ios_icon_name="clock.fill" 
-                android_material_icon_name="schedule" 
-                size={28} 
-                color={colors.primary} 
-              />
-              <Text style={styles.cardTitle}>Hours</Text>
-            </View>
-            <Text style={styles.cardText}>Tuesday - Saturday</Text>
-            <Text style={styles.cardText}>10:00 AM - 6:00 PM</Text>
-            <Text style={[styles.cardText, styles.cardSubtext]}>By Appointment Only</Text>
+            <Text style={styles.brandName}>Branded By Kyle</Text>
+            <Text style={styles.tagline}>Premium Tattoo Artistry</Text>
           </View>
 
-          <View style={commonStyles.card}>
-            <View style={styles.cardHeader}>
-              <IconSymbol 
-                ios_icon_name="star.fill" 
-                android_material_icon_name="star" 
-                size={28} 
-                color={colors.primary} 
-              />
-              <Text style={styles.cardTitle}>Specialties</Text>
-            </View>
-            <Text style={styles.cardText}>• Custom Designs</Text>
-            <Text style={styles.cardText}>• Black & Grey Realism</Text>
-            <Text style={styles.cardText}>• Color Work</Text>
-            <Text style={styles.cardText}>• Cover-ups</Text>
-          </View>
-
-          <View style={commonStyles.card}>
-            <View style={styles.cardHeader}>
-              <IconSymbol 
-                ios_icon_name="dollarsign.circle.fill" 
-                android_material_icon_name="payments" 
-                size={28} 
-                color={colors.primary} 
-              />
-              <Text style={styles.cardTitle}>Pricing</Text>
-            </View>
-            <Text style={styles.cardText}>Minimum: $150</Text>
-            <Text style={styles.cardText}>Hourly Rate: $200/hr</Text>
-            <Text style={[styles.cardText, styles.cardSubtext]}>
-              Deposit required to secure booking
+          {/* Welcome Section */}
+          <View style={styles.welcomeSection}>
+            <Text style={styles.welcomeText}>
+              Welcome to my exclusive tattoo studio. I specialize in custom designs that tell your unique story through ink.
             </Text>
           </View>
-        </View>
 
-        {/* Bottom Padding */}
-        <View style={styles.bottomPadding} />
-      </ScrollView>
-    </View>
+          {/* Quick Actions */}
+          <View style={styles.actionsContainer}>
+            <TouchableOpacity 
+              style={[buttonStyles.primaryButton, styles.actionButton]}
+              onPress={() => router.push('/(tabs)/book')}
+            >
+              <IconSymbol 
+                ios_icon_name="calendar.badge.plus" 
+                android_material_icon_name="event" 
+                size={24} 
+                color="#FFFFFF" 
+              />
+              <Text style={[buttonStyles.primaryButtonText, styles.actionButtonText]}>
+                Book Appointment
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={[buttonStyles.secondaryButton, styles.actionButton]}
+              onPress={() => router.push('/(tabs)/portfolio')}
+            >
+              <IconSymbol 
+                ios_icon_name="photo.fill" 
+                android_material_icon_name="photo_library" 
+                size={24} 
+                color={colors.primary} 
+              />
+              <Text style={[buttonStyles.secondaryButtonText, styles.actionButtonText]}>
+                View Portfolio
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Info Cards */}
+          <View style={styles.infoCardsContainer}>
+            <View style={commonStyles.card}>
+              <View style={styles.cardHeader}>
+                <IconSymbol 
+                  ios_icon_name="clock.fill" 
+                  android_material_icon_name="schedule" 
+                  size={28} 
+                  color={colors.primary} 
+                />
+                <Text style={styles.cardTitle}>Hours</Text>
+              </View>
+              <Text style={styles.cardText}>Tuesday - Saturday</Text>
+              <Text style={styles.cardText}>10:00 AM - 6:00 PM</Text>
+              <Text style={[styles.cardText, styles.cardSubtext]}>By Appointment Only</Text>
+            </View>
+
+            <View style={commonStyles.card}>
+              <View style={styles.cardHeader}>
+                <IconSymbol 
+                  ios_icon_name="star.fill" 
+                  android_material_icon_name="star" 
+                  size={28} 
+                  color={colors.primary} 
+                />
+                <Text style={styles.cardTitle}>Specialties</Text>
+              </View>
+              <Text style={styles.cardText}>• Custom Designs</Text>
+              <Text style={styles.cardText}>• Black & Grey Realism</Text>
+              <Text style={styles.cardText}>• Color Work</Text>
+              <Text style={styles.cardText}>• Cover-ups</Text>
+            </View>
+
+            <View style={commonStyles.card}>
+              <View style={styles.cardHeader}>
+                <IconSymbol 
+                  ios_icon_name="dollarsign.circle.fill" 
+                  android_material_icon_name="payments" 
+                  size={28} 
+                  color={colors.primary} 
+                />
+                <Text style={styles.cardTitle}>Pricing</Text>
+              </View>
+              <Text style={styles.cardText}>Minimum: $150</Text>
+              <Text style={styles.cardText}>Hourly Rate: $200/hr</Text>
+              <Text style={[styles.cardText, styles.cardSubtext]}>
+                Deposit required to secure booking
+              </Text>
+            </View>
+          </View>
+
+          {/* Bottom Padding */}
+          <View style={styles.bottomPadding} />
+        </ScrollView>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  },
   scrollView: {
     flex: 1,
   },
