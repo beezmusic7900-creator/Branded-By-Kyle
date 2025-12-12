@@ -4,9 +4,11 @@ import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Platform, 
 import { useRouter } from 'expo-router';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { isAdmin } = useAuth();
 
   return (
     <ImageBackground
@@ -30,6 +32,37 @@ export default function HomeScreen() {
             <Text style={styles.brandName}>Branded By Kyle</Text>
             <Text style={styles.tagline}>Premium Tattoo Artistry</Text>
           </View>
+
+          {/* Admin Button */}
+          {!isAdmin && (
+            <TouchableOpacity 
+              style={styles.adminButton}
+              onPress={() => router.push('/admin-login')}
+            >
+              <IconSymbol 
+                ios_icon_name="lock.shield" 
+                android_material_icon_name="admin_panel_settings" 
+                size={16} 
+                color={colors.grey} 
+              />
+              <Text style={styles.adminButtonText}>Admin</Text>
+            </TouchableOpacity>
+          )}
+
+          {isAdmin && (
+            <TouchableOpacity 
+              style={[buttonStyles.secondaryButton, styles.adminPanelButton]}
+              onPress={() => router.push('/admin-panel')}
+            >
+              <IconSymbol 
+                ios_icon_name="lock.shield.fill" 
+                android_material_icon_name="admin_panel_settings" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={buttonStyles.secondaryButtonText}>Open Admin Panel</Text>
+            </TouchableOpacity>
+          )}
 
           {/* Welcome Section */}
           <View style={styles.welcomeSection}>
@@ -83,8 +116,8 @@ export default function HomeScreen() {
                 />
                 <Text style={styles.cardTitle}>Hours</Text>
               </View>
-              <Text style={styles.cardText}>Tuesday - Saturday</Text>
-              <Text style={styles.cardText}>10:00 AM - 6:00 PM</Text>
+              <Text style={styles.cardText}>Monday - Saturday</Text>
+              <Text style={styles.cardText}>11:00 AM - 11:00 PM</Text>
               <Text style={[styles.cardText, styles.cardSubtext]}>By Appointment Only</Text>
             </View>
 
@@ -99,8 +132,9 @@ export default function HomeScreen() {
                 <Text style={styles.cardTitle}>Specialties</Text>
               </View>
               <Text style={styles.cardText}>• Custom Designs</Text>
-              <Text style={styles.cardText}>• Black & Grey Realism</Text>
               <Text style={styles.cardText}>• Color Work</Text>
+              <Text style={styles.cardText}>• Full Chest Pieces</Text>
+              <Text style={styles.cardText}>• Portraits</Text>
               <Text style={styles.cardText}>• Cover-ups</Text>
             </View>
 
@@ -114,8 +148,8 @@ export default function HomeScreen() {
                 />
                 <Text style={styles.cardTitle}>Pricing</Text>
               </View>
-              <Text style={styles.cardText}>Minimum: $150</Text>
-              <Text style={styles.cardText}>Hourly Rate: $200/hr</Text>
+              <Text style={styles.cardText}>Hourly Rate: $150/hr</Text>
+              <Text style={styles.cardText}>Deposit: $100 (non-refundable)</Text>
               <Text style={[styles.cardText, styles.cardSubtext]}>
                 Deposit required to secure booking
               </Text>
@@ -145,7 +179,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 16,
     paddingTop: 20,
   },
   logo: {
@@ -167,6 +201,27 @@ const styles = StyleSheet.create({
     color: colors.primary,
     letterSpacing: 2,
     textTransform: 'uppercase',
+  },
+  adminButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    alignSelf: 'center',
+    marginBottom: 16,
+  },
+  adminButtonText: {
+    fontSize: 12,
+    color: colors.grey,
+    fontWeight: '500',
+  },
+  adminPanelButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 24,
   },
   welcomeSection: {
     marginBottom: 32,

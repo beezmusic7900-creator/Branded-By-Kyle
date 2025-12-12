@@ -1,46 +1,21 @@
 
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform, ImageBackground } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform, ImageBackground, Linking, Alert, Image } from 'react-native';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
-
-interface Appointment {
-  id: string;
-  date: string;
-  time: string;
-  status: 'pending' | 'confirmed' | 'completed';
-  description: string;
-  depositPaid: boolean;
-}
-
-const mockAppointments: Appointment[] = [
-  {
-    id: '1',
-    date: '2025-02-15',
-    time: '2:00 PM',
-    status: 'confirmed',
-    description: 'Custom sleeve design - upper arm',
-    depositPaid: true,
-  },
-  {
-    id: '2',
-    date: '2025-01-28',
-    time: '11:00 AM',
-    status: 'pending',
-    description: 'Black & grey portrait',
-    depositPaid: false,
-  },
-];
+import { useAppointments } from '@/contexts/AppointmentContext';
 
 export default function AppointmentsScreen() {
-  const [appointments] = useState<Appointment[]>(mockAppointments);
+  const { appointments, markDepositPaid } = useAppointments();
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'confirmed':
+      case 'approved':
         return '#34C759';
       case 'pending':
         return '#FF9500';
+      case 'rejected':
+        return '#FF3B30';
       case 'completed':
         return colors.grey;
       default:
@@ -50,15 +25,34 @@ export default function AppointmentsScreen() {
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'confirmed':
+      case 'approved':
         return { ios: 'checkmark.circle.fill', android: 'check_circle' };
       case 'pending':
         return { ios: 'clock.fill', android: 'schedule' };
+      case 'rejected':
+        return { ios: 'xmark.circle.fill', android: 'cancel' };
       case 'completed':
         return { ios: 'checkmark.seal.fill', android: 'verified' };
       default:
         return { ios: 'circle', android: 'circle' };
     }
+  };
+
+  const handlePayDeposit = (appointmentId: string) => {
+    Alert.alert(
+      'Payment Link',
+      'In a production app, this would open a payment link. For now, we\'ll mark the deposit as paid.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Mark as Paid',
+          onPress: async () => {
+            await markDepositPaid(appointmentId);
+            Alert.alert('Success', 'Deposit marked as paid! Kyle will review your appointment.');
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -74,6 +68,11 @@ export default function AppointmentsScreen() {
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.header}>
+            <Image
+              source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
+              style={styles.headerLogo}
+              resizeMode="contain"
+            />
             <IconSymbol 
               ios_icon_name="list.bullet.clipboard.fill" 
               android_material_icon_name="assignment" 
@@ -137,15 +136,22 @@ export default function AppointmentsScreen() {
                       </View>
                     </View>
 
-                    <View style={styles.timeContainer}>
-                      <IconSymbol 
-                        ios_icon_name="clock" 
-                        android_material_icon_name="access_time" 
-                        size={18} 
-                        color={colors.text} 
-                      />
-                      <Text style={styles.timeText}>{appointment.time}</Text>
-                    </View>
+                    {appointment.consultationDate && (
+                      <View style={styles.consultationContainer}>
+                        <IconSymbol 
+                          ios_icon_name="video.fill" 
+                          android_material_icon_name="videocam" 
+                          size={18} 
+                          color={colors.primary} 
+                        />
+                        <Text style={styles.consultationText}>
+                          Consultation: {new Date(appointment.consultationDate).toLocaleDateString('en-US', { 
+                            month: 'short', 
+                            day: 'numeric'
+                          })} at {appointment.consultationTime}
+                        </Text>
+                      </View>
+                    )}
 
                     <Text style={styles.descriptionText}>{appointment.description}</Text>
 
@@ -157,18 +163,45 @@ export default function AppointmentsScreen() {
                         color={appointment.depositPaid ? '#34C759' : '#FF9500'} 
                       />
                       <Text style={[styles.depositText, { color: appointment.depositPaid ? '#34C759' : '#FF9500' }]}>
-                        {appointment.depositPaid ? 'Deposit Paid' : 'Deposit Pending'}
+                        {appointment.depositPaid ? 'Deposit Paid ($100)' : 'Deposit Pending ($100)'}
                       </Text>
                     </View>
 
-                    {appointment.status === 'pending' && (
+                    {!appointment.depositPaid && appointment.status === 'pending' && (
                       <TouchableOpacity 
-                        style={[buttonStyles.secondaryButton, styles.actionButton]}
+                        style={[buttonStyles.primaryButton, styles.actionButton]}
+                        onPress={() => handlePayDeposit(appointment.id)}
                       >
-                        <Text style={buttonStyles.secondaryButtonText}>
-                          {appointment.depositPaid ? 'View Details' : 'Pay Deposit'}
-                        </Text>
+                        <Text style={buttonStyles.primaryButtonText}>Pay Deposit</Text>
                       </TouchableOpacity>
+                    )}
+
+                    {appointment.status === 'approved' && (
+                      <View style={styles.approvedInfo}>
+                        <IconSymbol 
+                          ios_icon_name="checkmark.seal.fill" 
+                          android_material_icon_name="verified" 
+                          size={20} 
+                          color="#34C759" 
+                        />
+                        <Text style={styles.approvedText}>
+                          Your appointment has been approved! Kyle will contact you soon.
+                        </Text>
+                      </View>
+                    )}
+
+                    {appointment.status === 'rejected' && (
+                      <View style={styles.rejectedInfo}>
+                        <IconSymbol 
+                          ios_icon_name="exclamationmark.triangle.fill" 
+                          android_material_icon_name="warning" 
+                          size={20} 
+                          color="#FF3B30" 
+                        />
+                        <Text style={styles.rejectedText}>
+                          This appointment was not approved. Please contact Kyle for more information.
+                        </Text>
+                      </View>
                     )}
                   </View>
                 );
@@ -184,10 +217,15 @@ export default function AppointmentsScreen() {
               color={colors.primary} 
             />
             <View style={styles.infoContent}>
-              <Text style={styles.infoTitle}>Cancellation Policy</Text>
+              <Text style={styles.infoTitle}>Important Information</Text>
               <Text style={styles.infoText}>
-                Please provide at least 48 hours notice for cancellations. 
-                Deposits are non-refundable but can be applied to future appointments.
+                • $100 deposit is non-refundable but secures your date
+                {'\n'}
+                • Consultation must be completed before appointment
+                {'\n'}
+                • Remaining balance due at time of service
+                {'\n'}
+                • 48 hours notice required for cancellations
               </Text>
             </View>
           </View>
@@ -216,6 +254,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 32,
     paddingTop: 20,
+  },
+  headerLogo: {
+    width: 60,
+    height: 60,
+    marginBottom: 12,
   },
   emptyState: {
     alignItems: 'center',
@@ -261,15 +304,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
-  timeContainer: {
+  consultationContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
     marginBottom: 12,
+    backgroundColor: colors.backgroundAlt,
+    padding: 10,
+    borderRadius: 8,
   },
-  timeText: {
-    fontSize: 15,
+  consultationText: {
+    fontSize: 14,
     color: colors.text,
+    fontWeight: '500',
   },
   descriptionText: {
     fontSize: 15,
@@ -289,6 +336,36 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     marginTop: 8,
+  },
+  approvedInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: '#34C75920',
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 8,
+  },
+  approvedText: {
+    flex: 1,
+    fontSize: 13,
+    color: '#34C759',
+    fontWeight: '500',
+  },
+  rejectedInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: '#FF3B3020',
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 8,
+  },
+  rejectedText: {
+    flex: 1,
+    fontSize: 13,
+    color: '#FF3B30',
+    fontWeight: '500',
   },
   infoCard: {
     flexDirection: 'row',

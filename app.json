@@ -1,8 +1,7 @@
-
 {
   "expo": {
     "name": "Branded By Kyle",
-    "slug": "branded-by-kyle",
+    "slug": "Branded By Kyle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -45,5 +44,5 @@
       "router": {}
     }
   },
-  "scheme": "brandedbykyle"
+  "scheme": "Branded By Kyle"
 }

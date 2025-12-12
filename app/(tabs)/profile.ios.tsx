@@ -5,16 +5,13 @@ import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ProfileScreen() {
-  const handleContact = (type: 'email' | 'phone' | 'instagram') => {
+  const handleContact = (type: 'email' | 'instagram') => {
     switch (type) {
       case 'email':
-        Linking.openURL('mailto:kyle@brandedbykyle.com');
-        break;
-      case 'phone':
-        Linking.openURL('tel:+15551234567');
+        Linking.openURL('mailto:kyleesdad16@gmail.com');
         break;
       case 'instagram':
-        Linking.openURL('https://instagram.com/brandedbykyle');
+        Linking.openURL('https://instagram.com/branded_by_kyle');
         break;
     }
   };
@@ -92,15 +89,6 @@ export default function ProfileScreen() {
                   size={20} 
                   color={colors.primary} 
                 />
-                <Text style={styles.specialtyText}>Black & Grey Realism</Text>
-              </View>
-              <View style={styles.specialtyItem}>
-                <IconSymbol 
-                  ios_icon_name="checkmark.circle.fill" 
-                  android_material_icon_name="check_circle" 
-                  size={20} 
-                  color={colors.primary} 
-                />
                 <Text style={styles.specialtyText}>Color Work</Text>
               </View>
               <View style={styles.specialtyItem}>
@@ -110,7 +98,7 @@ export default function ProfileScreen() {
                   size={20} 
                   color={colors.primary} 
                 />
-                <Text style={styles.specialtyText}>Cover-ups & Touch-ups</Text>
+                <Text style={styles.specialtyText}>Full Chest Pieces</Text>
               </View>
               <View style={styles.specialtyItem}>
                 <IconSymbol 
@@ -119,7 +107,7 @@ export default function ProfileScreen() {
                   size={20} 
                   color={colors.primary} 
                 />
-                <Text style={styles.specialtyText}>Portrait Work</Text>
+                <Text style={styles.specialtyText}>Portraits</Text>
               </View>
               <View style={styles.specialtyItem}>
                 <IconSymbol 
@@ -128,7 +116,7 @@ export default function ProfileScreen() {
                   size={20} 
                   color={colors.primary} 
                 />
-                <Text style={styles.specialtyText}>Geometric & Tribal</Text>
+                <Text style={styles.specialtyText}>Cover-ups</Text>
               </View>
             </View>
           </View>
@@ -145,19 +133,17 @@ export default function ProfileScreen() {
               <Text style={styles.sectionTitle}>Pricing</Text>
             </View>
             <View style={styles.pricingItem}>
-              <Text style={styles.pricingLabel}>Minimum</Text>
-              <Text style={styles.pricingValue}>$150</Text>
-            </View>
-            <View style={styles.pricingItem}>
               <Text style={styles.pricingLabel}>Hourly Rate</Text>
-              <Text style={styles.pricingValue}>$200/hr</Text>
+              <Text style={styles.pricingValue}>$150/hr</Text>
             </View>
             <View style={styles.pricingItem}>
-              <Text style={styles.pricingLabel}>Deposit</Text>
+              <Text style={styles.pricingLabel}>Deposit (Non-Refundable)</Text>
               <Text style={styles.pricingValue}>$100</Text>
             </View>
             <Text style={styles.pricingNote}>
-              * Deposit is non-refundable but applies to final cost
+              * Deposit secures your date and applies to final cost
+              {'\n'}
+              * Remaining balance due at time of service
             </Text>
           </View>
 
@@ -165,8 +151,8 @@ export default function ProfileScreen() {
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 
-                ios_icon_name="phone.fill" 
-                android_material_icon_name="phone" 
+                ios_icon_name="paperplane.fill" 
+                android_material_icon_name="send" 
                 size={24} 
                 color={colors.primary} 
               />
@@ -183,20 +169,7 @@ export default function ProfileScreen() {
                 size={20} 
                 color={colors.primary} 
               />
-              <Text style={styles.contactButtonText}>kyle@brandedbykyle.com</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-              style={styles.contactButton}
-              onPress={() => handleContact('phone')}
-            >
-              <IconSymbol 
-                ios_icon_name="phone.fill" 
-                android_material_icon_name="phone" 
-                size={20} 
-                color={colors.primary} 
-              />
-              <Text style={styles.contactButtonText}>(555) 123-4567</Text>
+              <Text style={styles.contactButtonText}>kyleesdad16@gmail.com</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
@@ -209,7 +182,7 @@ export default function ProfileScreen() {
                 size={20} 
                 color={colors.primary} 
               />
-              <Text style={styles.contactButtonText}>@brandedbykyle</Text>
+              <Text style={styles.contactButtonText}>@branded_by_kyle</Text>
             </TouchableOpacity>
           </View>
 
@@ -226,7 +199,7 @@ export default function ProfileScreen() {
             </View>
             <Text style={styles.studioText}>
               <Text style={styles.studioLabel}>Hours: </Text>
-              Tuesday - Saturday, 10:00 AM - 6:00 PM
+              Monday - Saturday, 11:00 AM - 11:00 PM
             </Text>
             <Text style={styles.studioText}>
               <Text style={styles.studioLabel}>Location: </Text>
@@ -331,6 +304,7 @@ const styles = StyleSheet.create({
     color: colors.grey,
     fontStyle: 'italic',
     marginTop: 8,
+    lineHeight: 18,
   },
   contactButton: {
     flexDirection: 'row',

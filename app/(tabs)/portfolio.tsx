@@ -17,21 +17,21 @@ interface PortfolioItem {
 const portfolioItems: PortfolioItem[] = [
   {
     id: '1',
-    imageUrl: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=800',
-    category: 'Black & Grey',
-    description: 'Realistic portrait work',
+    imageUrl: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800',
+    category: 'Color',
+    description: 'Vibrant color work',
   },
   {
     id: '2',
-    imageUrl: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800',
-    category: 'Color',
-    description: 'Vibrant floral design',
+    imageUrl: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=800',
+    category: 'Full Chest Piece',
+    description: 'Full chest piece design',
   },
   {
     id: '3',
-    imageUrl: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=800',
-    category: 'Black & Grey',
-    description: 'Geometric patterns',
+    imageUrl: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=800',
+    category: 'Portraits',
+    description: 'Realistic portrait work',
   },
   {
     id: '4',
@@ -42,18 +42,30 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: '5',
     imageUrl: 'https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=800',
-    category: 'Color',
-    description: 'Traditional style',
+    category: 'Cover Ups',
+    description: 'Cover-up transformation',
   },
   {
     id: '6',
     imageUrl: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800',
-    category: 'Black & Grey',
-    description: 'Fine line work',
+    category: 'Color',
+    description: 'Colorful floral design',
+  },
+  {
+    id: '7',
+    imageUrl: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=800',
+    category: 'Portraits',
+    description: 'Portrait tattoo art',
+  },
+  {
+    id: '8',
+    imageUrl: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=800',
+    category: 'Custom',
+    description: 'Custom back piece',
   },
 ];
 
-const categories = ['All', 'Black & Grey', 'Color', 'Custom'];
+const categories = ['All', 'Color', 'Full Chest Piece', 'Portraits', 'Custom', 'Cover Ups'];
 
 export default function PortfolioScreen() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -76,6 +88,11 @@ export default function PortfolioScreen() {
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.header}>
+            <Image
+              source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
+              style={styles.headerLogo}
+              resizeMode="contain"
+            />
             <IconSymbol 
               ios_icon_name="photo.fill" 
               android_material_icon_name="photo_library" 
@@ -201,6 +218,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
     paddingTop: 20,
+  },
+  headerLogo: {
+    width: 60,
+    height: 60,
+    marginBottom: 12,
   },
   categoryContainer: {
     marginBottom: 24,
