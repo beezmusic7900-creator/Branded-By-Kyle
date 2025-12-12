@@ -1,91 +1,359 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { IconSymbol } from "@/components/IconSymbol";
-import { GlassView } from "expo-glass-effect";
-import { useTheme } from "@react-navigation/native";
+
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Platform, Linking } from 'react-native';
+import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
+import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ProfileScreen() {
-  const theme = useTheme();
+  const handleContact = (type: 'email' | 'phone' | 'instagram') => {
+    switch (type) {
+      case 'email':
+        Linking.openURL('mailto:kyle@brandedbykyle.com');
+        break;
+      case 'phone':
+        Linking.openURL('tel:+15551234567');
+        break;
+      case 'instagram':
+        Linking.openURL('https://instagram.com/brandedbykyle');
+        break;
+    }
+  };
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.colors.background }]} edges={['top']}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={[
-          styles.contentContainer,
-          Platform.OS !== 'ios' && styles.contentContainerWithTabBar
-        ]}
+    <View style={commonStyles.container}>
+      <ScrollView 
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
       >
-        <GlassView style={[
-          styles.profileHeader,
-          Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-        ]} glassEffectStyle="regular">
-          <IconSymbol ios_icon_name="person.circle.fill" android_material_icon_name="person" size={80} color={theme.colors.primary} />
-          <Text style={[styles.name, { color: theme.colors.text }]}>John Doe</Text>
-          <Text style={[styles.email, { color: theme.dark ? '#98989D' : '#666' }]}>john.doe@example.com</Text>
-        </GlassView>
+        {/* Profile Header */}
+        <View style={styles.profileHeader}>
+          <Image
+            source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
+            style={styles.profileImage}
+            resizeMode="contain"
+          />
+          <Text style={styles.artistName}>Kyle</Text>
+          <Text style={styles.artistTitle}>Master Tattoo Artist</Text>
+        </View>
 
-        <GlassView style={[
-          styles.section,
-          Platform.OS !== 'ios' && { backgroundColor: theme.dark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }
-        ]} glassEffectStyle="regular">
-          <View style={styles.infoRow}>
-            <IconSymbol ios_icon_name="phone.fill" android_material_icon_name="phone" size={20} color={theme.dark ? '#98989D' : '#666'} />
-            <Text style={[styles.infoText, { color: theme.colors.text }]}>+1 (555) 123-4567</Text>
+        {/* Bio Section */}
+        <View style={commonStyles.card}>
+          <View style={styles.sectionHeader}>
+            <IconSymbol 
+              ios_icon_name="person.fill" 
+              android_material_icon_name="person" 
+              size={24} 
+              color={colors.primary} 
+            />
+            <Text style={styles.sectionTitle}>About Me</Text>
           </View>
-          <View style={styles.infoRow}>
-            <IconSymbol ios_icon_name="location.fill" android_material_icon_name="location-on" size={20} color={theme.dark ? '#98989D' : '#666'} />
-            <Text style={[styles.infoText, { color: theme.colors.text }]}>San Francisco, CA</Text>
+          <Text style={styles.bioText}>
+            With over 10 years of experience in the tattoo industry, I specialize in creating custom designs 
+            that tell your unique story. My passion is bringing your vision to life through detailed, 
+            high-quality tattoo work that you&apos;ll be proud to wear for a lifetime.
+          </Text>
+          <Text style={styles.bioText}>
+            I believe every tattoo should be a masterpiece, which is why I take the time to understand 
+            your ideas and work closely with you throughout the entire process.
+          </Text>
+        </View>
+
+        {/* Specialties */}
+        <View style={commonStyles.card}>
+          <View style={styles.sectionHeader}>
+            <IconSymbol 
+              ios_icon_name="star.fill" 
+              android_material_icon_name="star" 
+              size={24} 
+              color={colors.primary} 
+            />
+            <Text style={styles.sectionTitle}>Specialties</Text>
           </View>
-        </GlassView>
+          <View style={styles.specialtiesList}>
+            <View style={styles.specialtyItem}>
+              <IconSymbol 
+                ios_icon_name="checkmark.circle.fill" 
+                android_material_icon_name="check_circle" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={styles.specialtyText}>Custom Designs</Text>
+            </View>
+            <View style={styles.specialtyItem}>
+              <IconSymbol 
+                ios_icon_name="checkmark.circle.fill" 
+                android_material_icon_name="check_circle" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={styles.specialtyText}>Black & Grey Realism</Text>
+            </View>
+            <View style={styles.specialtyItem}>
+              <IconSymbol 
+                ios_icon_name="checkmark.circle.fill" 
+                android_material_icon_name="check_circle" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={styles.specialtyText}>Color Work</Text>
+            </View>
+            <View style={styles.specialtyItem}>
+              <IconSymbol 
+                ios_icon_name="checkmark.circle.fill" 
+                android_material_icon_name="check_circle" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={styles.specialtyText}>Cover-ups & Touch-ups</Text>
+            </View>
+            <View style={styles.specialtyItem}>
+              <IconSymbol 
+                ios_icon_name="checkmark.circle.fill" 
+                android_material_icon_name="check_circle" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={styles.specialtyText}>Portrait Work</Text>
+            </View>
+            <View style={styles.specialtyItem}>
+              <IconSymbol 
+                ios_icon_name="checkmark.circle.fill" 
+                android_material_icon_name="check_circle" 
+                size={20} 
+                color={colors.primary} 
+              />
+              <Text style={styles.specialtyText}>Geometric & Tribal</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Pricing */}
+        <View style={commonStyles.card}>
+          <View style={styles.sectionHeader}>
+            <IconSymbol 
+              ios_icon_name="dollarsign.circle.fill" 
+              android_material_icon_name="payments" 
+              size={24} 
+              color={colors.primary} 
+            />
+            <Text style={styles.sectionTitle}>Pricing</Text>
+          </View>
+          <View style={styles.pricingItem}>
+            <Text style={styles.pricingLabel}>Minimum</Text>
+            <Text style={styles.pricingValue}>$150</Text>
+          </View>
+          <View style={styles.pricingItem}>
+            <Text style={styles.pricingLabel}>Hourly Rate</Text>
+            <Text style={styles.pricingValue}>$200/hr</Text>
+          </View>
+          <View style={styles.pricingItem}>
+            <Text style={styles.pricingLabel}>Deposit</Text>
+            <Text style={styles.pricingValue}>$100</Text>
+          </View>
+          <Text style={styles.pricingNote}>
+            * Deposit is non-refundable but applies to final cost
+          </Text>
+        </View>
+
+        {/* Contact */}
+        <View style={commonStyles.card}>
+          <View style={styles.sectionHeader}>
+            <IconSymbol 
+              ios_icon_name="phone.fill" 
+              android_material_icon_name="phone" 
+              size={24} 
+              color={colors.primary} 
+            />
+            <Text style={styles.sectionTitle}>Contact</Text>
+          </View>
+          
+          <TouchableOpacity 
+            style={styles.contactButton}
+            onPress={() => handleContact('email')}
+          >
+            <IconSymbol 
+              ios_icon_name="envelope.fill" 
+              android_material_icon_name="email" 
+              size={20} 
+              color={colors.primary} 
+            />
+            <Text style={styles.contactButtonText}>kyle@brandedbykyle.com</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.contactButton}
+            onPress={() => handleContact('phone')}
+          >
+            <IconSymbol 
+              ios_icon_name="phone.fill" 
+              android_material_icon_name="phone" 
+              size={20} 
+              color={colors.primary} 
+            />
+            <Text style={styles.contactButtonText}>(555) 123-4567</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.contactButton}
+            onPress={() => handleContact('instagram')}
+          >
+            <IconSymbol 
+              ios_icon_name="camera.fill" 
+              android_material_icon_name="photo_camera" 
+              size={20} 
+              color={colors.primary} 
+            />
+            <Text style={styles.contactButtonText}>@brandedbykyle</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Studio Info */}
+        <View style={commonStyles.card}>
+          <View style={styles.sectionHeader}>
+            <IconSymbol 
+              ios_icon_name="building.2.fill" 
+              android_material_icon_name="business" 
+              size={24} 
+              color={colors.primary} 
+            />
+            <Text style={styles.sectionTitle}>Studio Information</Text>
+          </View>
+          <Text style={styles.studioText}>
+            <Text style={styles.studioLabel}>Hours: </Text>
+            Tuesday - Saturday, 10:00 AM - 6:00 PM
+          </Text>
+          <Text style={styles.studioText}>
+            <Text style={styles.studioLabel}>Location: </Text>
+            By appointment only
+          </Text>
+          <Text style={[styles.studioText, styles.studioNote]}>
+            Private studio - address provided upon booking confirmation
+          </Text>
+        </View>
+
+        <View style={styles.bottomPadding} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    // backgroundColor handled dynamically
-  },
-  container: {
+  scrollView: {
     flex: 1,
   },
-  contentContainer: {
-    padding: 20,
-  },
-  contentContainerWithTabBar: {
-    paddingBottom: 100, // Extra padding for floating tab bar
+  scrollContent: {
+    paddingTop: Platform.OS === 'android' ? 48 : 20,
+    paddingHorizontal: 20,
+    paddingBottom: 120,
   },
   profileHeader: {
     alignItems: 'center',
-    borderRadius: 12,
-    padding: 32,
+    marginBottom: 32,
+    paddingTop: 20,
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    marginBottom: 16,
+  },
+  artistName: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: colors.textBright,
+    marginBottom: 4,
+    letterSpacing: 1,
+  },
+  artistTitle: {
+    fontSize: 16,
+    fontWeight: '400',
+    color: colors.primary,
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 16,
     gap: 12,
   },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    // color handled dynamically
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: colors.textBright,
+    letterSpacing: 0.5,
   },
-  email: {
-    fontSize: 16,
-    // color handled dynamically
+  bioText: {
+    fontSize: 15,
+    color: colors.text,
+    lineHeight: 24,
+    marginBottom: 12,
   },
-  section: {
-    borderRadius: 12,
-    padding: 20,
+  specialtiesList: {
     gap: 12,
   },
-  infoRow: {
+  specialtyItem: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
-  infoText: {
-    fontSize: 16,
-    // color handled dynamically
+  specialtyText: {
+    fontSize: 15,
+    color: colors.text,
+  },
+  pricingItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  pricingLabel: {
+    fontSize: 15,
+    color: colors.text,
+  },
+  pricingValue: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.primary,
+  },
+  pricingNote: {
+    fontSize: 13,
+    color: colors.grey,
+    fontStyle: 'italic',
+    marginTop: 8,
+  },
+  contactButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.backgroundAlt,
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    gap: 12,
+  },
+  contactButtonText: {
+    fontSize: 15,
+    color: colors.text,
+  },
+  studioText: {
+    fontSize: 15,
+    color: colors.text,
+    lineHeight: 24,
+    marginBottom: 8,
+  },
+  studioLabel: {
+    fontWeight: '700',
+    color: colors.textBright,
+  },
+  studioNote: {
+    fontSize: 13,
+    color: colors.grey,
+    fontStyle: 'italic',
+    marginTop: 8,
+  },
+  bottomPadding: {
+    height: 40,
   },
 });
