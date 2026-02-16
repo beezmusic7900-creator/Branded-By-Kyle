@@ -22,10 +22,9 @@ export default function HomeScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Logo Section */}
           <View style={styles.logoContainer}>
             <Image
-              source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
+              source={require('@/assets/images/f576c74c-16da-4b4e-91f3-c2170f4b4d92.png')}
               style={styles.logo}
               resizeMode="contain"
             />
@@ -33,7 +32,6 @@ export default function HomeScreen() {
             <Text style={styles.tagline}>Premium Tattoo Artistry</Text>
           </View>
 
-          {/* Admin Button */}
           {!isAdmin && (
             <TouchableOpacity 
               style={styles.adminButton}
@@ -64,14 +62,12 @@ export default function HomeScreen() {
             </TouchableOpacity>
           )}
 
-          {/* Welcome Section */}
           <View style={styles.welcomeSection}>
             <Text style={styles.welcomeText}>
               Welcome to my exclusive tattoo studio. I specialize in custom designs that tell your unique story through ink.
             </Text>
           </View>
 
-          {/* Quick Actions */}
           <View style={styles.actionsContainer}>
             <TouchableOpacity 
               style={[buttonStyles.primaryButton, styles.actionButton]}
@@ -104,7 +100,6 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Info Cards */}
           <View style={styles.infoCardsContainer}>
             <View style={commonStyles.card}>
               <View style={styles.cardHeader}>
@@ -156,7 +151,6 @@ export default function HomeScreen() {
             </View>
           </View>
 
-          {/* Bottom Padding */}
           <View style={styles.bottomPadding} />
         </ScrollView>
       </View>

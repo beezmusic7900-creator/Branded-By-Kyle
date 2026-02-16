@@ -1,8 +1,7 @@
-
 {
   "expo": {
-    "name": "Natively",
-    "slug": "Natively",
+    "name": "Branded By Kyle",
+    "slug": "Branded By Kyle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
@@ -44,7 +43,8 @@
       "router": {
         "origin": false
       }
-    }
+    },
+    "scheme": "Branded By Kyle"
   },
   "scheme": "natively"
 }

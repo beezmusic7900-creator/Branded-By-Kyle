@@ -5,6 +5,7 @@ import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
+import * as Calendar from 'expo-calendar';
 import { useAppointments } from '@/contexts/AppointmentContext';
 import { useRouter } from 'expo-router';
 
@@ -59,6 +60,64 @@ export default function BookScreen() {
     }
   };
 
+  const addToCalendar = async (appointmentDate: Date, consultDate: Date, clientName: string, tattooDescription: string) => {
+    try {
+      console.log('Requesting calendar permissions...');
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      
+      if (status !== 'granted') {
+        console.log('Calendar permission denied');
+        Alert.alert('Permission Required', 'Calendar access is needed to sync appointments. You can still book without calendar sync.');
+        return;
+      }
+
+      console.log('Calendar permission granted, getting calendars...');
+      const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+      console.log('Available calendars:', calendars.length);
+      
+      const defaultCalendar = calendars.find(cal => cal.allowsModifications) || calendars[0];
+      
+      if (!defaultCalendar) {
+        console.log('No writable calendar found');
+        Alert.alert('Calendar Error', 'No writable calendar found on your device.');
+        return;
+      }
+
+      console.log('Using calendar:', defaultCalendar.title);
+
+      const consultationEndDate = new Date(consultDate.getTime() + 60 * 60 * 1000);
+      const consultationEventId = await Calendar.createEventAsync(defaultCalendar.id, {
+        title: `Consultation - ${clientName}`,
+        startDate: consultDate,
+        endDate: consultationEndDate,
+        notes: `Tattoo Consultation\nClient: ${clientName}\nDescription: ${tattooDescription}\nType: Phone/Zoom`,
+        alarms: [
+          { relativeOffset: -24 * 60 },
+          { relativeOffset: -2 * 60 }
+        ],
+      });
+      console.log('Consultation event created:', consultationEventId);
+
+      const appointmentEndDate = new Date(appointmentDate.getTime() + 3 * 60 * 60 * 1000);
+      const appointmentEventId = await Calendar.createEventAsync(defaultCalendar.id, {
+        title: `Tattoo Appointment - ${clientName}`,
+        startDate: appointmentDate,
+        endDate: appointmentEndDate,
+        notes: `Tattoo Session\nClient: ${clientName}\nDescription: ${tattooDescription}\nRate: $150/hr\nDeposit: $100 (paid)`,
+        alarms: [
+          { relativeOffset: -24 * 60 },
+          { relativeOffset: -2 * 60 }
+        ],
+      });
+      console.log('Appointment event created:', appointmentEventId);
+
+      Alert.alert('Calendar Synced', 'Appointments have been added to your calendar with reminders!');
+    } catch (error) {
+      console.log('Calendar sync error:', error);
+      Alert.alert('Calendar Sync Failed', 'Could not sync to calendar, but your booking is still saved.');
+    }
+  };
+
   const handleSubmit = async () => {
     if (!name || !email || !phone || !description) {
       Alert.alert('Missing Information', 'Please fill in all required fields.');
@@ -74,6 +133,8 @@ export default function BookScreen() {
       return;
     }
 
+    console.log('Submitting booking and syncing to calendar...');
+
     await addAppointment({
       name,
       email,
@@ -87,11 +148,21 @@ export default function BookScreen() {
       referenceImages,
     });
 
+    const consultDateWithTime = new Date(consultationDate);
+    const [time, period] = consultationTime.split(' ');
+    const [hours, minutes] = time.split(':');
+    let hour = parseInt(hours);
+    if (period === 'PM' && hour !== 12) hour += 12;
+    if (period === 'AM' && hour === 12) hour = 0;
+    consultDateWithTime.setHours(hour, parseInt(minutes), 0, 0);
+
+    await addToCalendar(date, consultDateWithTime, name, description);
+
     console.log('Booking submitted:', { name, email, phone, date, consultationDate, consultationTime, description, placement, size, referenceImages });
     
     Alert.alert(
       'Booking Request Submitted',
-      'Thank you! Your booking request has been submitted.\n\n' +
+      'Thank you! Your booking request has been submitted and synced to your calendar.\n\n' +
       'Next Steps:\n' +
       '1. Pay the $100 non-refundable deposit to secure your date\n' +
       '2. After payment is confirmed, you can schedule your consultation\n' +
@@ -132,7 +203,7 @@ export default function BookScreen() {
         >
           <View style={styles.header}>
             <Image
-              source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
+              source={require('@/assets/images/f576c74c-16da-4b4e-91f3-c2170f4b4d92.png')}
               style={styles.headerLogo}
               resizeMode="contain"
             />
@@ -344,6 +415,8 @@ export default function BookScreen() {
                 4. Kyle will review and approve your appointment
                 {'\n\n'}
                 The remaining balance ($150/hr) is due at the time of service.
+                {'\n\n'}
+                📅 Your appointments will be automatically synced to your device calendar with reminders!
               </Text>
             </View>
           </View>

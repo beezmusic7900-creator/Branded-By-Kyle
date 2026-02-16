@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Platform, TextInput, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Platform, TextInput, ImageBackground, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAppointments } from '@/contexts/AppointmentContext';
+import * as Calendar from 'expo-calendar';
 
 export default function AdminPanelScreen() {
   const router = useRouter();
@@ -15,6 +16,70 @@ export default function AdminPanelScreen() {
   const [newEmail, setNewEmail] = useState(adminCredentials.email);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const syncToAdminCalendar = async (appointment: any) => {
+    try {
+      console.log('Syncing appointment to admin calendar...');
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      
+      if (status !== 'granted') {
+        console.log('Calendar permission denied');
+        Alert.alert('Permission Required', 'Calendar access is needed to sync appointments.');
+        return;
+      }
+
+      const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+      const defaultCalendar = calendars.find(cal => cal.allowsModifications) || calendars[0];
+      
+      if (!defaultCalendar) {
+        Alert.alert('Calendar Error', 'No writable calendar found.');
+        return;
+      }
+
+      const appointmentDate = new Date(appointment.date);
+      const appointmentEndDate = new Date(appointmentDate.getTime() + 3 * 60 * 60 * 1000);
+      
+      await Calendar.createEventAsync(defaultCalendar.id, {
+        title: `Tattoo Session - ${appointment.name}`,
+        startDate: appointmentDate,
+        endDate: appointmentEndDate,
+        notes: `Client: ${appointment.name}\nEmail: ${appointment.email}\nPhone: ${appointment.phone}\nDescription: ${appointment.description}\nPlacement: ${appointment.placement}\nSize: ${appointment.size}\nRate: $150/hr\nDeposit: $100 (${appointment.depositPaid ? 'paid' : 'pending'})`,
+        alarms: [
+          { relativeOffset: -24 * 60 },
+          { relativeOffset: -2 * 60 }
+        ],
+      });
+
+      if (appointment.consultationDate) {
+        const consultDate = new Date(appointment.consultationDate);
+        const [time, period] = appointment.consultationTime.split(' ');
+        const [hours, minutes] = time.split(':');
+        let hour = parseInt(hours);
+        if (period === 'PM' && hour !== 12) hour += 12;
+        if (period === 'AM' && hour === 12) hour = 0;
+        consultDate.setHours(hour, parseInt(minutes), 0, 0);
+        
+        const consultEndDate = new Date(consultDate.getTime() + 60 * 60 * 1000);
+        
+        await Calendar.createEventAsync(defaultCalendar.id, {
+          title: `Consultation - ${appointment.name}`,
+          startDate: consultDate,
+          endDate: consultEndDate,
+          notes: `Client: ${appointment.name}\nEmail: ${appointment.email}\nPhone: ${appointment.phone}\nTattoo: ${appointment.description}`,
+          alarms: [
+            { relativeOffset: -24 * 60 },
+            { relativeOffset: -2 * 60 }
+          ],
+        });
+      }
+
+      console.log('Appointment synced to admin calendar');
+      Alert.alert('Calendar Synced', 'Appointment has been added to your calendar!');
+    } catch (error) {
+      console.log('Calendar sync error:', error);
+      Alert.alert('Sync Failed', 'Could not sync to calendar.');
+    }
+  };
 
   const handleLogout = () => {
     Alert.alert(
@@ -34,17 +99,22 @@ export default function AdminPanelScreen() {
     );
   };
 
-  const handleApprove = (id: string) => {
+  const handleApprove = async (id: string) => {
+    const appointment = appointments.find(apt => apt.id === id);
+    
     Alert.alert(
       'Approve Appointment',
-      'Are you sure you want to approve this appointment?',
+      'Are you sure you want to approve this appointment? It will be synced to your calendar.',
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: 'Approve',
+          text: 'Approve & Sync',
           onPress: async () => {
             await updateAppointmentStatus(id, 'approved');
-            Alert.alert('Success', 'Appointment approved! The client will be notified.');
+            if (appointment) {
+              await syncToAdminCalendar(appointment);
+            }
+            Alert.alert('Success', 'Appointment approved and synced to your calendar!');
           },
         },
       ]
@@ -107,7 +177,11 @@ export default function AdminPanelScreen() {
               color={colors.text} 
             />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Admin Panel</Text>
+          <Image
+            source={require('@/assets/images/f576c74c-16da-4b4e-91f3-c2170f4b4d92.png')}
+            style={styles.headerLogo}
+            resizeMode="contain"
+          />
           <TouchableOpacity onPress={handleLogout}>
             <IconSymbol 
               ios_icon_name="rectangle.portrait.and.arrow.right" 
@@ -123,7 +197,6 @@ export default function AdminPanelScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Settings Section */}
           <TouchableOpacity 
             style={commonStyles.card}
             onPress={() => setShowSettings(!showSettings)}
@@ -191,7 +264,6 @@ export default function AdminPanelScreen() {
             </View>
           )}
 
-          {/* Pending Appointments */}
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 
@@ -311,7 +383,7 @@ export default function AdminPanelScreen() {
                       size={20} 
                       color="#FFFFFF" 
                     />
-                    <Text style={buttonStyles.primaryButtonText}>Approve</Text>
+                    <Text style={buttonStyles.primaryButtonText}>Approve & Sync</Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity 
@@ -331,7 +403,6 @@ export default function AdminPanelScreen() {
             ))
           )}
 
-          {/* Approved Appointments */}
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 
@@ -387,6 +458,19 @@ export default function AdminPanelScreen() {
               )}
 
               <Text style={styles.descriptionText}>{apt.description}</Text>
+              
+              <TouchableOpacity 
+                style={[buttonStyles.secondaryButton, { marginTop: 12 }]}
+                onPress={() => syncToAdminCalendar(apt)}
+              >
+                <IconSymbol 
+                  ios_icon_name="calendar.badge.plus" 
+                  android_material_icon_name="event" 
+                  size={20} 
+                  color={colors.primary} 
+                />
+                <Text style={buttonStyles.secondaryButtonText}>Sync to Calendar</Text>
+              </TouchableOpacity>
             </View>
           ))}
 
@@ -412,10 +496,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
   },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: colors.textBright,
+  headerLogo: {
+    width: 40,
+    height: 40,
   },
   scrollView: {
     flex: 1,

@@ -69,7 +69,7 @@ export default function AppointmentsScreen() {
         >
           <View style={styles.header}>
             <Image
-              source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
+              source={require('@/assets/images/f576c74c-16da-4b4e-91f3-c2170f4b4d92.png')}
               style={styles.headerLogo}
               resizeMode="contain"
             />
@@ -226,6 +226,8 @@ export default function AppointmentsScreen() {
                 • Remaining balance due at time of service
                 {'\n'}
                 • 48 hours notice required for cancellations
+                {'\n'}
+                • Appointments are synced to your device calendar
               </Text>
             </View>
           </View>
