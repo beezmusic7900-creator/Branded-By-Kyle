@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform, Alert, ImageBackground, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform, Alert, ImageBackground, Image, ActivityIndicator } from 'react-native';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -11,7 +11,7 @@ import { useRouter } from 'expo-router';
 
 export default function BookScreen() {
   const router = useRouter();
-  const { addAppointment } = useAppointments();
+  const { addAppointment, appointments } = useAppointments();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -24,10 +24,58 @@ export default function BookScreen() {
   const [placement, setPlacement] = useState('');
   const [size, setSize] = useState('');
   const [referenceImages, setReferenceImages] = useState<string[]>([]);
+  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
+  const [loadingAvailability, setLoadingAvailability] = useState(false);
+
+  useEffect(() => {
+    console.log('BookScreen: Checking availability for selected date');
+    checkAvailability();
+  }, [date]);
+
+  const checkAvailability = async () => {
+    console.log('BookScreen: Fetching booked slots for date:', date.toISOString());
+    setLoadingAvailability(true);
+    try {
+      // TODO: Backend Integration - GET /api/bookings/availability?date=YYYY-MM-DD
+      // Returns: { bookedSlots: ['2024-01-15T10:00:00Z', '2024-01-15T14:00:00Z'] }
+      // For now, use local appointments
+      const dateStr = date.toISOString().split('T')[0];
+      const booked = appointments
+        .filter(apt => apt.date.startsWith(dateStr) && apt.status !== 'rejected')
+        .map(apt => apt.date);
+      console.log('BookScreen: Found booked slots:', booked);
+      setBookedSlots(booked);
+    } catch (error) {
+      console.log('BookScreen: Error checking availability:', error);
+    } finally {
+      setLoadingAvailability(false);
+    }
+  };
+
+  const isTimeSlotBooked = (timeSlot: string): boolean => {
+    const [time, period] = timeSlot.split(' ');
+    const [hours, minutes] = time.split(':');
+    let hour = parseInt(hours);
+    if (period === 'PM' && hour !== 12) hour += 12;
+    if (period === 'AM' && hour === 12) hour = 0;
+    
+    const slotDate = new Date(date);
+    slotDate.setHours(hour, parseInt(minutes), 0, 0);
+    const slotISO = slotDate.toISOString();
+    
+    const isBooked = bookedSlots.some(bookedSlot => {
+      const bookedDate = new Date(bookedSlot);
+      return Math.abs(bookedDate.getTime() - slotDate.getTime()) < 60 * 60 * 1000;
+    });
+    
+    console.log('BookScreen: Checking if', timeSlot, 'is booked:', isBooked);
+    return isBooked;
+  };
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
     setShowDatePicker(Platform.OS === 'ios');
     if (selectedDate) {
+      console.log('BookScreen: Date changed to:', selectedDate.toISOString());
       setDate(selectedDate);
     }
   };
@@ -133,8 +181,23 @@ export default function BookScreen() {
       return;
     }
 
-    console.log('Submitting booking and syncing to calendar...');
+    // Check if the selected time slot is already booked
+    const selectedHour = date.getHours();
+    const selectedMinute = date.getMinutes();
+    const period = selectedHour >= 12 ? 'PM' : 'AM';
+    const displayHour = selectedHour > 12 ? selectedHour - 12 : (selectedHour === 0 ? 12 : selectedHour);
+    const timeSlot = `${displayHour}:${selectedMinute.toString().padStart(2, '0')} ${period}`;
+    
+    if (isTimeSlotBooked(timeSlot)) {
+      Alert.alert('Time Slot Unavailable', 'This time slot is already booked. Please select a different time.');
+      return;
+    }
 
+    console.log('BookScreen: Submitting booking and syncing to calendar...');
+
+    // TODO: Backend Integration - POST /api/bookings
+    // Body: { name, email, phone, appointmentDate: ISO8601, consultationDate: ISO8601, consultationTime, description, placement, size, referenceImages }
+    // Returns: { id, status: 'pending', depositPaid: false }
     await addAppointment({
       name,
       email,
@@ -149,16 +212,16 @@ export default function BookScreen() {
     });
 
     const consultDateWithTime = new Date(consultationDate);
-    const [time, period] = consultationTime.split(' ');
+    const [time, period2] = consultationTime.split(' ');
     const [hours, minutes] = time.split(':');
     let hour = parseInt(hours);
-    if (period === 'PM' && hour !== 12) hour += 12;
-    if (period === 'AM' && hour === 12) hour = 0;
+    if (period2 === 'PM' && hour !== 12) hour += 12;
+    if (period2 === 'AM' && hour === 12) hour = 0;
     consultDateWithTime.setHours(hour, parseInt(minutes), 0, 0);
 
     await addToCalendar(date, consultDateWithTime, name, description);
 
-    console.log('Booking submitted:', { name, email, phone, date, consultationDate, consultationTime, description, placement, size, referenceImages });
+    console.log('BookScreen: Booking submitted successfully');
     
     Alert.alert(
       'Booking Request Submitted',
@@ -178,6 +241,7 @@ export default function BookScreen() {
           setPlacement('');
           setSize('');
           setReferenceImages([]);
+          checkAvailability();
           router.push('/(tabs)/appointments');
         }
       }]
@@ -187,6 +251,11 @@ export default function BookScreen() {
   const timeSlots = [
     '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', 
     '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM'
+  ];
+
+  const appointmentTimeSlots = [
+    '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', 
+    '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM'
   ];
 
   return (
@@ -340,6 +409,74 @@ export default function BookScreen() {
                 minimumDate={new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)}
               />
             )}
+
+            <Text style={[commonStyles.label, { marginTop: 16 }]}>Preferred Appointment Time *</Text>
+            {loadingAvailability ? (
+              <View style={styles.loadingContainer}>
+                <ActivityIndicator size="small" color={colors.primary} />
+                <Text style={styles.loadingText}>Checking availability...</Text>
+              </View>
+            ) : (
+              <ScrollView 
+                horizontal 
+                showsHorizontalScrollIndicator={false}
+                style={styles.timeSlotContainer}
+              >
+                {appointmentTimeSlots.map((time, index) => {
+                  const isBooked = isTimeSlotBooked(time);
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      style={[
+                        styles.timeSlot,
+                        isBooked && styles.timeSlotBooked,
+                        !isBooked && styles.timeSlotAvailable
+                      ]}
+                      onPress={() => {
+                        if (!isBooked) {
+                          const [timeStr, period] = time.split(' ');
+                          const [hours, minutes] = timeStr.split(':');
+                          let hour = parseInt(hours);
+                          if (period === 'PM' && hour !== 12) hour += 12;
+                          if (period === 'AM' && hour === 12) hour = 0;
+                          const newDate = new Date(date);
+                          newDate.setHours(hour, parseInt(minutes), 0, 0);
+                          setDate(newDate);
+                          console.log('BookScreen: Selected time slot:', time);
+                        } else {
+                          Alert.alert('Time Unavailable', 'This time slot is already booked. Please select another time.');
+                        }
+                      }}
+                      disabled={isBooked}
+                    >
+                      <Text style={[
+                        styles.timeSlotText,
+                        isBooked && styles.timeSlotTextBooked
+                      ]}>
+                        {time}
+                      </Text>
+                      {isBooked && (
+                        <IconSymbol 
+                          ios_icon_name="lock.fill" 
+                          android_material_icon_name="lock" 
+                          size={14} 
+                          color={colors.grey} 
+                        />
+                      )}
+                    </TouchableOpacity>
+                  );
+                })}
+              </ScrollView>
+            )}
+            <Text style={styles.availabilityNote}>
+              <IconSymbol 
+                ios_icon_name="info.circle" 
+                android_material_icon_name="info" 
+                size={14} 
+                color={colors.text} 
+              />
+              {' '}Green = Available, Gray = Booked
+            </Text>
           </View>
 
           <View style={styles.formSection}>
@@ -493,6 +630,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderColor: colors.primary,
   },
+  timeSlotAvailable: {
+    backgroundColor: '#34C75920',
+    borderColor: '#34C759',
+  },
+  timeSlotBooked: {
+    backgroundColor: colors.backgroundAlt,
+    borderColor: colors.border,
+    opacity: 0.5,
+  },
   timeSlotText: {
     color: colors.text,
     fontSize: 14,
@@ -500,6 +646,26 @@ const styles = StyleSheet.create({
   },
   timeSlotTextActive: {
     color: '#FFFFFF',
+  },
+  timeSlotTextBooked: {
+    color: colors.grey,
+  },
+  loadingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    gap: 12,
+  },
+  loadingText: {
+    color: colors.text,
+    fontSize: 14,
+  },
+  availabilityNote: {
+    color: colors.text,
+    fontSize: 12,
+    marginTop: 8,
+    opacity: 0.7,
   },
   imagePickerButton: {
     flexDirection: 'row',

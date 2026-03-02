@@ -114,14 +114,23 @@ export default function AppointmentsScreen() {
                           size={20} 
                           color={colors.primary} 
                         />
-                        <Text style={styles.dateText}>
-                          {new Date(appointment.date).toLocaleDateString('en-US', { 
-                            weekday: 'short', 
-                            month: 'short', 
-                            day: 'numeric',
-                            year: 'numeric'
-                          })}
-                        </Text>
+                        <View>
+                          <Text style={styles.dateText}>
+                            {new Date(appointment.date).toLocaleDateString('en-US', { 
+                              weekday: 'short', 
+                              month: 'short', 
+                              day: 'numeric',
+                              year: 'numeric'
+                            })}
+                          </Text>
+                          <Text style={styles.timeText}>
+                            {new Date(appointment.date).toLocaleTimeString('en-US', { 
+                              hour: 'numeric', 
+                              minute: '2-digit',
+                              hour12: true
+                            })}
+                          </Text>
+                        </View>
                       </View>
                       <View style={[styles.statusBadge, { backgroundColor: statusColor + '20' }]}>
                         <IconSymbol 
@@ -293,6 +302,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: colors.textBright,
+  },
+  timeText: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: colors.primary,
+    marginTop: 2,
   },
   statusBadge: {
     flexDirection: 'row',
