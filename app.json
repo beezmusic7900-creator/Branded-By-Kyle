@@ -1,7 +1,8 @@
+
 {
   "expo": {
     "name": "Branded By Kyle",
-    "slug": "Branded By Kyle",
+    "slug": "branded-by-kyle",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/final_quest_240x240.png",
@@ -49,6 +50,6 @@
         "projectId": "5847ba21-e97a-43b7-b087-b651f32b4d47"
       }
     },
-    "scheme": "Branded By Kyle"
+    "scheme": "brandedbykyle"
   }
 }
