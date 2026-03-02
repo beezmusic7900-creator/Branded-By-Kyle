@@ -82,6 +82,7 @@ export default function AdminPanelScreen() {
   };
 
   const handleLogout = () => {
+    console.log('AdminPanel: Logout requested');
     Alert.alert(
       'Logout',
       'Are you sure you want to logout?',
@@ -90,9 +91,14 @@ export default function AdminPanelScreen() {
         {
           text: 'Logout',
           style: 'destructive',
-          onPress: () => {
-            logout();
-            router.replace('/(tabs)/(home)/');
+          onPress: async () => {
+            try {
+              await logout();
+              console.log('AdminPanel: Logged out successfully');
+              router.replace('/(tabs)/(home)/');
+            } catch (error) {
+              console.log('AdminPanel: Error during logout:', error);
+            }
           },
         },
       ]
@@ -102,6 +108,7 @@ export default function AdminPanelScreen() {
   const handleApprove = async (id: string) => {
     const appointment = appointments.find(apt => apt.id === id);
     
+    console.log('AdminPanel: Approving appointment:', id);
     Alert.alert(
       'Approve Appointment',
       'Are you sure you want to approve this appointment? It will be synced to your calendar.',
@@ -110,11 +117,17 @@ export default function AdminPanelScreen() {
         {
           text: 'Approve & Sync',
           onPress: async () => {
-            await updateAppointmentStatus(id, 'approved');
-            if (appointment) {
-              await syncToAdminCalendar(appointment);
+            try {
+              await updateAppointmentStatus(id, 'approved');
+              if (appointment) {
+                await syncToAdminCalendar(appointment);
+              }
+              console.log('AdminPanel: Appointment approved successfully');
+              Alert.alert('Success', 'Appointment approved and synced to your calendar!');
+            } catch (error) {
+              console.log('AdminPanel: Error approving appointment:', error);
+              Alert.alert('Error', 'Failed to approve appointment. Please try again.');
             }
-            Alert.alert('Success', 'Appointment approved and synced to your calendar!');
           },
         },
       ]
@@ -122,6 +135,7 @@ export default function AdminPanelScreen() {
   };
 
   const handleReject = (id: string) => {
+    console.log('AdminPanel: Rejecting appointment:', id);
     Alert.alert(
       'Reject Appointment',
       'Are you sure you want to reject this appointment?',
@@ -131,8 +145,14 @@ export default function AdminPanelScreen() {
           text: 'Reject',
           style: 'destructive',
           onPress: async () => {
-            await updateAppointmentStatus(id, 'rejected');
-            Alert.alert('Rejected', 'Appointment has been rejected.');
+            try {
+              await updateAppointmentStatus(id, 'rejected');
+              console.log('AdminPanel: Appointment rejected successfully');
+              Alert.alert('Rejected', 'Appointment has been rejected.');
+            } catch (error) {
+              console.log('AdminPanel: Error rejecting appointment:', error);
+              Alert.alert('Error', 'Failed to reject appointment. Please try again.');
+            }
           },
         },
       ]
@@ -140,6 +160,8 @@ export default function AdminPanelScreen() {
   };
 
   const handleUpdateCredentials = async () => {
+    console.log('AdminPanel: Updating credentials');
+    
     if (!newEmail) {
       Alert.alert('Error', 'Email cannot be empty');
       return;
@@ -150,12 +172,27 @@ export default function AdminPanelScreen() {
       return;
     }
 
-    const passwordToUse = newPassword || adminCredentials.password;
-    await updateCredentials(newEmail, passwordToUse);
-    Alert.alert('Success', 'Credentials updated successfully');
-    setNewPassword('');
-    setConfirmPassword('');
-    setShowSettings(false);
+    try {
+      const passwordToUse = newPassword || adminCredentials.password;
+      await updateCredentials(newEmail, passwordToUse);
+      console.log('AdminPanel: Credentials updated successfully');
+      Alert.alert('Success', 'Credentials updated successfully');
+      setNewPassword('');
+      setConfirmPassword('');
+      setShowSettings(false);
+    } catch (error) {
+      console.log('AdminPanel: Error updating credentials:', error);
+      Alert.alert('Error', 'Failed to update credentials. Please try again.');
+    }
+  };
+
+  const handleBack = () => {
+    console.log('AdminPanel: Navigating back');
+    try {
+      router.back();
+    } catch (error) {
+      console.log('AdminPanel: Error navigating back:', error);
+    }
   };
 
   const pendingAppointments = appointments.filter(apt => apt.status === 'pending');
@@ -169,7 +206,7 @@ export default function AdminPanelScreen() {
     >
       <View style={styles.overlay}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity onPress={handleBack}>
             <IconSymbol 
               ios_icon_name="chevron.left" 
               android_material_icon_name="arrow_back" 

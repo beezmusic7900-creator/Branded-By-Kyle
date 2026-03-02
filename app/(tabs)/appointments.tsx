@@ -39,6 +39,7 @@ export default function AppointmentsScreen() {
   };
 
   const handlePayDeposit = (appointmentId: string) => {
+    console.log('Appointments: Pay deposit requested for:', appointmentId);
     Alert.alert(
       'Payment Link',
       'In a production app, this would open a payment link. For now, we\'ll mark the deposit as paid.',
@@ -47,8 +48,14 @@ export default function AppointmentsScreen() {
         {
           text: 'Mark as Paid',
           onPress: async () => {
-            await markDepositPaid(appointmentId);
-            Alert.alert('Success', 'Deposit marked as paid! Kyle will review your appointment.');
+            try {
+              await markDepositPaid(appointmentId);
+              console.log('Appointments: Deposit marked as paid');
+              Alert.alert('Success', 'Deposit marked as paid! Kyle will review your appointment.');
+            } catch (error) {
+              console.log('Appointments: Error marking deposit as paid:', error);
+              Alert.alert('Error', 'Failed to mark deposit as paid. Please try again.');
+            }
           },
         },
       ]

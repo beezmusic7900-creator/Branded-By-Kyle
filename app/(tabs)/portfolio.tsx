@@ -142,6 +142,21 @@ export default function PortfolioScreen() {
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === selectedCategory);
 
+  const handleCategorySelect = (category: string) => {
+    console.log('Portfolio: Category selected:', category);
+    setSelectedCategory(category);
+  };
+
+  const handleImagePress = (item: PortfolioItem) => {
+    console.log('Portfolio: Image selected:', item.id);
+    setSelectedImage(item);
+  };
+
+  const handleCloseModal = () => {
+    console.log('Portfolio: Closing image modal');
+    setSelectedImage(null);
+  };
+
   const renderGrid = () => {
     return (
       <View style={styles.grid}>
@@ -149,7 +164,7 @@ export default function PortfolioScreen() {
           <TouchableOpacity
             key={item.id}
             style={styles.gridItem}
-            onPress={() => setSelectedImage(item)}
+            onPress={() => handleImagePress(item)}
           >
             <Image source={item.imageUrl} style={styles.portfolioImage} resizeMode="cover" />
             <View style={styles.imageOverlay}>
@@ -185,7 +200,7 @@ export default function PortfolioScreen() {
                     styles.categoryButton,
                     selectedCategory === category && styles.categoryButtonActive,
                   ]}
-                  onPress={() => setSelectedCategory(category)}
+                  onPress={() => handleCategorySelect(category)}
                 >
                   <Text
                     style={[
@@ -207,7 +222,7 @@ export default function PortfolioScreen() {
           visible={selectedImage !== null}
           transparent={true}
           animationType="fade"
-          onRequestClose={() => setSelectedImage(null)}
+          onRequestClose={handleCloseModal}
         >
           <View style={styles.modalContainer}>
             {selectedImage && (
@@ -219,9 +234,14 @@ export default function PortfolioScreen() {
                 />
                 <TouchableOpacity
                   style={styles.closeButton}
-                  onPress={() => setSelectedImage(null)}
+                  onPress={handleCloseModal}
                 >
-                  <IconSymbol name="xmark" size={24} color={colors.background} />
+                  <IconSymbol 
+                    ios_icon_name="xmark" 
+                    android_material_icon_name="close" 
+                    size={24} 
+                    color={colors.background} 
+                  />
                 </TouchableOpacity>
               </>
             )}

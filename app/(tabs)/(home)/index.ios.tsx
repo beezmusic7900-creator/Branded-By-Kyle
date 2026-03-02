@@ -10,6 +10,42 @@ export default function HomeScreen() {
   const router = useRouter();
   const { isAdmin } = useAuth();
 
+  const handleAdminLogin = () => {
+    console.log('HomeScreen: Navigating to admin login');
+    try {
+      router.push('/admin-login');
+    } catch (error) {
+      console.log('HomeScreen: Error navigating to admin login:', error);
+    }
+  };
+
+  const handleAdminPanel = () => {
+    console.log('HomeScreen: Navigating to admin panel');
+    try {
+      router.push('/admin-panel');
+    } catch (error) {
+      console.log('HomeScreen: Error navigating to admin panel:', error);
+    }
+  };
+
+  const handleBookAppointment = () => {
+    console.log('HomeScreen: Navigating to book appointment');
+    try {
+      router.push('/(tabs)/book');
+    } catch (error) {
+      console.log('HomeScreen: Error navigating to book:', error);
+    }
+  };
+
+  const handleViewPortfolio = () => {
+    console.log('HomeScreen: Navigating to portfolio');
+    try {
+      router.push('/(tabs)/portfolio');
+    } catch (error) {
+      console.log('HomeScreen: Error navigating to portfolio:', error);
+    }
+  };
+
   return (
     <ImageBackground
       source={require('@/assets/images/f17fedc1-b2a1-4b83-8bc6-33e74e0d6fa7.png')}
@@ -35,11 +71,11 @@ export default function HomeScreen() {
           {!isAdmin && (
             <TouchableOpacity 
               style={styles.adminButton}
-              onPress={() => router.push('/admin-login')}
+              onPress={handleAdminLogin}
             >
               <IconSymbol 
                 ios_icon_name="lock.shield" 
-                android_material_icon_name="admin_panel_settings" 
+                android_material_icon_name="security" 
                 size={16} 
                 color={colors.grey} 
               />
@@ -50,11 +86,11 @@ export default function HomeScreen() {
           {isAdmin && (
             <TouchableOpacity 
               style={[buttonStyles.secondaryButton, styles.adminPanelButton]}
-              onPress={() => router.push('/admin-panel')}
+              onPress={handleAdminPanel}
             >
               <IconSymbol 
                 ios_icon_name="lock.shield.fill" 
-                android_material_icon_name="admin_panel_settings" 
+                android_material_icon_name="security" 
                 size={20} 
                 color={colors.primary} 
               />
@@ -71,7 +107,7 @@ export default function HomeScreen() {
           <View style={styles.actionsContainer}>
             <TouchableOpacity 
               style={[buttonStyles.primaryButton, styles.actionButton]}
-              onPress={() => router.push('/(tabs)/book')}
+              onPress={handleBookAppointment}
             >
               <IconSymbol 
                 ios_icon_name="calendar.badge.plus" 
@@ -86,11 +122,11 @@ export default function HomeScreen() {
 
             <TouchableOpacity 
               style={[buttonStyles.secondaryButton, styles.actionButton]}
-              onPress={() => router.push('/(tabs)/portfolio')}
+              onPress={handleViewPortfolio}
             >
               <IconSymbol 
                 ios_icon_name="photo.fill" 
-                android_material_icon_name="photo_library" 
+                android_material_icon_name="photo" 
                 size={24} 
                 color={colors.primary} 
               />

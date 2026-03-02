@@ -12,20 +12,46 @@ export default function AdminLoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     console.log('Admin login attempt:', { email });
-    const success = login(email, password);
-    if (success) {
-      console.log('Admin login successful');
-      Alert.alert('Success', 'Welcome back, Kyle!', [
-        {
-          text: 'OK',
-          onPress: () => router.replace('/admin-panel'),
-        },
-      ]);
-    } else {
-      console.log('Admin login failed');
-      Alert.alert('Error', 'Invalid credentials. Please try again.');
+    
+    if (!email || !password) {
+      Alert.alert('Error', 'Please enter both email and password');
+      return;
+    }
+
+    try {
+      const success = await login(email, password);
+      if (success) {
+        console.log('Admin login successful');
+        Alert.alert('Success', 'Welcome back, Kyle!', [
+          {
+            text: 'OK',
+            onPress: () => {
+              try {
+                router.replace('/admin-panel');
+              } catch (error) {
+                console.log('Error navigating to admin panel:', error);
+              }
+            },
+          },
+        ]);
+      } else {
+        console.log('Admin login failed');
+        Alert.alert('Error', 'Invalid credentials. Please try again.');
+      }
+    } catch (error) {
+      console.log('Admin login error:', error);
+      Alert.alert('Error', 'An error occurred during login. Please try again.');
+    }
+  };
+
+  const handleBack = () => {
+    console.log('AdminLogin: Navigating back');
+    try {
+      router.back();
+    } catch (error) {
+      console.log('AdminLogin: Error navigating back:', error);
     }
   };
 
@@ -37,7 +63,7 @@ export default function AdminLoginScreen() {
     >
       <View style={styles.overlay}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity onPress={handleBack}>
             <IconSymbol 
               ios_icon_name="chevron.left" 
               android_material_icon_name="arrow_back" 
@@ -56,7 +82,7 @@ export default function AdminLoginScreen() {
           
           <IconSymbol 
             ios_icon_name="lock.shield.fill" 
-            android_material_icon_name="admin_panel_settings" 
+            android_material_icon_name="security" 
             size={64} 
             color={colors.primary} 
           />
