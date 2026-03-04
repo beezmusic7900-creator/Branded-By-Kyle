@@ -1,20 +1,22 @@
+
 {
   "expo": {
     "name": "Branded By Kyle",
     "slug": "branded-by-kyle",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/final_quest_240x240.png",
+    "icon": "./assets/images/5fe59126-b679-4f7a-ba78-371d9f6249ae.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/final_quest_240x240.png",
+      "image": "./assets/images/5fe59126-b679-4f7a-ba78-371d9f6249ae.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.brandedbykyle.app",
+      "icon": "./assets/images/5fe59126-b679-4f7a-ba78-371d9f6249ae.png",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "NSCalendarsUsageDescription": "Branded By Kyle needs access to your calendar to add appointment reminders.",
@@ -23,14 +25,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/final_quest_240x240.png",
+        "foregroundImage": "./assets/images/5fe59126-b679-4f7a-ba78-371d9f6249ae.png",
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.brandedbykyle.app"
     },
     "web": {
-      "favicon": "./assets/images/final_quest_240x240.png",
+      "favicon": "./assets/images/5fe59126-b679-4f7a-ba78-371d9f6249ae.png",
       "bundler": "metro"
     },
     "plugins": [
