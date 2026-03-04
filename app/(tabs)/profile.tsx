@@ -6,6 +6,7 @@ import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ProfileScreen() {
   const handleContact = (type: 'email' | 'instagram') => {
+    console.log('User tapped contact button:', type);
     switch (type) {
       case 'email':
         Linking.openURL('mailto:kyleesdad16@gmail.com');
@@ -28,6 +29,15 @@ export default function ProfileScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
+          {/* Logo at the top */}
+          <View style={styles.logoContainer}>
+            <Image
+              source={require('@/assets/images/5fe59126-b679-4f7a-ba78-371d9f6249ae.png')}
+              style={styles.logo}
+              resizeMode="contain"
+            />
+          </View>
+
           {/* Profile Header */}
           <View style={styles.profileHeader}>
             <Image
@@ -199,7 +209,7 @@ export default function ProfileScreen() {
             </View>
             <Text style={styles.studioText}>
               <Text style={styles.studioLabel}>Hours: </Text>
-              Monday - Saturday, 11:00 AM - 11:00 PM
+              Monday - Saturday, 9:00 AM - 10:00 PM
             </Text>
             <Text style={styles.studioText}>
               <Text style={styles.studioLabel}>Location: </Text>
@@ -230,10 +240,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 120,
   },
+  logoContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  logo: {
+    width: 180,
+    height: 180,
+  },
   profileHeader: {
     alignItems: 'center',
     marginBottom: 32,
-    paddingTop: 20,
+    paddingTop: 10,
   },
   profileImage: {
     width: 150,
