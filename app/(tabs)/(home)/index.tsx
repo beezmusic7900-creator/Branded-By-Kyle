@@ -148,7 +148,7 @@ export default function HomeScreen() {
                 <Text style={styles.cardTitle}>Hours</Text>
               </View>
               <Text style={styles.cardText}>Monday - Saturday</Text>
-              <Text style={styles.cardText}>11:00 AM - 11:00 PM</Text>
+              <Text style={styles.cardText}>9:00 AM - 10:00 PM</Text>
               <Text style={[styles.cardText, styles.cardSubtext]}>By Appointment Only</Text>
             </View>
 
