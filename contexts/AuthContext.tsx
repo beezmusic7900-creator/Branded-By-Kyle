@@ -17,8 +17,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const DEFAULT_ADMIN_EMAIL = 'admin@brandedbykyle.com';
-const DEFAULT_ADMIN_PASSWORD = 'BrandedByKyle2025!';
+const DEFAULT_ADMIN_EMAIL = 'brandedbykyle@gmail.com';
+const DEFAULT_ADMIN_PASSWORD = 'Kyleesdad16';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);

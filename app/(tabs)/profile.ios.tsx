@@ -5,12 +5,9 @@ import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ProfileScreen() {
-  const handleContact = (type: 'email' | 'instagram') => {
+  const handleContact = (type: 'instagram') => {
     console.log('User tapped contact button:', type);
     switch (type) {
-      case 'email':
-        Linking.openURL('mailto:kyleesdad16@gmail.com');
-        break;
       case 'instagram':
         Linking.openURL('https://instagram.com/branded_by_kyle');
         break;
@@ -29,7 +26,6 @@ export default function ProfileScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Logo at the top */}
           <View style={styles.logoContainer}>
             <Image
               source={require('@/assets/images/5fe59126-b679-4f7a-ba78-371d9f6249ae.png')}
@@ -38,7 +34,6 @@ export default function ProfileScreen() {
             />
           </View>
 
-          {/* Profile Header */}
           <View style={styles.profileHeader}>
             <Image
               source={{ uri: 'https://prod-finalquest-user-projects-storage-bucket-aws.s3.amazonaws.com/user-projects/c14bb87b-7216-4302-b8c9-4f9b65473fa3/assets/images/20c6cd0a-ba5d-459e-8e90-26e9ea15a04c.png?AWSAccessKeyId=AKIAVRUVRKQJC5DISQ4Q&Signature=rJNmo7PZAhGLSQ3xUNSsCHJVpAI%3D&Expires=1765640566' }}
@@ -49,7 +44,6 @@ export default function ProfileScreen() {
             <Text style={styles.artistTitle}>Master Tattoo Artist</Text>
           </View>
 
-          {/* Bio Section */}
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 
@@ -71,7 +65,6 @@ export default function ProfileScreen() {
             </Text>
           </View>
 
-          {/* Specialties */}
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 
@@ -131,7 +124,6 @@ export default function ProfileScreen() {
             </View>
           </View>
 
-          {/* Pricing */}
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 
@@ -157,7 +149,6 @@ export default function ProfileScreen() {
             </Text>
           </View>
 
-          {/* Contact */}
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 
@@ -168,19 +159,6 @@ export default function ProfileScreen() {
               />
               <Text style={styles.sectionTitle}>Contact</Text>
             </View>
-            
-            <TouchableOpacity 
-              style={styles.contactButton}
-              onPress={() => handleContact('email')}
-            >
-              <IconSymbol 
-                ios_icon_name="envelope.fill" 
-                android_material_icon_name="email" 
-                size={20} 
-                color={colors.primary} 
-              />
-              <Text style={styles.contactButtonText}>kyleesdad16@gmail.com</Text>
-            </TouchableOpacity>
 
             <TouchableOpacity 
               style={styles.contactButton}
@@ -196,7 +174,6 @@ export default function ProfileScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Studio Info */}
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 

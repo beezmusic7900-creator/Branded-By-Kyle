@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform, Alert, ImageBackground, Image, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Platform, Alert, ImageBackground, Image, ActivityIndicator, Linking } from 'react-native';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -8,6 +8,8 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Calendar from 'expo-calendar';
 import { useAppointments } from '@/contexts/AppointmentContext';
 import { useRouter } from 'expo-router';
+
+const SQUARE_PAYMENT_LINK = 'https://square.link/u/jRrxMkF3';
 
 export default function BookScreen() {
   const router = useRouter();
@@ -151,7 +153,7 @@ export default function BookScreen() {
         title: `Tattoo Appointment - ${clientName}`,
         startDate: appointmentDate,
         endDate: appointmentEndDate,
-        notes: `Tattoo Session\nClient: ${clientName}\nDescription: ${tattooDescription}\nRate: $150/hr\nDeposit: $100 (paid)`,
+        notes: `Tattoo Session\nClient: ${clientName}\nDescription: ${tattooDescription}\nRate: $150/hr\nDeposit: $100 (pending payment)`,
         alarms: [
           { relativeOffset: -24 * 60 },
           { relativeOffset: -2 * 60 }
@@ -167,6 +169,8 @@ export default function BookScreen() {
   };
 
   const handleSubmit = async () => {
+    console.log('BookScreen: Submit button pressed');
+    
     if (!name || !email || !phone || !description) {
       Alert.alert('Missing Information', 'Please fill in all required fields.');
       return;
@@ -181,7 +185,6 @@ export default function BookScreen() {
       return;
     }
 
-    // Check if the selected time slot is already booked
     const selectedHour = date.getHours();
     const selectedMinute = date.getMinutes();
     const period = selectedHour >= 12 ? 'PM' : 'AM';
@@ -221,28 +224,41 @@ export default function BookScreen() {
 
     await addToCalendar(date, consultDateWithTime, name, description);
 
-    console.log('BookScreen: Booking submitted successfully');
+    console.log('BookScreen: Booking submitted successfully, redirecting to payment link');
     
     Alert.alert(
       'Booking Request Submitted',
-      'Thank you! Your booking request has been submitted and synced to your calendar.\n\n' +
-      'Next Steps:\n' +
-      '1. Pay the $100 non-refundable deposit to secure your date\n' +
-      '2. After payment is confirmed, you can schedule your consultation\n' +
-      '3. Kyle will review and approve your appointment\n\n' +
-      'Payment link will be sent to your email shortly.',
+      'Thank you! Your booking request has been submitted.\n\nYou will now be redirected to complete the $100 non-refundable deposit to secure your booking.',
       [{ 
-        text: 'OK',
-        onPress: () => {
-          setName('');
-          setEmail('');
-          setPhone('');
-          setDescription('');
-          setPlacement('');
-          setSize('');
-          setReferenceImages([]);
-          checkAvailability();
-          router.push('/(tabs)/appointments');
+        text: 'Proceed to Payment',
+        onPress: async () => {
+          try {
+            console.log('BookScreen: Opening Square payment link:', SQUARE_PAYMENT_LINK);
+            const canOpen = await Linking.canOpenURL(SQUARE_PAYMENT_LINK);
+            if (canOpen) {
+              await Linking.openURL(SQUARE_PAYMENT_LINK);
+              console.log('BookScreen: Payment link opened successfully');
+              
+              setName('');
+              setEmail('');
+              setPhone('');
+              setDescription('');
+              setPlacement('');
+              setSize('');
+              setReferenceImages([]);
+              checkAvailability();
+              
+              setTimeout(() => {
+                router.push('/(tabs)/appointments');
+              }, 1000);
+            } else {
+              console.log('BookScreen: Cannot open payment link');
+              Alert.alert('Error', 'Unable to open payment link. Please contact us directly.');
+            }
+          } catch (error) {
+            console.log('BookScreen: Error opening payment link:', error);
+            Alert.alert('Error', 'Unable to open payment link. Please contact us directly.');
+          }
         }
       }]
     );
@@ -543,11 +559,11 @@ export default function BookScreen() {
                 {'\n\n'}
                 After submitting your booking request:
                 {'\n'}
-                1. You will receive a payment link via email
+                1. You will be redirected to complete the $100 deposit payment
                 {'\n'}
-                2. Pay the $100 deposit to secure your tattoo date
+                2. Once payment is processed and received, you will get a confirmation email
                 {'\n'}
-                3. Once payment is confirmed, your consultation will be scheduled
+                3. Your consultation will be scheduled
                 {'\n'}
                 4. Kyle will review and approve your appointment
                 {'\n\n'}
