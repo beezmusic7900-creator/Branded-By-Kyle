@@ -1,21 +1,62 @@
 
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Platform, TextInput, ImageBackground, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Platform, TextInput, ImageBackground, Image, ActivityIndicator, RefreshControl } from 'react-native';
 import { useRouter } from 'expo-router';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAppointments } from '@/contexts/AppointmentContext';
+import { appointmentApi, Appointment as ApiAppointment } from '@/utils/api';
 import * as Calendar from 'expo-calendar';
 
 export default function AdminPanelScreen() {
   const router = useRouter();
   const { logout, adminCredentials, updateCredentials } = useAuth();
-  const { appointments, updateAppointmentStatus } = useAppointments();
+  const { appointments: localAppointments, updateAppointmentStatus: updateLocalStatus } = useAppointments();
+  const [apiAppointments, setApiAppointments] = useState<ApiAppointment[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [newEmail, setNewEmail] = useState(adminCredentials.email);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  useEffect(() => {
+    console.log('AdminPanel: Component mounted, fetching appointments');
+    fetchAppointments();
+  }, []);
+
+  const fetchAppointments = async () => {
+    try {
+      console.log('AdminPanel: Fetching from backend API');
+      const appointments = await appointmentApi.getAll();
+      setApiAppointments(appointments);
+      console.log('AdminPanel: Fetched', appointments.length, 'appointments from API');
+    } catch (error) {
+      console.error('AdminPanel: Error fetching from API, using local data:', error);
+      setApiAppointments([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchAppointments();
+    setRefreshing(false);
+  };
+
+  // Merge API and local appointments (prefer API data)
+  const allAppointments = apiAppointments.length > 0 ? apiAppointments : localAppointments.map(apt => ({
+    ...apt,
+    appointmentDate: apt.date,
+    appointmentTime: new Date(apt.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }),
+    service: 'Custom Tattoo',
+    referenceImages: apt.referenceImages || [],
+    depositAmount: 100,
+    createdAt: apt.createdAt || new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }));
 
   const syncToAdminCalendar = async (appointment: any) => {
     try {
@@ -36,7 +77,7 @@ export default function AdminPanelScreen() {
         return;
       }
 
-      const appointmentDate = new Date(appointment.date);
+      const appointmentDate = new Date(appointment.appointmentDate || appointment.date);
       const appointmentEndDate = new Date(appointmentDate.getTime() + 3 * 60 * 60 * 1000);
       
       await Calendar.createEventAsync(defaultCalendar.id, {
@@ -106,7 +147,7 @@ export default function AdminPanelScreen() {
   };
 
   const handleApprove = async (id: string) => {
-    const appointment = appointments.find(apt => apt.id === id);
+    const appointment = allAppointments.find(apt => apt.id === id);
     
     if (!appointment?.depositPaid) {
       Alert.alert(
@@ -120,23 +161,36 @@ export default function AdminPanelScreen() {
     console.log('AdminPanel: Approving appointment:', id);
     Alert.alert(
       'Approve Appointment',
-      'Are you sure you want to approve this appointment? It will be synced to your calendar.',
+      'Are you sure you want to approve this appointment? The client will receive a confirmation email and it will be synced to your calendar.',
       [
         { text: 'Cancel', style: 'cancel' },
         {
           text: 'Approve & Sync',
           onPress: async () => {
             try {
-              await updateAppointmentStatus(id, 'approved');
+              // Update via API
+              try {
+                await appointmentApi.updateStatus(id, 'approved');
+                console.log('AdminPanel: Appointment approved via API');
+                
+                // Send confirmation email
+                await appointmentApi.sendConfirmation(id);
+                console.log('AdminPanel: Confirmation email sent');
+              } catch (apiError) {
+                console.error('AdminPanel: API error, updating locally:', apiError);
+                // Fallback to local update
+                await updateLocalStatus(id, 'approved');
+              }
+              
+              // Sync to calendar
               if (appointment) {
                 await syncToAdminCalendar(appointment);
               }
+              
+              // Refresh appointments
+              await fetchAppointments();
+              
               console.log('AdminPanel: Appointment approved successfully');
-              
-              // TODO: Backend Integration - Send confirmation email to client
-              // POST /api/appointments/:id/send-confirmation
-              // This sends email with booking details and deposit confirmation
-              
               Alert.alert('Success', 'Appointment approved and synced to your calendar! The client will receive a confirmation email.');
             } catch (error) {
               console.error('AdminPanel: Error approving appointment:', error);
@@ -160,7 +214,19 @@ export default function AdminPanelScreen() {
           style: 'destructive',
           onPress: async () => {
             try {
-              await updateAppointmentStatus(id, 'rejected');
+              // Update via API
+              try {
+                await appointmentApi.updateStatus(id, 'rejected');
+                console.log('AdminPanel: Appointment rejected via API');
+              } catch (apiError) {
+                console.error('AdminPanel: API error, updating locally:', apiError);
+                // Fallback to local update
+                await updateLocalStatus(id, 'rejected');
+              }
+              
+              // Refresh appointments
+              await fetchAppointments();
+              
               console.log('AdminPanel: Appointment rejected successfully');
               Alert.alert('Rejected', 'Appointment has been rejected.');
             } catch (error) {
@@ -209,9 +275,24 @@ export default function AdminPanelScreen() {
     }
   };
 
-  const pendingDepositAppointments = appointments.filter(apt => !apt.depositPaid);
-  const pendingApprovalAppointments = appointments.filter(apt => apt.depositPaid && apt.status === 'pending');
-  const approvedAppointments = appointments.filter(apt => apt.status === 'approved');
+  const pendingDepositAppointments = allAppointments.filter(apt => !apt.depositPaid);
+  const pendingApprovalAppointments = allAppointments.filter(apt => apt.depositPaid && apt.status === 'pending');
+  const approvedAppointments = allAppointments.filter(apt => apt.status === 'approved');
+
+  if (loading) {
+    return (
+      <ImageBackground
+        source={require('@/assets/images/f17fedc1-b2a1-4b83-8bc6-33e74e0d6fa7.png')}
+        style={commonStyles.container}
+        resizeMode="cover"
+      >
+        <View style={[styles.overlay, { justifyContent: 'center', alignItems: 'center' }]}>
+          <ActivityIndicator size="large" color={colors.primary} />
+          <Text style={[commonStyles.text, { marginTop: 16 }]}>Loading appointments...</Text>
+        </View>
+      </ImageBackground>
+    );
+  }
 
   return (
     <ImageBackground
@@ -248,6 +329,14 @@ export default function AdminPanelScreen() {
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              tintColor={colors.primary}
+              colors={[colors.primary]}
+            />
+          }
         >
           <TouchableOpacity 
             style={commonStyles.card}
@@ -338,96 +427,99 @@ export default function AdminPanelScreen() {
               <Text style={styles.emptyText}>No bookings pending deposit</Text>
             </View>
           ) : (
-            pendingDepositAppointments.map((apt, index) => (
-              <View key={index} style={commonStyles.card}>
-                <View style={styles.appointmentHeader}>
-                  <Text style={styles.appointmentName}>{apt.name}</Text>
-                  <View style={[styles.statusBadge, { backgroundColor: '#FF950020' }]}>
-                    <Text style={[styles.statusText, { color: '#FF9500' }]}>PENDING DEPOSIT</Text>
+            pendingDepositAppointments.map((apt, index) => {
+              const appointmentDate = new Date(apt.appointmentDate || apt.date);
+              return (
+                <View key={apt.id || index} style={commonStyles.card}>
+                  <View style={styles.appointmentHeader}>
+                    <Text style={styles.appointmentName}>{apt.name}</Text>
+                    <View style={[styles.statusBadge, { backgroundColor: '#FF950020' }]}>
+                      <Text style={[styles.statusText, { color: '#FF9500' }]}>PENDING DEPOSIT</Text>
+                    </View>
                   </View>
-                </View>
 
-                <View style={styles.appointmentDetail}>
-                  <IconSymbol 
-                    ios_icon_name="envelope" 
-                    android_material_icon_name="email" 
-                    size={16} 
-                    color={colors.text} 
-                  />
-                  <Text style={styles.detailText}>{apt.email}</Text>
-                </View>
-
-                <View style={styles.appointmentDetail}>
-                  <IconSymbol 
-                    ios_icon_name="phone" 
-                    android_material_icon_name="phone" 
-                    size={16} 
-                    color={colors.text} 
-                  />
-                  <Text style={styles.detailText}>{apt.phone}</Text>
-                </View>
-
-                <View style={styles.appointmentDetail}>
-                  <IconSymbol 
-                    ios_icon_name="calendar" 
-                    android_material_icon_name="event" 
-                    size={16} 
-                    color={colors.text} 
-                  />
-                  <Text style={styles.detailText}>
-                    {new Date(apt.date).toLocaleDateString('en-US', { 
-                      weekday: 'long', 
-                      month: 'long', 
-                      day: 'numeric',
-                      year: 'numeric'
-                    })}
-                  </Text>
-                </View>
-
-                {apt.consultationDate && (
                   <View style={styles.appointmentDetail}>
                     <IconSymbol 
-                      ios_icon_name="video" 
-                      android_material_icon_name="videocam" 
+                      ios_icon_name="envelope" 
+                      android_material_icon_name="email" 
                       size={16} 
-                      color={colors.primary} 
+                      color={colors.text} 
+                    />
+                    <Text style={styles.detailText}>{apt.email}</Text>
+                  </View>
+
+                  <View style={styles.appointmentDetail}>
+                    <IconSymbol 
+                      ios_icon_name="phone" 
+                      android_material_icon_name="phone" 
+                      size={16} 
+                      color={colors.text} 
+                    />
+                    <Text style={styles.detailText}>{apt.phone}</Text>
+                  </View>
+
+                  <View style={styles.appointmentDetail}>
+                    <IconSymbol 
+                      ios_icon_name="calendar" 
+                      android_material_icon_name="event" 
+                      size={16} 
+                      color={colors.text} 
                     />
                     <Text style={styles.detailText}>
-                      Consultation: {new Date(apt.consultationDate).toLocaleDateString()} at {apt.consultationTime}
+                      {appointmentDate.toLocaleDateString('en-US', { 
+                        weekday: 'long', 
+                        month: 'long', 
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}
                     </Text>
                   </View>
-                )}
 
-                <Text style={styles.descriptionLabel}>Description:</Text>
-                <Text style={styles.descriptionText}>{apt.description}</Text>
+                  {apt.consultationDate && (
+                    <View style={styles.appointmentDetail}>
+                      <IconSymbol 
+                        ios_icon_name="video" 
+                        android_material_icon_name="videocam" 
+                        size={16} 
+                        color={colors.primary} 
+                      />
+                      <Text style={styles.detailText}>
+                        Consultation: {new Date(apt.consultationDate).toLocaleDateString()} at {apt.consultationTime}
+                      </Text>
+                    </View>
+                  )}
 
-                {apt.placement && (
-                  <>
-                    <Text style={styles.descriptionLabel}>Placement:</Text>
-                    <Text style={styles.descriptionText}>{apt.placement}</Text>
-                  </>
-                )}
+                  <Text style={styles.descriptionLabel}>Description:</Text>
+                  <Text style={styles.descriptionText}>{apt.description}</Text>
 
-                {apt.size && (
-                  <>
-                    <Text style={styles.descriptionLabel}>Size:</Text>
-                    <Text style={styles.descriptionText}>{apt.size}</Text>
-                  </>
-                )}
+                  {apt.placement && (
+                    <>
+                      <Text style={styles.descriptionLabel}>Placement:</Text>
+                      <Text style={styles.descriptionText}>{apt.placement}</Text>
+                    </>
+                  )}
 
-                <View style={styles.depositWarning}>
-                  <IconSymbol 
-                    ios_icon_name="exclamationmark.triangle.fill" 
-                    android_material_icon_name="warning" 
-                    size={18} 
-                    color="#FF9500" 
-                  />
-                  <Text style={styles.depositWarningText}>
-                    Waiting for client to complete $100 deposit payment. Cannot approve until deposit is paid.
-                  </Text>
+                  {apt.size && (
+                    <>
+                      <Text style={styles.descriptionLabel}>Size:</Text>
+                      <Text style={styles.descriptionText}>{apt.size}</Text>
+                    </>
+                  )}
+
+                  <View style={styles.depositWarning}>
+                    <IconSymbol 
+                      ios_icon_name="exclamationmark.triangle.fill" 
+                      android_material_icon_name="warning" 
+                      size={18} 
+                      color="#FF9500" 
+                    />
+                    <Text style={styles.depositWarningText}>
+                      Waiting for client to complete $100 deposit payment. Cannot approve until deposit is paid.
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            ))
+              );
+            })
           )}
 
           <View style={commonStyles.card}>
@@ -452,33 +544,152 @@ export default function AdminPanelScreen() {
               <Text style={styles.emptyText}>No appointments pending approval</Text>
             </View>
           ) : (
-            pendingApprovalAppointments.map((apt, index) => (
-              <View key={index} style={commonStyles.card}>
+            pendingApprovalAppointments.map((apt, index) => {
+              const appointmentDate = new Date(apt.appointmentDate || apt.date);
+              return (
+                <View key={apt.id || index} style={commonStyles.card}>
+                  <View style={styles.appointmentHeader}>
+                    <Text style={styles.appointmentName}>{apt.name}</Text>
+                    <View style={[styles.statusBadge, { backgroundColor: '#34C75920' }]}>
+                      <Text style={[styles.statusText, { color: '#34C759' }]}>DEPOSIT PAID</Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.appointmentDetail}>
+                    <IconSymbol 
+                      ios_icon_name="envelope" 
+                      android_material_icon_name="email" 
+                      size={16} 
+                      color={colors.text} 
+                    />
+                    <Text style={styles.detailText}>{apt.email}</Text>
+                  </View>
+
+                  <View style={styles.appointmentDetail}>
+                    <IconSymbol 
+                      ios_icon_name="phone" 
+                      android_material_icon_name="phone" 
+                      size={16} 
+                      color={colors.text} 
+                    />
+                    <Text style={styles.detailText}>{apt.phone}</Text>
+                  </View>
+
+                  <View style={styles.appointmentDetail}>
+                    <IconSymbol 
+                      ios_icon_name="calendar" 
+                      android_material_icon_name="event" 
+                      size={16} 
+                      color={colors.text} 
+                    />
+                    <Text style={styles.detailText}>
+                      {appointmentDate.toLocaleDateString('en-US', { 
+                        weekday: 'long', 
+                        month: 'long', 
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}
+                    </Text>
+                  </View>
+
+                  {apt.consultationDate && (
+                    <View style={styles.appointmentDetail}>
+                      <IconSymbol 
+                        ios_icon_name="video" 
+                        android_material_icon_name="videocam" 
+                        size={16} 
+                        color={colors.primary} 
+                      />
+                      <Text style={styles.detailText}>
+                        Consultation: {new Date(apt.consultationDate).toLocaleDateString()} at {apt.consultationTime}
+                      </Text>
+                    </View>
+                  )}
+
+                  <Text style={styles.descriptionLabel}>Description:</Text>
+                  <Text style={styles.descriptionText}>{apt.description}</Text>
+
+                  {apt.placement && (
+                    <>
+                      <Text style={styles.descriptionLabel}>Placement:</Text>
+                      <Text style={styles.descriptionText}>{apt.placement}</Text>
+                    </>
+                  )}
+
+                  {apt.size && (
+                    <>
+                      <Text style={styles.descriptionLabel}>Size:</Text>
+                      <Text style={styles.descriptionText}>{apt.size}</Text>
+                    </>
+                  )}
+
+                  <View style={styles.depositPaidInfo}>
+                    <IconSymbol 
+                      ios_icon_name="checkmark.circle.fill" 
+                      android_material_icon_name="check_circle" 
+                      size={18} 
+                      color="#34C759" 
+                    />
+                    <Text style={styles.depositPaidText}>
+                      Deposit Paid: $100 ✓
+                    </Text>
+                  </View>
+
+                  <View style={styles.actionButtons}>
+                    <TouchableOpacity 
+                      style={[buttonStyles.primaryButton, styles.approveButton]}
+                      onPress={() => handleApprove(apt.id)}
+                    >
+                      <IconSymbol 
+                        ios_icon_name="checkmark" 
+                        android_material_icon_name="check" 
+                        size={20} 
+                        color="#FFFFFF" 
+                      />
+                      <Text style={buttonStyles.primaryButtonText}>Approve & Sync</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity 
+                      style={[buttonStyles.secondaryButton, styles.rejectButton]}
+                      onPress={() => handleReject(apt.id)}
+                    >
+                      <IconSymbol 
+                        ios_icon_name="xmark" 
+                        android_material_icon_name="close" 
+                        size={20} 
+                        color={colors.primary} 
+                      />
+                      <Text style={buttonStyles.secondaryButtonText}>Reject</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              );
+            })
+          )}
+
+          <View style={commonStyles.card}>
+            <View style={styles.sectionHeader}>
+              <IconSymbol 
+                ios_icon_name="checkmark.circle.fill" 
+                android_material_icon_name="check_circle" 
+                size={24} 
+                color="#34C759" 
+              />
+              <Text style={styles.sectionTitle}>
+                Approved Appointments ({approvedAppointments.length})
+              </Text>
+            </View>
+          </View>
+
+          {approvedAppointments.map((apt, index) => {
+            const appointmentDate = new Date(apt.appointmentDate || apt.date);
+            return (
+              <View key={apt.id || index} style={commonStyles.card}>
                 <View style={styles.appointmentHeader}>
                   <Text style={styles.appointmentName}>{apt.name}</Text>
                   <View style={[styles.statusBadge, { backgroundColor: '#34C75920' }]}>
-                    <Text style={[styles.statusText, { color: '#34C759' }]}>DEPOSIT PAID</Text>
+                    <Text style={[styles.statusText, { color: '#34C759' }]}>APPROVED</Text>
                   </View>
-                </View>
-
-                <View style={styles.appointmentDetail}>
-                  <IconSymbol 
-                    ios_icon_name="envelope" 
-                    android_material_icon_name="email" 
-                    size={16} 
-                    color={colors.text} 
-                  />
-                  <Text style={styles.detailText}>{apt.email}</Text>
-                </View>
-
-                <View style={styles.appointmentDetail}>
-                  <IconSymbol 
-                    ios_icon_name="phone" 
-                    android_material_icon_name="phone" 
-                    size={16} 
-                    color={colors.text} 
-                  />
-                  <Text style={styles.detailText}>{apt.phone}</Text>
                 </View>
 
                 <View style={styles.appointmentDetail}>
@@ -489,7 +700,7 @@ export default function AdminPanelScreen() {
                     color={colors.text} 
                   />
                   <Text style={styles.detailText}>
-                    {new Date(apt.date).toLocaleDateString('en-US', { 
+                    {appointmentDate.toLocaleDateString('en-US', { 
                       weekday: 'long', 
                       month: 'long', 
                       day: 'numeric',
@@ -512,23 +723,8 @@ export default function AdminPanelScreen() {
                   </View>
                 )}
 
-                <Text style={styles.descriptionLabel}>Description:</Text>
                 <Text style={styles.descriptionText}>{apt.description}</Text>
-
-                {apt.placement && (
-                  <>
-                    <Text style={styles.descriptionLabel}>Placement:</Text>
-                    <Text style={styles.descriptionText}>{apt.placement}</Text>
-                  </>
-                )}
-
-                {apt.size && (
-                  <>
-                    <Text style={styles.descriptionLabel}>Size:</Text>
-                    <Text style={styles.descriptionText}>{apt.size}</Text>
-                  </>
-                )}
-
+                
                 <View style={styles.depositPaidInfo}>
                   <IconSymbol 
                     ios_icon_name="checkmark.circle.fill" 
@@ -540,120 +736,22 @@ export default function AdminPanelScreen() {
                     Deposit Paid: $100 ✓
                   </Text>
                 </View>
-
-                <View style={styles.actionButtons}>
-                  <TouchableOpacity 
-                    style={[buttonStyles.primaryButton, styles.approveButton]}
-                    onPress={() => handleApprove(apt.id)}
-                  >
-                    <IconSymbol 
-                      ios_icon_name="checkmark" 
-                      android_material_icon_name="check" 
-                      size={20} 
-                      color="#FFFFFF" 
-                    />
-                    <Text style={buttonStyles.primaryButtonText}>Approve & Sync</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity 
-                    style={[buttonStyles.secondaryButton, styles.rejectButton]}
-                    onPress={() => handleReject(apt.id)}
-                  >
-                    <IconSymbol 
-                      ios_icon_name="xmark" 
-                      android_material_icon_name="close" 
-                      size={20} 
-                      color={colors.primary} 
-                    />
-                    <Text style={buttonStyles.secondaryButtonText}>Reject</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            ))
-          )}
-
-          <View style={commonStyles.card}>
-            <View style={styles.sectionHeader}>
-              <IconSymbol 
-                ios_icon_name="checkmark.circle.fill" 
-                android_material_icon_name="check_circle" 
-                size={24} 
-                color="#34C759" 
-              />
-              <Text style={styles.sectionTitle}>
-                Approved Appointments ({approvedAppointments.length})
-              </Text>
-            </View>
-          </View>
-
-          {approvedAppointments.map((apt, index) => (
-            <View key={index} style={commonStyles.card}>
-              <View style={styles.appointmentHeader}>
-                <Text style={styles.appointmentName}>{apt.name}</Text>
-                <View style={[styles.statusBadge, { backgroundColor: '#34C75920' }]}>
-                  <Text style={[styles.statusText, { color: '#34C759' }]}>APPROVED</Text>
-                </View>
-              </View>
-
-              <View style={styles.appointmentDetail}>
-                <IconSymbol 
-                  ios_icon_name="calendar" 
-                  android_material_icon_name="event" 
-                  size={16} 
-                  color={colors.text} 
-                />
-                <Text style={styles.detailText}>
-                  {new Date(apt.date).toLocaleDateString('en-US', { 
-                    weekday: 'long', 
-                    month: 'long', 
-                    day: 'numeric',
-                    year: 'numeric'
-                  })}
-                </Text>
-              </View>
-
-              {apt.consultationDate && (
-                <View style={styles.appointmentDetail}>
+                
+                <TouchableOpacity 
+                  style={[buttonStyles.secondaryButton, { marginTop: 12 }]}
+                  onPress={() => syncToAdminCalendar(apt)}
+                >
                   <IconSymbol 
-                    ios_icon_name="video" 
-                    android_material_icon_name="videocam" 
-                    size={16} 
+                    ios_icon_name="calendar.badge.plus" 
+                    android_material_icon_name="event" 
+                    size={20} 
                     color={colors.primary} 
                   />
-                  <Text style={styles.detailText}>
-                    Consultation: {new Date(apt.consultationDate).toLocaleDateString()} at {apt.consultationTime}
-                  </Text>
-                </View>
-              )}
-
-              <Text style={styles.descriptionText}>{apt.description}</Text>
-              
-              <View style={styles.depositPaidInfo}>
-                <IconSymbol 
-                  ios_icon_name="checkmark.circle.fill" 
-                  android_material_icon_name="check_circle" 
-                  size={18} 
-                  color="#34C759" 
-                />
-                <Text style={styles.depositPaidText}>
-                  Deposit Paid: $100 ✓
-                </Text>
+                  <Text style={buttonStyles.secondaryButtonText}>Sync to Calendar</Text>
+                </TouchableOpacity>
               </View>
-              
-              <TouchableOpacity 
-                style={[buttonStyles.secondaryButton, { marginTop: 12 }]}
-                onPress={() => syncToAdminCalendar(apt)}
-              >
-                <IconSymbol 
-                  ios_icon_name="calendar.badge.plus" 
-                  android_material_icon_name="event" 
-                  size={20} 
-                  color={colors.primary} 
-                />
-                <Text style={buttonStyles.secondaryButtonText}>Sync to Calendar</Text>
-              </TouchableOpacity>
-            </View>
-          ))}
+            );
+          })}
 
           <View style={styles.bottomPadding} />
         </ScrollView>

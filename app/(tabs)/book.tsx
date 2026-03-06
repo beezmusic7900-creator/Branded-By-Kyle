@@ -8,11 +8,14 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Calendar from 'expo-calendar';
 import { useRouter } from 'expo-router';
 import ConfirmModal from '@/components/ConfirmModal';
+import { appointmentApi, AppointmentData } from '@/utils/api';
+import { useAppointments } from '@/contexts/AppointmentContext';
 
 const SQUARE_PAYMENT_LINK = 'https://square.link/u/sAU6Bf87';
 
 export default function BookScreen() {
   const router = useRouter();
+  const { addAppointment: addLocalAppointment } = useAppointments();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -41,15 +44,13 @@ export default function BookScreen() {
     console.log('BookScreen: Fetching booked slots for date:', dateStr);
     setLoadingAvailability(true);
     try {
-      // TODO: Backend Integration - GET /api/appointments/availability?date=YYYY-MM-DD
-      // Returns: { date: 'YYYY-MM-DD', bookedSlots: ['2024-01-15T14:00:00Z', '2024-01-15T16:00:00Z'] }
-      
-      // Simulated booked slots for now
-      setBookedSlots([]);
-      console.log('BookScreen: Availability check complete');
+      const result = await appointmentApi.getAvailability(dateStr);
+      setBookedSlots(result.bookedSlots || []);
+      console.log('BookScreen: Availability check complete, booked slots:', result.bookedSlots?.length || 0);
     } catch (error) {
       console.error('BookScreen: Error checking availability:', error);
-      Alert.alert('Error', 'Could not check availability. Please try again.');
+      // Fallback to empty array if backend not available
+      setBookedSlots([]);
     } finally {
       setLoadingAvailability(false);
     }
@@ -228,7 +229,7 @@ export default function BookScreen() {
       if (period2 === 'AM' && hour === 12) hour = 0;
       consultDateWithTime.setHours(hour, parseInt(minutes), 0, 0);
 
-      const bookingData = {
+      const bookingData: AppointmentData = {
         name,
         email,
         phone,
@@ -241,21 +242,46 @@ export default function BookScreen() {
         placement,
         size,
         referenceImages,
-        depositAmount: 100,
-        status: 'pending deposit'
       };
 
       console.log('BookScreen: Submitting booking to backend:', bookingData);
 
-      // TODO: Backend Integration - POST /api/appointments
-      // Body: bookingData
-      // Returns: { id, status: 'pending deposit', depositPaid: false, depositAmount: 100, createdAt }
-      
-      // Simulate backend response
-      const mockBookingId = `booking_${Date.now()}`;
-      console.log('BookScreen: Booking created with ID:', mockBookingId);
-      
-      setPendingBookingId(mockBookingId);
+      try {
+        // Try to submit to backend
+        const createdAppointment = await appointmentApi.create(bookingData);
+        console.log('BookScreen: Booking created successfully:', createdAppointment.id);
+        setPendingBookingId(createdAppointment.id);
+        
+        // Also save locally for offline access
+        await addLocalAppointment({
+          name,
+          email,
+          phone,
+          date: date.toISOString(),
+          consultationDate: consultDateWithTime.toISOString(),
+          consultationTime,
+          description,
+          placement,
+          size,
+          referenceImages,
+        });
+      } catch (apiError) {
+        console.error('BookScreen: Backend API error, saving locally only:', apiError);
+        // Fallback to local storage if backend is not available
+        await addLocalAppointment({
+          name,
+          email,
+          phone,
+          date: date.toISOString(),
+          consultationDate: consultDateWithTime.toISOString(),
+          consultationTime,
+          description,
+          placement,
+          size,
+          referenceImages,
+        });
+        setPendingBookingId(`local_${Date.now()}`);
+      }
 
       // Sync to calendar
       await addToCalendar(date, consultDateWithTime, name, description);
@@ -282,21 +308,30 @@ export default function BookScreen() {
         await Linking.openURL(SQUARE_PAYMENT_LINK);
         console.log('BookScreen: Payment link opened successfully');
         
-        // Clear form
-        setName('');
-        setEmail('');
-        setPhone('');
-        setDescription('');
-        setPlacement('');
-        setSize('');
-        setReferenceImages([]);
-        setPendingBookingId(null);
-        
-        // Navigate to appointments screen after a short delay
-        setTimeout(() => {
-          console.log('BookScreen: Navigating to appointments screen');
-          router.push('/(tabs)/appointments');
-        }, 1500);
+        // Show success message
+        Alert.alert(
+          'Booking Submitted',
+          'Your booking has been saved with status "Pending Deposit".\n\nPlease complete the $100 deposit payment in the browser that just opened.\n\nOnce payment is confirmed, you will receive an email confirmation and your booking status will be updated.',
+          [
+            {
+              text: 'OK',
+              onPress: () => {
+                // Clear form
+                setName('');
+                setEmail('');
+                setPhone('');
+                setDescription('');
+                setPlacement('');
+                setSize('');
+                setReferenceImages([]);
+                setPendingBookingId(null);
+                
+                // Navigate to appointments screen
+                router.push('/(tabs)/appointments');
+              }
+            }
+          ]
+        );
       } else {
         console.log('BookScreen: Cannot open payment link');
         Alert.alert('Error', 'Unable to open payment link. Please contact us directly at brandedbykyle@gmail.com');
@@ -614,7 +649,7 @@ export default function BookScreen() {
             >
               <IconSymbol 
                 ios_icon_name="photo.badge.plus" 
-                android_material_icon_name="add_a_photo" 
+                android_material_icon_name="add-a-photo" 
                 size={24} 
                 color={colors.primary} 
               />

@@ -1,14 +1,56 @@
 
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform, ImageBackground, Linking, Alert, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Platform, ImageBackground, Linking, Alert, Image, ActivityIndicator, RefreshControl } from 'react-native';
 import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { useAppointments } from '@/contexts/AppointmentContext';
+import { appointmentApi, Appointment as ApiAppointment } from '@/utils/api';
 
 const SQUARE_PAYMENT_LINK = 'https://square.link/u/sAU6Bf87';
 
 export default function AppointmentsScreen() {
-  const { appointments, markDepositPaid } = useAppointments();
+  const { appointments: localAppointments } = useAppointments();
+  const [apiAppointments, setApiAppointments] = useState<ApiAppointment[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  useEffect(() => {
+    console.log('Appointments: Component mounted, fetching appointments');
+    fetchAppointments();
+  }, []);
+
+  const fetchAppointments = async () => {
+    try {
+      console.log('Appointments: Fetching from backend API');
+      const appointments = await appointmentApi.getAll();
+      setApiAppointments(appointments);
+      console.log('Appointments: Fetched', appointments.length, 'appointments from API');
+    } catch (error) {
+      console.error('Appointments: Error fetching from API, using local data:', error);
+      // Fallback to local appointments if backend not available
+      setApiAppointments([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchAppointments();
+    setRefreshing(false);
+  };
+
+  // Merge API and local appointments (prefer API data)
+  const allAppointments = apiAppointments.length > 0 ? apiAppointments : localAppointments.map(apt => ({
+    ...apt,
+    appointmentDate: apt.date,
+    appointmentTime: new Date(apt.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }),
+    service: 'Custom Tattoo',
+    referenceImages: apt.referenceImages || [],
+    depositAmount: 100,
+    createdAt: apt.createdAt || new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }));
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -56,7 +98,7 @@ export default function AppointmentsScreen() {
     
     Alert.alert(
       'Complete Deposit Payment',
-      'You will be redirected to Square to complete your $100 non-refundable deposit payment.\n\nAfter payment is confirmed, your booking status will be updated and you will receive a confirmation email.',
+      'You will be redirected to Square to complete your $100 non-refundable deposit payment.\n\nAfter payment is confirmed, your booking status will be updated automatically and you will receive a confirmation email.',
       [
         { text: 'Cancel', style: 'cancel' },
         {
@@ -70,14 +112,9 @@ export default function AppointmentsScreen() {
                 await Linking.openURL(SQUARE_PAYMENT_LINK);
                 console.log('Appointments: Payment link opened successfully');
                 
-                // TODO: Backend Integration - After Square webhook confirms payment:
-                // PUT /api/appointments/:id/deposit
-                // Body: { depositPaid: true, paymentConfirmedAt: ISO timestamp }
-                // This will trigger email confirmation to user
-                
                 Alert.alert(
                   'Payment Link Opened',
-                  'Complete your payment in the browser. Once payment is confirmed, your booking status will be automatically updated and you will receive a confirmation email.',
+                  'Complete your payment in the browser. Once payment is confirmed by Square, your booking status will be automatically updated and you will receive a confirmation email.\n\nPull down to refresh this screen after completing payment.',
                   [{ text: 'OK' }]
                 );
               } else {
@@ -94,6 +131,21 @@ export default function AppointmentsScreen() {
     );
   };
 
+  if (loading) {
+    return (
+      <ImageBackground
+        source={require('@/assets/images/f17fedc1-b2a1-4b83-8bc6-33e74e0d6fa7.png')}
+        style={commonStyles.container}
+        resizeMode="cover"
+      >
+        <View style={[styles.overlay, { justifyContent: 'center', alignItems: 'center' }]}>
+          <ActivityIndicator size="large" color={colors.primary} />
+          <Text style={[commonStyles.text, { marginTop: 16 }]}>Loading appointments...</Text>
+        </View>
+      </ImageBackground>
+    );
+  }
+
   return (
     <ImageBackground
       source={require('@/assets/images/f17fedc1-b2a1-4b83-8bc6-33e74e0d6fa7.png')}
@@ -105,6 +157,14 @@ export default function AppointmentsScreen() {
           style={styles.scrollView}
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              tintColor={colors.primary}
+              colors={[colors.primary]}
+            />
+          }
         >
           <View style={styles.header}>
             <Image
@@ -122,9 +182,12 @@ export default function AppointmentsScreen() {
             <Text style={[commonStyles.text, commonStyles.textCenter]}>
               View and manage your upcoming tattoo sessions
             </Text>
+            <Text style={[commonStyles.text, commonStyles.textCenter, { fontSize: 12, marginTop: 8, opacity: 0.7 }]}>
+              Pull down to refresh
+            </Text>
           </View>
 
-          {appointments.length === 0 ? (
+          {allAppointments.length === 0 ? (
             <View style={styles.emptyState}>
               <IconSymbol 
                 ios_icon_name="calendar.badge.exclamationmark" 
@@ -139,13 +202,14 @@ export default function AppointmentsScreen() {
             </View>
           ) : (
             <View style={styles.appointmentsList}>
-              {appointments.map((appointment, index) => {
+              {allAppointments.map((appointment, index) => {
                 const statusIcon = getStatusIcon(appointment.status);
                 const statusColor = getStatusColor(appointment.status);
                 const statusText = getStatusDisplayText(appointment.status);
+                const appointmentDate = new Date(appointment.appointmentDate || appointment.date);
                 
                 return (
-                  <View key={index} style={commonStyles.card}>
+                  <View key={appointment.id || index} style={commonStyles.card}>
                     <View style={styles.appointmentHeader}>
                       <View style={styles.dateContainer}>
                         <IconSymbol 
@@ -156,7 +220,7 @@ export default function AppointmentsScreen() {
                         />
                         <View>
                           <Text style={styles.dateText}>
-                            {new Date(appointment.date).toLocaleDateString('en-US', { 
+                            {appointmentDate.toLocaleDateString('en-US', { 
                               weekday: 'short', 
                               month: 'short', 
                               day: 'numeric',
@@ -164,7 +228,7 @@ export default function AppointmentsScreen() {
                             })}
                           </Text>
                           <Text style={styles.timeText}>
-                            {new Date(appointment.date).toLocaleTimeString('en-US', { 
+                            {appointment.appointmentTime || appointmentDate.toLocaleTimeString('en-US', { 
                               hour: 'numeric', 
                               minute: '2-digit',
                               hour12: true
@@ -315,6 +379,8 @@ export default function AppointmentsScreen() {
                 • 48 hours notice required for cancellations
                 {'\n'}
                 • Appointments are synced to your device calendar
+                {'\n'}
+                • Pull down to refresh after completing payment
               </Text>
             </View>
           </View>
