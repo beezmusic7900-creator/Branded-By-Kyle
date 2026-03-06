@@ -6,14 +6,12 @@ import { IconSymbol } from '@/components/IconSymbol';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import * as Calendar from 'expo-calendar';
-import { useAppointments } from '@/contexts/AppointmentContext';
 import { useRouter } from 'expo-router';
 
 const SQUARE_PAYMENT_LINK = 'https://square.link/u/jRrxMkF3';
 
 export default function BookScreen() {
   const router = useRouter();
-  const { addAppointment, appointments } = useAppointments();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -28,27 +26,27 @@ export default function BookScreen() {
   const [referenceImages, setReferenceImages] = useState<string[]>([]);
   const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const [loadingAvailability, setLoadingAvailability] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    console.log('BookScreen: Checking availability for selected date');
+    console.log('BookScreen: Component mounted, checking availability');
     checkAvailability();
   }, [date]);
 
   const checkAvailability = async () => {
-    console.log('BookScreen: Fetching booked slots for date:', date.toISOString());
+    const dateStr = date.toISOString().split('T')[0];
+    console.log('BookScreen: Fetching booked slots for date:', dateStr);
     setLoadingAvailability(true);
     try {
-      // TODO: Backend Integration - GET /api/bookings/availability?date=YYYY-MM-DD
-      // Returns: { bookedSlots: ['2024-01-15T10:00:00Z', '2024-01-15T14:00:00Z'] }
-      // For now, use local appointments
-      const dateStr = date.toISOString().split('T')[0];
-      const booked = appointments
-        .filter(apt => apt.date.startsWith(dateStr) && apt.status !== 'rejected')
-        .map(apt => apt.date);
-      console.log('BookScreen: Found booked slots:', booked);
-      setBookedSlots(booked);
+      // TODO: Backend Integration - GET /api/appointments/availability?date=YYYY-MM-DD
+      // Returns: { date: 'YYYY-MM-DD', bookedSlots: ['2024-01-15T14:00:00Z', '2024-01-15T16:00:00Z'] }
+      
+      // Simulated booked slots for now
+      setBookedSlots([]);
+      console.log('BookScreen: Availability check complete');
     } catch (error) {
-      console.log('BookScreen: Error checking availability:', error);
+      console.error('BookScreen: Error checking availability:', error);
+      Alert.alert('Error', 'Could not check availability. Please try again.');
     } finally {
       setLoadingAvailability(false);
     }
@@ -70,14 +68,13 @@ export default function BookScreen() {
       return Math.abs(bookedDate.getTime() - slotDate.getTime()) < 60 * 60 * 1000;
     });
     
-    console.log('BookScreen: Checking if', timeSlot, 'is booked:', isBooked);
     return isBooked;
   };
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
     setShowDatePicker(Platform.OS === 'ios');
     if (selectedDate) {
-      console.log('BookScreen: Date changed to:', selectedDate.toISOString());
+      console.log('BookScreen: Appointment date changed to:', selectedDate.toISOString());
       setDate(selectedDate);
     }
   };
@@ -93,48 +90,57 @@ export default function BookScreen() {
         Alert.alert('Invalid Date', 'Consultation must be at least 24 hours before the appointment date.');
         return;
       }
+      console.log('BookScreen: Consultation date changed to:', selectedDate.toISOString());
       setConsultationDate(selectedDate);
     }
   };
 
   const pickImage = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsMultipleSelection: true,
-      quality: 0.8,
-    });
+    console.log('BookScreen: Opening image picker');
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ['images'],
+        allowsMultipleSelection: true,
+        quality: 0.8,
+      });
 
-    if (!result.canceled && result.assets) {
-      const newImages = result.assets.map(asset => asset.uri);
-      setReferenceImages([...referenceImages, ...newImages]);
+      if (!result.canceled && result.assets) {
+        const newImages = result.assets.map(asset => asset.uri);
+        setReferenceImages([...referenceImages, ...newImages]);
+        console.log('BookScreen: Selected', newImages.length, 'images');
+      }
+    } catch (error) {
+      console.error('BookScreen: Error picking images:', error);
+      Alert.alert('Error', 'Could not select images. Please try again.');
     }
   };
 
   const addToCalendar = async (appointmentDate: Date, consultDate: Date, clientName: string, tattooDescription: string) => {
     try {
-      console.log('Requesting calendar permissions...');
+      console.log('BookScreen: Requesting calendar permissions');
       const { status } = await Calendar.requestCalendarPermissionsAsync();
       
       if (status !== 'granted') {
-        console.log('Calendar permission denied');
+        console.log('BookScreen: Calendar permission denied');
         Alert.alert('Permission Required', 'Calendar access is needed to sync appointments. You can still book without calendar sync.');
         return;
       }
 
-      console.log('Calendar permission granted, getting calendars...');
+      console.log('BookScreen: Calendar permission granted, getting calendars');
       const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
-      console.log('Available calendars:', calendars.length);
+      console.log('BookScreen: Found', calendars.length, 'calendars');
       
       const defaultCalendar = calendars.find(cal => cal.allowsModifications) || calendars[0];
       
       if (!defaultCalendar) {
-        console.log('No writable calendar found');
+        console.log('BookScreen: No writable calendar found');
         Alert.alert('Calendar Error', 'No writable calendar found on your device.');
         return;
       }
 
-      console.log('Using calendar:', defaultCalendar.title);
+      console.log('BookScreen: Using calendar:', defaultCalendar.title);
 
+      // Create consultation event
       const consultationEndDate = new Date(consultDate.getTime() + 60 * 60 * 1000);
       const consultationEventId = await Calendar.createEventAsync(defaultCalendar.id, {
         title: `Consultation - ${clientName}`,
@@ -146,8 +152,9 @@ export default function BookScreen() {
           { relativeOffset: -2 * 60 }
         ],
       });
-      console.log('Consultation event created:', consultationEventId);
+      console.log('BookScreen: Consultation event created:', consultationEventId);
 
+      // Create appointment event
       const appointmentEndDate = new Date(appointmentDate.getTime() + 3 * 60 * 60 * 1000);
       const appointmentEventId = await Calendar.createEventAsync(defaultCalendar.id, {
         title: `Tattoo Appointment - ${clientName}`,
@@ -159,32 +166,45 @@ export default function BookScreen() {
           { relativeOffset: -2 * 60 }
         ],
       });
-      console.log('Appointment event created:', appointmentEventId);
+      console.log('BookScreen: Appointment event created:', appointmentEventId);
 
       Alert.alert('Calendar Synced', 'Appointments have been added to your calendar with reminders!');
     } catch (error) {
-      console.log('Calendar sync error:', error);
+      console.error('BookScreen: Calendar sync error:', error);
       Alert.alert('Calendar Sync Failed', 'Could not sync to calendar, but your booking is still saved.');
     }
   };
 
   const handleSubmit = async () => {
-    console.log('BookScreen: Submit button pressed');
+    console.log('BookScreen: Submit button pressed - starting validation');
     
+    // Validation
     if (!name || !email || !phone || !description) {
-      Alert.alert('Missing Information', 'Please fill in all required fields.');
+      console.log('BookScreen: Validation failed - missing required fields');
+      Alert.alert('Missing Information', 'Please fill in all required fields (Name, Email, Phone, Description).');
       return;
     }
 
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.log('BookScreen: Validation failed - invalid email format');
+      Alert.alert('Invalid Email', 'Please enter a valid email address.');
+      return;
+    }
+
+    // Check consultation date is at least 24 hours before appointment
     const appointmentTime = date.getTime();
     const consultTime = consultationDate.getTime();
     const hoursDiff = (appointmentTime - consultTime) / (1000 * 60 * 60);
     
     if (hoursDiff < 24) {
+      console.log('BookScreen: Validation failed - consultation too close to appointment');
       Alert.alert('Invalid Consultation Date', 'Consultation must be at least 24 hours before the appointment date.');
       return;
     }
 
+    // Check if time slot is available
     const selectedHour = date.getHours();
     const selectedMinute = date.getMinutes();
     const period = selectedHour >= 12 ? 'PM' : 'AM';
@@ -192,76 +212,105 @@ export default function BookScreen() {
     const timeSlot = `${displayHour}:${selectedMinute.toString().padStart(2, '0')} ${period}`;
     
     if (isTimeSlotBooked(timeSlot)) {
+      console.log('BookScreen: Validation failed - time slot already booked');
       Alert.alert('Time Slot Unavailable', 'This time slot is already booked. Please select a different time.');
       return;
     }
 
-    console.log('BookScreen: Submitting booking and syncing to calendar...');
+    console.log('BookScreen: Validation passed - submitting booking');
+    setIsSubmitting(true);
 
-    // TODO: Backend Integration - POST /api/bookings
-    // Body: { name, email, phone, appointmentDate: ISO8601, consultationDate: ISO8601, consultationTime, description, placement, size, referenceImages }
-    // Returns: { id, status: 'pending', depositPaid: false }
-    await addAppointment({
-      name,
-      email,
-      phone,
-      date: date.toISOString(),
-      consultationDate: consultationDate.toISOString(),
-      consultationTime,
-      description,
-      placement,
-      size,
-      referenceImages,
-    });
+    try {
+      // Prepare consultation date with time
+      const consultDateWithTime = new Date(consultationDate);
+      const [time, period2] = consultationTime.split(' ');
+      const [hours, minutes] = time.split(':');
+      let hour = parseInt(hours);
+      if (period2 === 'PM' && hour !== 12) hour += 12;
+      if (period2 === 'AM' && hour === 12) hour = 0;
+      consultDateWithTime.setHours(hour, parseInt(minutes), 0, 0);
 
-    const consultDateWithTime = new Date(consultationDate);
-    const [time, period2] = consultationTime.split(' ');
-    const [hours, minutes] = time.split(':');
-    let hour = parseInt(hours);
-    if (period2 === 'PM' && hour !== 12) hour += 12;
-    if (period2 === 'AM' && hour === 12) hour = 0;
-    consultDateWithTime.setHours(hour, parseInt(minutes), 0, 0);
+      // TODO: Backend Integration - POST /api/appointments
+      // Body: { 
+      //   name, 
+      //   email, 
+      //   phone, 
+      //   service: 'Custom Tattoo',
+      //   appointmentDate: date.toISOString(), 
+      //   appointmentTime: timeSlot,
+      //   consultationDate: consultDateWithTime.toISOString(), 
+      //   consultationTime, 
+      //   description, 
+      //   placement, 
+      //   size, 
+      //   referenceImages 
+      // }
+      // Returns: { id, status: 'pending', depositPaid: false, depositAmount: 100, createdAt }
 
-    await addToCalendar(date, consultDateWithTime, name, description);
+      console.log('BookScreen: Booking data prepared:', {
+        name,
+        email,
+        phone,
+        appointmentDate: date.toISOString(),
+        appointmentTime: timeSlot,
+        consultationDate: consultDateWithTime.toISOString(),
+        consultationTime,
+        description,
+        placement,
+        size,
+        referenceImagesCount: referenceImages.length
+      });
 
-    console.log('BookScreen: Booking submitted successfully, redirecting to payment link');
-    
-    Alert.alert(
-      'Booking Request Submitted',
-      'Thank you! Your booking request has been submitted.\n\nYou will now be redirected to complete the $100 non-refundable deposit to secure your booking.',
-      [{ 
-        text: 'Proceed to Payment',
-        onPress: async () => {
-          try {
-            console.log('BookScreen: Opening Square payment link:', SQUARE_PAYMENT_LINK);
-            const canOpen = await Linking.canOpenURL(SQUARE_PAYMENT_LINK);
-            if (canOpen) {
-              await Linking.openURL(SQUARE_PAYMENT_LINK);
-              console.log('BookScreen: Payment link opened successfully');
-              
-              setName('');
-              setEmail('');
-              setPhone('');
-              setDescription('');
-              setPlacement('');
-              setSize('');
-              setReferenceImages([]);
-              checkAvailability();
-              
-              setTimeout(() => {
-                router.push('/(tabs)/appointments');
-              }, 1000);
-            } else {
-              console.log('BookScreen: Cannot open payment link');
-              Alert.alert('Error', 'Unable to open payment link. Please contact us directly.');
+      // Sync to calendar
+      await addToCalendar(date, consultDateWithTime, name, description);
+
+      console.log('BookScreen: Booking submitted successfully');
+      
+      // Show success message and redirect to payment
+      Alert.alert(
+        'Booking Request Submitted',
+        'Thank you! Your booking request has been submitted.\n\nYou will now be redirected to complete the $100 non-refundable deposit to secure your booking.',
+        [{ 
+          text: 'Proceed to Payment',
+          onPress: async () => {
+            try {
+              console.log('BookScreen: Opening Square payment link:', SQUARE_PAYMENT_LINK);
+              const canOpen = await Linking.canOpenURL(SQUARE_PAYMENT_LINK);
+              if (canOpen) {
+                await Linking.openURL(SQUARE_PAYMENT_LINK);
+                console.log('BookScreen: Payment link opened successfully');
+                
+                // Clear form
+                setName('');
+                setEmail('');
+                setPhone('');
+                setDescription('');
+                setPlacement('');
+                setSize('');
+                setReferenceImages([]);
+                
+                // Navigate to appointments screen
+                setTimeout(() => {
+                  console.log('BookScreen: Navigating to appointments screen');
+                  router.push('/(tabs)/appointments');
+                }, 1000);
+              } else {
+                console.log('BookScreen: Cannot open payment link');
+                Alert.alert('Error', 'Unable to open payment link. Please contact us directly at brandedbykyle@gmail.com');
+              }
+            } catch (error) {
+              console.error('BookScreen: Error opening payment link:', error);
+              Alert.alert('Error', 'Unable to open payment link. Please contact us directly at brandedbykyle@gmail.com');
             }
-          } catch (error) {
-            console.log('BookScreen: Error opening payment link:', error);
-            Alert.alert('Error', 'Unable to open payment link. Please contact us directly.');
           }
-        }
-      }]
-    );
+        }]
+      );
+    } catch (error) {
+      console.error('BookScreen: Error submitting booking:', error);
+      Alert.alert('Booking Error', 'Failed to submit your booking. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const timeSlots = [
@@ -314,6 +363,7 @@ export default function BookScreen() {
               placeholderTextColor={colors.grey}
               value={name}
               onChangeText={setName}
+              editable={!isSubmitting}
             />
 
             <Text style={commonStyles.label}>Email *</Text>
@@ -325,6 +375,7 @@ export default function BookScreen() {
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
+              editable={!isSubmitting}
             />
 
             <Text style={commonStyles.label}>Phone Number *</Text>
@@ -335,6 +386,7 @@ export default function BookScreen() {
               value={phone}
               onChangeText={setPhone}
               keyboardType="phone-pad"
+              editable={!isSubmitting}
             />
           </View>
 
@@ -348,6 +400,7 @@ export default function BookScreen() {
             <TouchableOpacity 
               style={styles.dateButton}
               onPress={() => setShowConsultationDatePicker(true)}
+              disabled={isSubmitting}
             >
               <IconSymbol 
                 ios_icon_name="video" 
@@ -385,6 +438,7 @@ export default function BookScreen() {
                     consultationTime === time && styles.timeSlotActive
                   ]}
                   onPress={() => setConsultationTime(time)}
+                  disabled={isSubmitting}
                 >
                   <Text style={[
                     styles.timeSlotText,
@@ -404,6 +458,7 @@ export default function BookScreen() {
             <TouchableOpacity 
               style={styles.dateButton}
               onPress={() => setShowDatePicker(true)}
+              disabled={isSubmitting}
             >
               <IconSymbol 
                 ios_icon_name="calendar" 
@@ -463,7 +518,7 @@ export default function BookScreen() {
                           Alert.alert('Time Unavailable', 'This time slot is already booked. Please select another time.');
                         }
                       }}
-                      disabled={isBooked}
+                      disabled={isBooked || isSubmitting}
                     >
                       <Text style={[
                         styles.timeSlotText,
@@ -507,6 +562,7 @@ export default function BookScreen() {
               onChangeText={setDescription}
               multiline
               numberOfLines={4}
+              editable={!isSubmitting}
             />
 
             <Text style={commonStyles.label}>Placement</Text>
@@ -516,6 +572,7 @@ export default function BookScreen() {
               placeholderTextColor={colors.grey}
               value={placement}
               onChangeText={setPlacement}
+              editable={!isSubmitting}
             />
 
             <Text style={commonStyles.label}>Approximate Size</Text>
@@ -525,12 +582,14 @@ export default function BookScreen() {
               placeholderTextColor={colors.grey}
               value={size}
               onChangeText={setSize}
+              editable={!isSubmitting}
             />
 
             <Text style={commonStyles.label}>Reference Images</Text>
             <TouchableOpacity 
               style={styles.imagePickerButton}
               onPress={pickImage}
+              disabled={isSubmitting}
             >
               <IconSymbol 
                 ios_icon_name="photo.badge.plus" 
@@ -575,10 +634,22 @@ export default function BookScreen() {
           </View>
 
           <TouchableOpacity 
-            style={[buttonStyles.primaryButton, styles.submitButton]}
+            style={[
+              buttonStyles.primaryButton, 
+              styles.submitButton,
+              isSubmitting && styles.submitButtonDisabled
+            ]}
             onPress={handleSubmit}
+            disabled={isSubmitting}
           >
-            <Text style={buttonStyles.primaryButtonText}>Submit Booking Request</Text>
+            {isSubmitting ? (
+              <View style={styles.submitButtonContent}>
+                <ActivityIndicator size="small" color="#FFFFFF" />
+                <Text style={buttonStyles.primaryButtonText}>Submitting...</Text>
+              </View>
+            ) : (
+              <Text style={buttonStyles.primaryButtonText}>Submit Booking Request</Text>
+            )}
           </TouchableOpacity>
 
           <View style={styles.bottomPadding} />
@@ -724,6 +795,14 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     marginBottom: 16,
+  },
+  submitButtonDisabled: {
+    opacity: 0.6,
+  },
+  submitButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
   },
   bottomPadding: {
     height: 40,

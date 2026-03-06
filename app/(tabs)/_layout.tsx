@@ -36,6 +36,8 @@ export default function TabLayout() {
         }}
       >
         <Stack.Screen key="home" name="(home)" />
+        <Stack.Screen key="book" name="book" />
+        <Stack.Screen key="appointments" name="appointments" />
         <Stack.Screen key="portfolio" name="portfolio" />
         <Stack.Screen key="profile" name="profile" />
       </Stack>
