@@ -19,11 +19,11 @@ export default function AdminPanelScreen() {
 
   const syncToAdminCalendar = async (appointment: any) => {
     try {
-      console.log('Syncing appointment to admin calendar...');
+      console.log('AdminPanel: Syncing appointment to admin calendar...');
       const { status } = await Calendar.requestCalendarPermissionsAsync();
       
       if (status !== 'granted') {
-        console.log('Calendar permission denied');
+        console.log('AdminPanel: Calendar permission denied');
         Alert.alert('Permission Required', 'Calendar access is needed to sync appointments.');
         return;
       }
@@ -43,7 +43,7 @@ export default function AdminPanelScreen() {
         title: `Tattoo Session - ${appointment.name}`,
         startDate: appointmentDate,
         endDate: appointmentEndDate,
-        notes: `Client: ${appointment.name}\nEmail: ${appointment.email}\nPhone: ${appointment.phone}\nDescription: ${appointment.description}\nPlacement: ${appointment.placement}\nSize: ${appointment.size}\nRate: $150/hr\nDeposit: $100 (${appointment.depositPaid ? 'paid' : 'pending'})`,
+        notes: `Client: ${appointment.name}\nEmail: ${appointment.email}\nPhone: ${appointment.phone}\nDescription: ${appointment.description}\nPlacement: ${appointment.placement}\nSize: ${appointment.size}\nRate: $150/hr\nDeposit: $100 (${appointment.depositPaid ? 'PAID' : 'PENDING'})`,
         alarms: [
           { relativeOffset: -24 * 60 },
           { relativeOffset: -2 * 60 }
@@ -73,10 +73,10 @@ export default function AdminPanelScreen() {
         });
       }
 
-      console.log('Appointment synced to admin calendar');
+      console.log('AdminPanel: Appointment synced to admin calendar');
       Alert.alert('Calendar Synced', 'Appointment has been added to your calendar!');
     } catch (error) {
-      console.log('Calendar sync error:', error);
+      console.error('AdminPanel: Calendar sync error:', error);
       Alert.alert('Sync Failed', 'Could not sync to calendar.');
     }
   };
@@ -97,7 +97,7 @@ export default function AdminPanelScreen() {
               console.log('AdminPanel: Logged out successfully');
               router.replace('/(tabs)/(home)/');
             } catch (error) {
-              console.log('AdminPanel: Error during logout:', error);
+              console.error('AdminPanel: Error during logout:', error);
             }
           },
         },
@@ -107,6 +107,15 @@ export default function AdminPanelScreen() {
 
   const handleApprove = async (id: string) => {
     const appointment = appointments.find(apt => apt.id === id);
+    
+    if (!appointment?.depositPaid) {
+      Alert.alert(
+        'Deposit Not Paid',
+        'This appointment cannot be approved because the deposit has not been paid yet. The client must complete the $100 deposit payment first.',
+        [{ text: 'OK' }]
+      );
+      return;
+    }
     
     console.log('AdminPanel: Approving appointment:', id);
     Alert.alert(
@@ -123,9 +132,14 @@ export default function AdminPanelScreen() {
                 await syncToAdminCalendar(appointment);
               }
               console.log('AdminPanel: Appointment approved successfully');
-              Alert.alert('Success', 'Appointment approved and synced to your calendar!');
+              
+              // TODO: Backend Integration - Send confirmation email to client
+              // POST /api/appointments/:id/send-confirmation
+              // This sends email with booking details and deposit confirmation
+              
+              Alert.alert('Success', 'Appointment approved and synced to your calendar! The client will receive a confirmation email.');
             } catch (error) {
-              console.log('AdminPanel: Error approving appointment:', error);
+              console.error('AdminPanel: Error approving appointment:', error);
               Alert.alert('Error', 'Failed to approve appointment. Please try again.');
             }
           },
@@ -150,7 +164,7 @@ export default function AdminPanelScreen() {
               console.log('AdminPanel: Appointment rejected successfully');
               Alert.alert('Rejected', 'Appointment has been rejected.');
             } catch (error) {
-              console.log('AdminPanel: Error rejecting appointment:', error);
+              console.error('AdminPanel: Error rejecting appointment:', error);
               Alert.alert('Error', 'Failed to reject appointment. Please try again.');
             }
           },
@@ -181,7 +195,7 @@ export default function AdminPanelScreen() {
       setConfirmPassword('');
       setShowSettings(false);
     } catch (error) {
-      console.log('AdminPanel: Error updating credentials:', error);
+      console.error('AdminPanel: Error updating credentials:', error);
       Alert.alert('Error', 'Failed to update credentials. Please try again.');
     }
   };
@@ -191,11 +205,12 @@ export default function AdminPanelScreen() {
     try {
       router.back();
     } catch (error) {
-      console.log('AdminPanel: Error navigating back:', error);
+      console.error('AdminPanel: Error navigating back:', error);
     }
   };
 
-  const pendingAppointments = appointments.filter(apt => apt.status === 'pending');
+  const pendingDepositAppointments = appointments.filter(apt => !apt.depositPaid);
+  const pendingApprovalAppointments = appointments.filter(apt => apt.depositPaid && apt.status === 'pending');
   const approvedAppointments = appointments.filter(apt => apt.status === 'approved');
 
   return (
@@ -304,28 +319,31 @@ export default function AdminPanelScreen() {
           <View style={commonStyles.card}>
             <View style={styles.sectionHeader}>
               <IconSymbol 
-                ios_icon_name="clock.badge.exclamationmark" 
-                android_material_icon_name="pending_actions" 
+                ios_icon_name="exclamationmark.circle.fill" 
+                android_material_icon_name="error" 
                 size={24} 
-                color={colors.primary} 
+                color="#FF9500" 
               />
               <Text style={styles.sectionTitle}>
-                Pending Appointments ({pendingAppointments.length})
+                Pending Deposit ({pendingDepositAppointments.length})
               </Text>
             </View>
+            <Text style={styles.sectionSubtitle}>
+              These bookings are saved but awaiting deposit payment
+            </Text>
           </View>
 
-          {pendingAppointments.length === 0 ? (
+          {pendingDepositAppointments.length === 0 ? (
             <View style={styles.emptyState}>
-              <Text style={styles.emptyText}>No pending appointments</Text>
+              <Text style={styles.emptyText}>No bookings pending deposit</Text>
             </View>
           ) : (
-            pendingAppointments.map((apt, index) => (
+            pendingDepositAppointments.map((apt, index) => (
               <View key={index} style={commonStyles.card}>
                 <View style={styles.appointmentHeader}>
                   <Text style={styles.appointmentName}>{apt.name}</Text>
-                  <View style={styles.statusBadge}>
-                    <Text style={styles.statusText}>PENDING</Text>
+                  <View style={[styles.statusBadge, { backgroundColor: '#FF950020' }]}>
+                    <Text style={[styles.statusText, { color: '#FF9500' }]}>PENDING DEPOSIT</Text>
                   </View>
                 </View>
 
@@ -397,15 +415,129 @@ export default function AdminPanelScreen() {
                   </>
                 )}
 
-                <View style={styles.depositInfo}>
+                <View style={styles.depositWarning}>
                   <IconSymbol 
-                    ios_icon_name={apt.depositPaid ? "checkmark.circle.fill" : "exclamationmark.circle.fill"} 
-                    android_material_icon_name={apt.depositPaid ? "check_circle" : "error"} 
+                    ios_icon_name="exclamationmark.triangle.fill" 
+                    android_material_icon_name="warning" 
                     size={18} 
-                    color={apt.depositPaid ? '#34C759' : '#FF9500'} 
+                    color="#FF9500" 
                   />
-                  <Text style={[styles.depositText, { color: apt.depositPaid ? '#34C759' : '#FF9500' }]}>
-                    Deposit: {apt.depositPaid ? 'Paid ($100)' : 'Not Paid'}
+                  <Text style={styles.depositWarningText}>
+                    Waiting for client to complete $100 deposit payment. Cannot approve until deposit is paid.
+                  </Text>
+                </View>
+              </View>
+            ))
+          )}
+
+          <View style={commonStyles.card}>
+            <View style={styles.sectionHeader}>
+              <IconSymbol 
+                ios_icon_name="clock.badge.exclamationmark" 
+                android_material_icon_name="pending_actions" 
+                size={24} 
+                color={colors.primary} 
+              />
+              <Text style={styles.sectionTitle}>
+                Pending Approval ({pendingApprovalAppointments.length})
+              </Text>
+            </View>
+            <Text style={styles.sectionSubtitle}>
+              Deposit paid - ready for your approval
+            </Text>
+          </View>
+
+          {pendingApprovalAppointments.length === 0 ? (
+            <View style={styles.emptyState}>
+              <Text style={styles.emptyText}>No appointments pending approval</Text>
+            </View>
+          ) : (
+            pendingApprovalAppointments.map((apt, index) => (
+              <View key={index} style={commonStyles.card}>
+                <View style={styles.appointmentHeader}>
+                  <Text style={styles.appointmentName}>{apt.name}</Text>
+                  <View style={[styles.statusBadge, { backgroundColor: '#34C75920' }]}>
+                    <Text style={[styles.statusText, { color: '#34C759' }]}>DEPOSIT PAID</Text>
+                  </View>
+                </View>
+
+                <View style={styles.appointmentDetail}>
+                  <IconSymbol 
+                    ios_icon_name="envelope" 
+                    android_material_icon_name="email" 
+                    size={16} 
+                    color={colors.text} 
+                  />
+                  <Text style={styles.detailText}>{apt.email}</Text>
+                </View>
+
+                <View style={styles.appointmentDetail}>
+                  <IconSymbol 
+                    ios_icon_name="phone" 
+                    android_material_icon_name="phone" 
+                    size={16} 
+                    color={colors.text} 
+                  />
+                  <Text style={styles.detailText}>{apt.phone}</Text>
+                </View>
+
+                <View style={styles.appointmentDetail}>
+                  <IconSymbol 
+                    ios_icon_name="calendar" 
+                    android_material_icon_name="event" 
+                    size={16} 
+                    color={colors.text} 
+                  />
+                  <Text style={styles.detailText}>
+                    {new Date(apt.date).toLocaleDateString('en-US', { 
+                      weekday: 'long', 
+                      month: 'long', 
+                      day: 'numeric',
+                      year: 'numeric'
+                    })}
+                  </Text>
+                </View>
+
+                {apt.consultationDate && (
+                  <View style={styles.appointmentDetail}>
+                    <IconSymbol 
+                      ios_icon_name="video" 
+                      android_material_icon_name="videocam" 
+                      size={16} 
+                      color={colors.primary} 
+                    />
+                    <Text style={styles.detailText}>
+                      Consultation: {new Date(apt.consultationDate).toLocaleDateString()} at {apt.consultationTime}
+                    </Text>
+                  </View>
+                )}
+
+                <Text style={styles.descriptionLabel}>Description:</Text>
+                <Text style={styles.descriptionText}>{apt.description}</Text>
+
+                {apt.placement && (
+                  <>
+                    <Text style={styles.descriptionLabel}>Placement:</Text>
+                    <Text style={styles.descriptionText}>{apt.placement}</Text>
+                  </>
+                )}
+
+                {apt.size && (
+                  <>
+                    <Text style={styles.descriptionLabel}>Size:</Text>
+                    <Text style={styles.descriptionText}>{apt.size}</Text>
+                  </>
+                )}
+
+                <View style={styles.depositPaidInfo}>
+                  <IconSymbol 
+                    ios_icon_name="checkmark.circle.fill" 
+                    android_material_icon_name="check_circle" 
+                    size={18} 
+                    color="#34C759" 
+                  />
+                  <Text style={styles.depositPaidText}>
+                    Deposit Paid: $100 ✓
                   </Text>
                 </View>
 
@@ -496,6 +628,18 @@ export default function AdminPanelScreen() {
 
               <Text style={styles.descriptionText}>{apt.description}</Text>
               
+              <View style={styles.depositPaidInfo}>
+                <IconSymbol 
+                  ios_icon_name="checkmark.circle.fill" 
+                  android_material_icon_name="check_circle" 
+                  size={18} 
+                  color="#34C759" 
+                />
+                <Text style={styles.depositPaidText}>
+                  Deposit Paid: $100 ✓
+                </Text>
+              </View>
+              
               <TouchableOpacity 
                 style={[buttonStyles.secondaryButton, { marginTop: 12 }]}
                 onPress={() => syncToAdminCalendar(apt)}
@@ -559,6 +703,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: colors.textBright,
   },
+  sectionSubtitle: {
+    fontSize: 13,
+    color: colors.text,
+    marginTop: 6,
+    opacity: 0.8,
+  },
   updateButton: {
     marginTop: 8,
   },
@@ -616,20 +766,43 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 8,
   },
-  depositInfo: {
+  depositWarning: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
+    backgroundColor: '#FF950020',
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 8,
+    borderWidth: 1,
+    borderColor: '#FF950040',
+  },
+  depositWarningText: {
+    flex: 1,
+    fontSize: 13,
+    color: '#FF9500',
+    fontWeight: '500',
+    lineHeight: 18,
+  },
+  depositPaidInfo: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    backgroundColor: '#34C75920',
+    padding: 10,
+    borderRadius: 8,
     marginTop: 8,
-    marginBottom: 16,
+    marginBottom: 8,
   },
-  depositText: {
+  depositPaidText: {
     fontSize: 14,
     fontWeight: '600',
+    color: '#34C759',
   },
   actionButtons: {
     flexDirection: 'row',
     gap: 12,
+    marginTop: 8,
   },
   approveButton: {
     flex: 1,

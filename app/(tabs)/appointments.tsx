@@ -5,6 +5,8 @@ import { colors, commonStyles, buttonStyles } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { useAppointments } from '@/contexts/AppointmentContext';
 
+const SQUARE_PAYMENT_LINK = 'https://square.link/u/sAU6Bf87';
+
 export default function AppointmentsScreen() {
   const { appointments, markDepositPaid } = useAppointments();
 
@@ -13,6 +15,8 @@ export default function AppointmentsScreen() {
       case 'approved':
         return '#34C759';
       case 'pending':
+        return '#FF9500';
+      case 'pending deposit':
         return '#FF9500';
       case 'rejected':
         return '#FF3B30';
@@ -29,6 +33,8 @@ export default function AppointmentsScreen() {
         return { ios: 'checkmark.circle.fill', android: 'check_circle' };
       case 'pending':
         return { ios: 'clock.fill', android: 'schedule' };
+      case 'pending deposit':
+        return { ios: 'exclamationmark.circle.fill', android: 'error' };
       case 'rejected':
         return { ios: 'xmark.circle.fill', android: 'cancel' };
       case 'completed':
@@ -38,23 +44,49 @@ export default function AppointmentsScreen() {
     }
   };
 
-  const handlePayDeposit = (appointmentId: string) => {
+  const getStatusDisplayText = (status: string) => {
+    if (status === 'pending deposit') {
+      return 'Pending Deposit';
+    }
+    return status.charAt(0).toUpperCase() + status.slice(1);
+  };
+
+  const handlePayDeposit = async (appointmentId: string) => {
     console.log('Appointments: Pay deposit requested for:', appointmentId);
+    
     Alert.alert(
-      'Payment Link',
-      'In a production app, this would open a payment link. For now, we\'ll mark the deposit as paid.',
+      'Complete Deposit Payment',
+      'You will be redirected to Square to complete your $100 non-refundable deposit payment.\n\nAfter payment is confirmed, your booking status will be updated and you will receive a confirmation email.',
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: 'Mark as Paid',
+          text: 'Proceed to Payment',
           onPress: async () => {
             try {
-              await markDepositPaid(appointmentId);
-              console.log('Appointments: Deposit marked as paid');
-              Alert.alert('Success', 'Deposit marked as paid! Kyle will review your appointment.');
+              console.log('Appointments: Opening Square payment link:', SQUARE_PAYMENT_LINK);
+              const canOpen = await Linking.canOpenURL(SQUARE_PAYMENT_LINK);
+              
+              if (canOpen) {
+                await Linking.openURL(SQUARE_PAYMENT_LINK);
+                console.log('Appointments: Payment link opened successfully');
+                
+                // TODO: Backend Integration - After Square webhook confirms payment:
+                // PUT /api/appointments/:id/deposit
+                // Body: { depositPaid: true, paymentConfirmedAt: ISO timestamp }
+                // This will trigger email confirmation to user
+                
+                Alert.alert(
+                  'Payment Link Opened',
+                  'Complete your payment in the browser. Once payment is confirmed, your booking status will be automatically updated and you will receive a confirmation email.',
+                  [{ text: 'OK' }]
+                );
+              } else {
+                console.log('Appointments: Cannot open payment link');
+                Alert.alert('Error', 'Unable to open payment link. Please contact us at brandedbykyle@gmail.com');
+              }
             } catch (error) {
-              console.log('Appointments: Error marking deposit as paid:', error);
-              Alert.alert('Error', 'Failed to mark deposit as paid. Please try again.');
+              console.error('Appointments: Error opening payment link:', error);
+              Alert.alert('Error', 'Unable to open payment link. Please contact us at brandedbykyle@gmail.com');
             }
           },
         },
@@ -110,6 +142,7 @@ export default function AppointmentsScreen() {
               {appointments.map((appointment, index) => {
                 const statusIcon = getStatusIcon(appointment.status);
                 const statusColor = getStatusColor(appointment.status);
+                const statusText = getStatusDisplayText(appointment.status);
                 
                 return (
                   <View key={index} style={commonStyles.card}>
@@ -147,7 +180,7 @@ export default function AppointmentsScreen() {
                           color={statusColor} 
                         />
                         <Text style={[styles.statusText, { color: statusColor }]}>
-                          {appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1)}
+                          {statusText}
                         </Text>
                       </View>
                     </View>
@@ -183,13 +216,47 @@ export default function AppointmentsScreen() {
                       </Text>
                     </View>
 
-                    {!appointment.depositPaid && appointment.status === 'pending' && (
+                    {!appointment.depositPaid && (
+                      <View style={styles.depositWarning}>
+                        <IconSymbol 
+                          ios_icon_name="exclamationmark.triangle.fill" 
+                          android_material_icon_name="warning" 
+                          size={20} 
+                          color="#FF9500" 
+                        />
+                        <Text style={styles.depositWarningText}>
+                          Your booking is saved but not confirmed. Complete the $100 deposit payment to secure your appointment and receive confirmation.
+                        </Text>
+                      </View>
+                    )}
+
+                    {!appointment.depositPaid && (
                       <TouchableOpacity 
                         style={[buttonStyles.primaryButton, styles.actionButton]}
                         onPress={() => handlePayDeposit(appointment.id)}
                       >
-                        <Text style={buttonStyles.primaryButtonText}>Pay Deposit</Text>
+                        <IconSymbol 
+                          ios_icon_name="creditcard.fill" 
+                          android_material_icon_name="payment" 
+                          size={20} 
+                          color="#FFFFFF" 
+                        />
+                        <Text style={buttonStyles.primaryButtonText}>Pay $100 Deposit</Text>
                       </TouchableOpacity>
+                    )}
+
+                    {appointment.depositPaid && appointment.status === 'pending' && (
+                      <View style={styles.pendingInfo}>
+                        <IconSymbol 
+                          ios_icon_name="clock.fill" 
+                          android_material_icon_name="schedule" 
+                          size={20} 
+                          color="#FF9500" 
+                        />
+                        <Text style={styles.pendingText}>
+                          Deposit received! Kyle is reviewing your appointment and will contact you soon.
+                        </Text>
+                      </View>
                     )}
 
                     {appointment.status === 'approved' && (
@@ -201,7 +268,7 @@ export default function AppointmentsScreen() {
                           color="#34C759" 
                         />
                         <Text style={styles.approvedText}>
-                          Your appointment has been approved! Kyle will contact you soon.
+                          Your appointment has been approved! Kyle will contact you soon to confirm details.
                         </Text>
                       </View>
                     )}
@@ -215,7 +282,7 @@ export default function AppointmentsScreen() {
                           color="#FF3B30" 
                         />
                         <Text style={styles.rejectedText}>
-                          This appointment was not approved. Please contact Kyle for more information.
+                          This appointment was not approved. Please contact Kyle at brandedbykyle@gmail.com for more information.
                         </Text>
                       </View>
                     )}
@@ -236,6 +303,10 @@ export default function AppointmentsScreen() {
               <Text style={styles.infoTitle}>Important Information</Text>
               <Text style={styles.infoText}>
                 • $100 deposit is non-refundable but secures your date
+                {'\n'}
+                • Deposit must be paid to confirm your booking
+                {'\n'}
+                • You will receive email confirmation after payment
                 {'\n'}
                 • Consultation must be completed before appointment
                 {'\n'}
@@ -352,14 +423,49 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    marginBottom: 16,
+    marginBottom: 12,
   },
   depositText: {
     fontSize: 14,
     fontWeight: '600',
   },
+  depositWarning: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
+    backgroundColor: '#FF950020',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#FF950040',
+  },
+  depositWarningText: {
+    flex: 1,
+    fontSize: 13,
+    color: '#FF9500',
+    fontWeight: '500',
+    lineHeight: 18,
+  },
   actionButton: {
+    marginTop: 4,
+    flexDirection: 'row',
+    gap: 8,
+  },
+  pendingInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: '#FF950020',
+    padding: 12,
+    borderRadius: 8,
     marginTop: 8,
+  },
+  pendingText: {
+    flex: 1,
+    fontSize: 13,
+    color: '#FF9500',
+    fontWeight: '500',
   },
   approvedInfo: {
     flexDirection: 'row',
