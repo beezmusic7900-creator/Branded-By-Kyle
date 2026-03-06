@@ -28,6 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
+    console.log('AuthContext: Initializing');
     loadCredentials();
     checkAuthStatus();
   }, []);
@@ -36,37 +37,46 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const stored = await AsyncStorage.getItem('adminCredentials');
       if (stored) {
-        setAdminCredentials(JSON.parse(stored));
+        const parsed = JSON.parse(stored);
+        setAdminCredentials(parsed);
+        console.log('AuthContext: Loaded custom admin credentials');
       }
     } catch (error) {
-      console.log('Error loading credentials:', error);
+      console.error('AuthContext: Error loading credentials:', error);
     }
   };
 
   const checkAuthStatus = async () => {
     try {
       const authStatus = await AsyncStorage.getItem('isAdminLoggedIn');
-      setIsAdmin(authStatus === 'true');
+      const isLoggedIn = authStatus === 'true';
+      setIsAdmin(isLoggedIn);
+      console.log('AuthContext: Admin logged in:', isLoggedIn);
     } catch (error) {
-      console.log('Error checking auth status:', error);
+      console.error('AuthContext: Error checking auth status:', error);
     }
   };
 
   const login = async (email: string, password: string): Promise<boolean> => {
+    console.log('AuthContext: Login attempt for:', email);
     if (email === adminCredentials.email && password === adminCredentials.password) {
       setIsAdmin(true);
       await AsyncStorage.setItem('isAdminLoggedIn', 'true');
+      console.log('AuthContext: Login successful');
       return true;
     }
+    console.log('AuthContext: Login failed - invalid credentials');
     return false;
   };
 
   const logout = async () => {
+    console.log('AuthContext: Logging out');
     setIsAdmin(false);
     await AsyncStorage.removeItem('isAdminLoggedIn');
   };
 
   const updateCredentials = async (email: string, password: string) => {
+    console.log('AuthContext: Updating credentials');
     const newCredentials = { email, password };
     setAdminCredentials(newCredentials);
     await AsyncStorage.setItem('adminCredentials', JSON.stringify(newCredentials));

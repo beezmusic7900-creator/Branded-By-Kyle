@@ -1,6 +1,8 @@
 
 // API utility for making HTTP requests to the backend
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'https://your-backend-url.com';
+import Constants from 'expo-constants';
+
+const API_BASE_URL = Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL || '';
 
 interface ApiResponse<T> {
   data?: T;
@@ -12,6 +14,12 @@ async function apiRequest<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
+  // If no API URL is configured, throw error to trigger fallback
+  if (!API_BASE_URL) {
+    console.log('API: No backend URL configured, using local storage fallback');
+    throw new Error('Backend API not configured');
+  }
+
   const url = `${API_BASE_URL}${endpoint}`;
   
   const defaultHeaders: HeadersInit = {
@@ -30,13 +38,14 @@ async function apiRequest<T>(
   
   try {
     const response = await fetch(url, config);
-    const data = await response.json();
-
+    
     if (!response.ok) {
-      console.error(`API Error: ${response.status}`, data);
-      throw new Error(data.error || `HTTP ${response.status}: ${response.statusText}`);
+      const errorText = await response.text();
+      console.error(`API Error: ${response.status}`, errorText);
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
 
+    const data = await response.json();
     console.log(`API Success: ${options.method || 'GET'} ${url}`);
     return data;
   } catch (error) {
@@ -93,22 +102,61 @@ export interface Appointment extends AppointmentData {
 
 export const appointmentApi = {
   // Create a new appointment
-  create: (data: AppointmentData): Promise<Appointment> =>
-    apiPost<Appointment>('/api/appointments', data),
+  create: async (data: AppointmentData): Promise<Appointment> => {
+    try {
+      return await apiPost<Appointment>('/api/appointments', data);
+    } catch (error) {
+      console.log('API: Create appointment failed, using fallback');
+      // Return a mock appointment for local storage fallback
+      return {
+        ...data,
+        id: `local_${Date.now()}`,
+        status: 'pending deposit',
+        depositPaid: false,
+        depositAmount: 100,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+    }
+  },
 
   // Get all appointments
-  getAll: (): Promise<Appointment[]> =>
-    apiGet<Appointment[]>('/api/appointments'),
+  getAll: async (): Promise<Appointment[]> => {
+    try {
+      return await apiGet<Appointment[]>('/api/appointments');
+    } catch (error) {
+      console.log('API: Get appointments failed, using fallback');
+      return [];
+    }
+  },
 
   // Get availability for a specific date
-  getAvailability: (date: string): Promise<{ date: string; bookedSlots: string[] }> =>
-    apiGet<{ date: string; bookedSlots: string[] }>(`/api/appointments/availability?date=${date}`),
+  getAvailability: async (date: string): Promise<{ date: string; bookedSlots: string[] }> => {
+    try {
+      return await apiGet<{ date: string; bookedSlots: string[] }>(`/api/appointments/availability?date=${date}`);
+    } catch (error) {
+      console.log('API: Get availability failed, using fallback');
+      return { date, bookedSlots: [] };
+    }
+  },
 
   // Update appointment status
-  updateStatus: (id: string, status: 'approved' | 'rejected'): Promise<{ id: string; status: string; updatedAt: string }> =>
-    apiPut<{ id: string; status: string; updatedAt: string }>(`/api/appointments/${id}/status`, { status }),
+  updateStatus: async (id: string, status: 'approved' | 'rejected'): Promise<{ id: string; status: string; updatedAt: string }> => {
+    try {
+      return await apiPut<{ id: string; status: string; updatedAt: string }>(`/api/appointments/${id}/status`, { status });
+    } catch (error) {
+      console.log('API: Update status failed, using fallback');
+      throw error;
+    }
+  },
 
   // Send confirmation email
-  sendConfirmation: (id: string): Promise<{ success: boolean; emailSent: boolean }> =>
-    apiPost<{ success: boolean; emailSent: boolean }>(`/api/appointments/${id}/send-confirmation`, {}),
+  sendConfirmation: async (id: string): Promise<{ success: boolean; emailSent: boolean }> => {
+    try {
+      return await apiPost<{ success: boolean; emailSent: boolean }>(`/api/appointments/${id}/send-confirmation`, {});
+    } catch (error) {
+      console.log('API: Send confirmation failed, using fallback');
+      return { success: false, emailSent: false };
+    }
+  },
 };

@@ -14,7 +14,7 @@ export interface Appointment {
   placement: string;
   size: string;
   referenceImages: string[];
-  status: 'pending' | 'approved' | 'rejected' | 'completed';
+  status: 'pending deposit' | 'pending' | 'approved' | 'rejected' | 'completed';
   depositPaid: boolean;
   depositAmount: number;
   createdAt: string;
@@ -34,6 +34,7 @@ export function AppointmentProvider({ children }: { children: React.ReactNode })
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
   useEffect(() => {
+    console.log('AppointmentContext: Loading appointments from storage');
     loadAppointments();
   }, []);
 
@@ -41,10 +42,12 @@ export function AppointmentProvider({ children }: { children: React.ReactNode })
     try {
       const stored = await AsyncStorage.getItem('appointments');
       if (stored) {
-        setAppointments(JSON.parse(stored));
+        const parsed = JSON.parse(stored);
+        setAppointments(parsed);
+        console.log('AppointmentContext: Loaded', parsed.length, 'appointments');
       }
     } catch (error) {
-      console.log('Error loading appointments:', error);
+      console.error('AppointmentContext: Error loading appointments:', error);
     }
   };
 
@@ -52,22 +55,24 @@ export function AppointmentProvider({ children }: { children: React.ReactNode })
     try {
       await AsyncStorage.setItem('appointments', JSON.stringify(newAppointments));
       setAppointments(newAppointments);
+      console.log('AppointmentContext: Saved', newAppointments.length, 'appointments');
     } catch (error) {
-      console.log('Error saving appointments:', error);
+      console.error('AppointmentContext: Error saving appointments:', error);
     }
   };
 
   const addAppointment = async (appointmentData: Omit<Appointment, 'id' | 'createdAt' | 'status' | 'depositPaid' | 'depositAmount'>) => {
     const newAppointment: Appointment = {
       ...appointmentData,
-      id: Date.now().toString(),
+      id: `local_${Date.now()}`,
       createdAt: new Date().toISOString(),
-      status: 'pending',
+      status: 'pending deposit',
       depositPaid: false,
       depositAmount: 100,
     };
     const updated = [...appointments, newAppointment];
     await saveAppointments(updated);
+    console.log('AppointmentContext: Added new appointment:', newAppointment.id);
   };
 
   const updateAppointmentStatus = async (id: string, status: 'approved' | 'rejected') => {
@@ -75,6 +80,7 @@ export function AppointmentProvider({ children }: { children: React.ReactNode })
       apt.id === id ? { ...apt, status } : apt
     );
     await saveAppointments(updated);
+    console.log('AppointmentContext: Updated appointment status:', id, status);
   };
 
   const markDepositPaid = async (id: string) => {
@@ -82,6 +88,7 @@ export function AppointmentProvider({ children }: { children: React.ReactNode })
       apt.id === id ? { ...apt, depositPaid: true } : apt
     );
     await saveAppointments(updated);
+    console.log('AppointmentContext: Marked deposit paid:', id);
   };
 
   const updateConsultation = async (id: string, consultationDate: string, consultationTime: string) => {
@@ -89,6 +96,7 @@ export function AppointmentProvider({ children }: { children: React.ReactNode })
       apt.id === id ? { ...apt, consultationDate, consultationTime } : apt
     );
     await saveAppointments(updated);
+    console.log('AppointmentContext: Updated consultation:', id);
   };
 
   return (

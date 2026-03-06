@@ -1,3 +1,4 @@
+
 {
   "expo": {
     "name": "Branded By Kyle",
@@ -43,6 +44,7 @@
       "typedRoutes": true
     },
     "extra": {
+      "EXPO_PUBLIC_API_URL": "",
       "router": {
         "origin": false
       },
