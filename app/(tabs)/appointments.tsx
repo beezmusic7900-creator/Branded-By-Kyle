@@ -6,7 +6,7 @@ import { IconSymbol } from '@/components/IconSymbol';
 import { useAppointments } from '@/contexts/AppointmentContext';
 import { appointmentApi, Appointment as ApiAppointment } from '@/utils/api';
 
-const SQUARE_PAYMENT_LINK = 'https://square.link/u/sAU6Bf87';
+const SQUARE_PAYMENT_LINK = 'https://square.link/u/jRrxMkF3';
 
 export default function AppointmentsScreen() {
   const { appointments: localAppointments } = useAppointments();

@@ -11,7 +11,7 @@ import ConfirmModal from '@/components/ConfirmModal';
 import { appointmentApi, AppointmentData } from '@/utils/api';
 import { useAppointments } from '@/contexts/AppointmentContext';
 
-const SQUARE_PAYMENT_LINK = 'https://square.link/u/sAU6Bf87';
+const SQUARE_PAYMENT_LINK = 'https://square.link/u/jRrxMkF3';
 
 export default function BookScreen() {
   const router = useRouter();
@@ -297,7 +297,7 @@ export default function BookScreen() {
   };
 
   const handleProceedToPayment = async () => {
-    console.log('BookScreen: User confirmed payment redirect');
+    console.log('BookScreen: User confirmed payment redirect to:', SQUARE_PAYMENT_LINK);
     setShowPaymentModal(false);
     
     try {
