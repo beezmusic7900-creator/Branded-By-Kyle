@@ -1,0 +1,44 @@
+[2026-03-16T01:42:34.640Z] [Web] [LOG] Running application "main" with appParams:
+ {"rootTag":"#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+[2026-03-16T01:51:44.121Z] [Web] [WARN] Cannot connect to Metro.
+ 
+ Try the following to fix the issue:
+ - Ensure the Metro dev server is running and available on the same network as this device
+ 
+ URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+ 
+ Error: undefined
+[2026-03-16T01:51:47.819Z] [Web] [LOG] Running application "main" with appParams:
+ {"rootTag":"#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+[2026-03-16T01:55:06.701Z] [Web] [WARN] Cannot connect to Metro.
+ 
+ Try the following to fix the issue:
+ - Ensure the Metro dev server is running and available on the same network as this device
+ 
+ URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+ 
+ Error: undefined
+[2026-03-16T01:55:12.102Z] [Web] [LOG] Running application "main" with appParams:
+ {"rootTag":"#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+[2026-03-16T01:55:22.285Z] [Web] [LOG] Running application "main" with appParams:
+ {"rootTag":"#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+[2026-03-16T01:55:35.886Z] [Web] [WARN] Cannot connect to Metro.
+ 
+ Try the following to fix the issue:
+ - Ensure the Metro dev server is running and available on the same network as this device
+ 
+ URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+ 
+ Error: undefined
+[2026-03-16T01:55:59.596Z] [Web] [LOG] Running application "main" with appParams:
+ {"rootTag":"#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
