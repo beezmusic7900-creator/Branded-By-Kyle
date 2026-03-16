@@ -7,7 +7,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import * as Calendar from 'expo-calendar';
 import { useRouter } from 'expo-router';
-import ConfirmModal from '@/components/ConfirmModal';
 import { appointmentApi, AppointmentData } from '@/utils/api';
 import { useAppointments } from '@/contexts/AppointmentContext';
 
@@ -15,7 +14,7 @@ const SQUARE_PAYMENT_LINK = 'https://square.link/u/jRrxMkF3';
 
 export default function BookScreen() {
   const router = useRouter();
-  const { addAppointment: addLocalAppointment } = useAppointments();
+  const { addAppointment: addLocalAppointment, appointments } = useAppointments();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -31,30 +30,19 @@ export default function BookScreen() {
   const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const [loadingAvailability, setLoadingAvailability] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [pendingBookingId, setPendingBookingId] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('BookScreen: Component mounted, checking availability');
-    checkAvailability();
-  }, [date]);
-
-  const checkAvailability = async () => {
     const dateStr = date.toISOString().split('T')[0];
-    console.log('BookScreen: Fetching booked slots for date:', dateStr);
-    setLoadingAvailability(true);
-    try {
-      const result = await appointmentApi.getAvailability(dateStr);
-      setBookedSlots(result.bookedSlots || []);
-      console.log('BookScreen: Availability check complete, booked slots:', result.bookedSlots?.length || 0);
-    } catch (error) {
-      console.error('BookScreen: Error checking availability:', error);
-      // Fallback to empty array if backend not available
-      setBookedSlots([]);
-    } finally {
-      setLoadingAvailability(false);
-    }
-  };
+    console.log('BookScreen: Checking local availability for date:', dateStr);
+    const dayBookings = appointments.filter(apt => {
+      const aptDate = new Date(apt.date).toISOString().split('T')[0];
+      return aptDate === dateStr;
+    });
+    const slots = dayBookings.map(apt => apt.date);
+    setBookedSlots(slots);
+    setLoadingAvailability(false);
+    console.log('BookScreen: Availability check complete, booked slots:', slots.length);
+  }, [date, appointments]);
 
   const isTimeSlotBooked = (timeSlot: string): boolean => {
     const [time, period] = timeSlot.split(' ');
@@ -286,87 +274,26 @@ export default function BookScreen() {
       // Sync to calendar
       await addToCalendar(date, consultDateWithTime, name, description);
 
-      console.log('BookScreen: Booking submitted successfully, showing payment modal');
-      setShowPaymentModal(true);
+      setIsSubmitting(false);
+
+      console.log('BookScreen: Booking submitted successfully, opening Square payment link');
+      await Linking.openURL(SQUARE_PAYMENT_LINK);
+
+      Alert.alert(
+        'Booking Submitted! 🎉',
+        'Your booking request has been saved.\n\nComplete your $100 deposit in the browser to confirm your appointment. Once paid, Kyle will review and confirm your booking.',
+        [{ text: 'OK', onPress: () => {
+          setName(''); setEmail(''); setPhone('');
+          setDescription(''); setPlacement(''); setSize('');
+          setReferenceImages([]);
+          router.push('/(tabs)/appointments');
+        }}]
+      );
     } catch (error) {
       console.error('BookScreen: Error submitting booking:', error);
-      Alert.alert('Booking Error', 'Failed to submit your booking. Please try again or contact us directly at brandedbykyle@gmail.com');
-    } finally {
       setIsSubmitting(false);
+      Alert.alert('Booking Error', 'Failed to submit your booking. Please try again or contact us directly at brandedbykyle@gmail.com');
     }
-  };
-
-  const handleProceedToPayment = async () => {
-    console.log('BookScreen: User confirmed payment redirect to:', SQUARE_PAYMENT_LINK);
-    setShowPaymentModal(false);
-    
-    try {
-      console.log('BookScreen: Opening Square payment link:', SQUARE_PAYMENT_LINK);
-      const canOpen = await Linking.canOpenURL(SQUARE_PAYMENT_LINK);
-      
-      if (canOpen) {
-        await Linking.openURL(SQUARE_PAYMENT_LINK);
-        console.log('BookScreen: Payment link opened successfully');
-        
-        // Show success message
-        Alert.alert(
-          'Booking Submitted',
-          'Your booking has been saved with status "Pending Deposit".\n\nPlease complete the $100 deposit payment in the browser that just opened.\n\nOnce payment is confirmed, you will receive an email confirmation and your booking status will be updated.',
-          [
-            {
-              text: 'OK',
-              onPress: () => {
-                // Clear form
-                setName('');
-                setEmail('');
-                setPhone('');
-                setDescription('');
-                setPlacement('');
-                setSize('');
-                setReferenceImages([]);
-                setPendingBookingId(null);
-                
-                // Navigate to appointments screen
-                router.push('/(tabs)/appointments');
-              }
-            }
-          ]
-        );
-      } else {
-        console.log('BookScreen: Cannot open payment link');
-        Alert.alert('Error', 'Unable to open payment link. Please contact us directly at brandedbykyle@gmail.com');
-      }
-    } catch (error) {
-      console.error('BookScreen: Error opening payment link:', error);
-      Alert.alert('Error', 'Unable to open payment link. Please contact us directly at brandedbykyle@gmail.com');
-    }
-  };
-
-  const handleCancelPayment = () => {
-    console.log('BookScreen: User cancelled payment');
-    setShowPaymentModal(false);
-    Alert.alert(
-      'Booking Saved',
-      'Your booking has been saved with status "Pending Deposit". You can complete the payment later from the Appointments screen.',
-      [
-        {
-          text: 'OK',
-          onPress: () => {
-            // Clear form
-            setName('');
-            setEmail('');
-            setPhone('');
-            setDescription('');
-            setPlacement('');
-            setSize('');
-            setReferenceImages([]);
-            setPendingBookingId(null);
-            
-            router.push('/(tabs)/appointments');
-          }
-        }
-      ]
-    );
   };
 
   const timeSlots = [
@@ -712,17 +639,6 @@ export default function BookScreen() {
         </ScrollView>
       </View>
 
-      <ConfirmModal
-        visible={showPaymentModal}
-        title="Deposit Required"
-        message={`Your booking has been saved with status "Pending Deposit".\n\nA non-refundable $100 deposit is required to confirm your booking. You will now be redirected to Square to complete the payment.\n\nAfter payment is confirmed, you will receive an email confirmation with your booking details.`}
-        confirmText="Proceed to Payment"
-        cancelText="Pay Later"
-        onConfirm={handleProceedToPayment}
-        onCancel={handleCancelPayment}
-        icon="payment"
-        iconColor={colors.primary}
-      />
     </ImageBackground>
   );
 }
