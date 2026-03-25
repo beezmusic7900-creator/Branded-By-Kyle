@@ -90,6 +90,14 @@ export default function RootLayout() {
               <Stack>
                 {/* Main app with tabs */}
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                {/* Booking form — full-screen modal */}
+                <Stack.Screen
+                  name="book"
+                  options={{
+                    presentation: "modal",
+                    headerShown: true,
+                  }}
+                />
               </Stack>
               <SystemBars style={"auto"} />
               </GestureHandlerRootView>
