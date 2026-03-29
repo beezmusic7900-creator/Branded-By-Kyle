@@ -7,6 +7,7 @@ import {
   ImageBackground,
   ImageSourcePropType,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { User, Star, DollarSign, CheckCircle } from 'lucide-react-native';
 
@@ -14,6 +15,7 @@ const BLUE = '#2979FF';
 const CARD_BG = 'rgba(30,30,30,0.85)';
 
 const bgImage = require('@/assets/images/6bc221b7-8868-4bab-854d-98cc25e404ee.jpeg');
+const logoImage = require('@/assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png');
 
 function resolveImageSource(source: string | number | ImageSourcePropType | undefined): ImageSourcePropType {
   if (!source) return { uri: '' };
@@ -37,6 +39,9 @@ export default function ProfileScreen() {
         contentContainerStyle={[styles.content, { paddingTop: insets.top + 32, paddingBottom: insets.bottom + 120 }]}
         showsVerticalScrollIndicator={false}
       >
+        {/* Logo */}
+        <Image source={logoImage} style={styles.logo} contentFit="contain" />
+
         {/* Name */}
         <Text style={styles.name}>Kyle</Text>
 
@@ -102,6 +107,12 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 20,
     alignItems: 'center',
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    alignSelf: 'center',
+    marginBottom: 16,
   },
   name: {
     fontSize: 40,

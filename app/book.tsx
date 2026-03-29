@@ -12,11 +12,14 @@ import {
   Platform,
   TouchableOpacity,
 } from "react-native";
+import { Image } from "expo-image";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Stack, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { X, CheckCircle, AlertCircle, Calendar, User, Mail, Phone, FileText } from "lucide-react-native";
 import { submitBooking, BookingPayload } from "@/utils/supabase";
+
+const logoImage = require("@/assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png");
 
 // ─── Palette ────────────────────────────────────────────────────────────────
 const LIGHT = {
@@ -295,6 +298,7 @@ export default function BookScreen() {
       >
         {/* Header */}
         <View style={styles.formHeader}>
+          <Image source={logoImage} style={styles.headerLogo} contentFit="contain" />
           <Text style={[styles.formTitle, { color: C.text }]}>Book a Session</Text>
           <Text style={[styles.formSubtitle, { color: C.textSecondary }]}>
             Fill in your details and Kyle will get back to you within 48 hours.
@@ -502,6 +506,12 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 20,
     paddingTop: 24,
+  },
+  headerLogo: {
+    width: 80,
+    height: 80,
+    alignSelf: "center",
+    marginBottom: 16,
   },
   formHeader: {
     marginBottom: 28,

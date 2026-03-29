@@ -6,9 +6,9 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
-  Image,
   ImageSourcePropType,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Clock, Star, DollarSign, CalendarDays, Images, ShieldCheck } from 'lucide-react-native';
@@ -17,7 +17,7 @@ const BLUE = '#2979FF';
 const CARD_BG = 'rgba(30,30,30,0.85)';
 
 const bgImage = require('@/assets/images/6bc221b7-8868-4bab-854d-98cc25e404ee.jpeg');
-const logoImage = require('@/assets/images/6bc221b7-8868-4bab-854d-98cc25e404ee.jpeg');
+const logoImage = require('@/assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png');
 
 function resolveImageSource(source: string | number | ImageSourcePropType | undefined): ImageSourcePropType {
   if (!source) return { uri: '' };
@@ -51,7 +51,7 @@ export default function HomeScreen() {
       >
         {/* Logo */}
         <View style={styles.logoContainer}>
-          <Image source={resolveImageSource(logoImage)} style={styles.logo} resizeMode="contain" />
+          <Image source={logoImage} style={styles.logo} contentFit="contain" />
         </View>
 
         {/* Title */}
