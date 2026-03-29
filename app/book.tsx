@@ -12,6 +12,7 @@ import {
   Platform,
   TouchableOpacity,
 } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { Stack, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { X, CheckCircle, AlertCircle, Calendar, User, Mail, Phone, FileText } from "lucide-react-native";
@@ -171,7 +172,8 @@ export default function BookScreen() {
   const [phone, setPhone] = useState("");
   const [selectedStyle, setSelectedStyle] = useState("");
   const [description, setDescription] = useState("");
-  const [preferredDate, setPreferredDate] = useState("");
+  const [preferredDate, setPreferredDate] = useState<Date | null>(null);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
@@ -188,7 +190,7 @@ export default function BookScreen() {
     if (!phone.trim()) newErrors.phone = "Phone number is required";
     if (!selectedStyle) newErrors.style = "Please select a tattoo style";
     if (!description.trim()) newErrors.description = "Please describe your tattoo idea";
-    if (!preferredDate.trim()) newErrors.date = "Preferred date is required";
+    if (!preferredDate) newErrors.date = "Preferred date is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   }, [name, email, phone, selectedStyle, description, preferredDate]);
@@ -198,7 +200,7 @@ export default function BookScreen() {
     setSubmitError(null);
 
     if (!validate()) {
-      console.log("[BookAppointment] Validation failed", errors);
+      console.log("[BookAppointment] Validation failed");
       return;
     }
 
@@ -208,7 +210,7 @@ export default function BookScreen() {
       phone: phone.trim(),
       tattoo_style: selectedStyle,
       description: description.trim(),
-      preferred_date: preferredDate.trim(),
+      preferred_date: preferredDate ? preferredDate.toISOString() : "",
     };
 
     console.log("[BookAppointment] Starting network request to Supabase", payload);
@@ -226,7 +228,7 @@ export default function BookScreen() {
     } finally {
       setLoading(false);
     }
-  }, [validate, name, email, phone, selectedStyle, description, preferredDate, errors, successOpacity]);
+  }, [validate, name, email, phone, selectedStyle, description, preferredDate, successOpacity]);
 
   const handleClose = useCallback(() => {
     console.log("[BookAppointment] Close pressed");
@@ -396,14 +398,81 @@ export default function BookScreen() {
           icon={<FileText size={16} color={C.textTertiary} style={{ marginLeft: 14, marginRight: 8, marginTop: 14 }} />}
         />
 
-        <FormInput
-          label="Preferred Date / Timeframe"
-          value={preferredDate}
-          onChangeText={setPreferredDate}
-          placeholder="e.g. Any weekend in July, ASAP, etc."
-          error={errors.date}
-          icon={<Calendar size={16} color={C.textTertiary} style={{ marginLeft: 14, marginRight: 8 }} />}
-        />
+        {/* Date picker field */}
+        <View style={{ marginBottom: 16 }}>
+          <Text style={[styles.label, { color: C.textSecondary }]}>Preferred Date</Text>
+          <TouchableOpacity
+            onPress={() => {
+              console.log("[BookAppointment] Date picker opened");
+              setShowDatePicker(true);
+            }}
+            accessibilityRole="button"
+            accessibilityLabel="Select preferred date"
+          >
+            <View
+              style={[
+                styles.inputWrapper,
+                {
+                  backgroundColor: C.inputBg,
+                  borderColor: errors.date ? C.danger : C.inputBorder,
+                },
+              ]}
+            >
+              <View style={styles.inputIcon}>
+                <Calendar size={16} color={C.textTertiary} style={{ marginLeft: 14, marginRight: 8 }} />
+              </View>
+              <Text
+                style={[
+                  styles.input,
+                  {
+                    color: preferredDate ? C.text : C.textTertiary,
+                    paddingLeft: 0,
+                    height: 48,
+                    lineHeight: 48,
+                  },
+                ]}
+              >
+                {preferredDate
+                  ? preferredDate.toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "long", day: "numeric" })
+                  : "Select a date"}
+              </Text>
+            </View>
+          </TouchableOpacity>
+          {!!errors.date && (
+            <View style={styles.errorRow}>
+              <AlertCircle size={12} color={C.danger} />
+              <Text style={[styles.errorText, { color: C.danger }]}>{errors.date}</Text>
+            </View>
+          )}
+        </View>
+
+        {showDatePicker && (
+          <DateTimePicker
+            value={preferredDate ?? new Date()}
+            mode="date"
+            display={Platform.OS === "ios" ? "inline" : "default"}
+            minimumDate={new Date()}
+            onChange={(_, date) => {
+              setShowDatePicker(Platform.OS === "ios" ? true : false);
+              if (date) {
+                console.log("[BookAppointment] Date selected:", date.toISOString());
+                setPreferredDate(date);
+                setErrors((prev) => ({ ...prev, date: "" }));
+                if (Platform.OS !== "ios") setShowDatePicker(false);
+              } else {
+                setShowDatePicker(false);
+              }
+            }}
+          />
+        )}
+        {showDatePicker && Platform.OS === "ios" && (
+          <TouchableOpacity
+            onPress={() => setShowDatePicker(false)}
+            style={[styles.submitBtn, { backgroundColor: C.surfaceSecondary, marginTop: 0, marginBottom: 16 }]}
+          >
+            <Text style={[styles.submitBtnText, { color: C.primary }]}>Done</Text>
+          </TouchableOpacity>
+        )}
 
         {/* Submit */}
         <AnimBtn
@@ -464,7 +533,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 12,
     borderWidth: 1,
-    borderCurve: "continuous",
+    ...(Platform.OS === "ios" && { borderCurve: "continuous" as any }),
     overflow: "hidden",
   },
   inputIcon: {
@@ -521,7 +590,7 @@ const styles = StyleSheet.create({
   submitBtn: {
     height: 56,
     borderRadius: 14,
-    borderCurve: "continuous",
+    ...(Platform.OS === "ios" && { borderCurve: "continuous" as any }),
     justifyContent: "center",
     alignItems: "center",
     marginTop: 8,
@@ -574,7 +643,7 @@ const styles = StyleSheet.create({
   successBtn: {
     height: 56,
     borderRadius: 14,
-    borderCurve: "continuous",
+    ...(Platform.OS === "ios" && { borderCurve: "continuous" as any }),
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 48,

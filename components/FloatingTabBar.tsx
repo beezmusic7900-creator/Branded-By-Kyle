@@ -57,12 +57,13 @@ export default function FloatingTabBar({
     tabs.forEach((tab, index) => {
       let score = 0;
 
+      const routeStr = typeof tab.route === 'string' ? tab.route : (tab.route as any).pathname ?? '';
       // Exact route match gets highest score
-      if (pathname === tab.route) {
+      if (pathname === routeStr) {
         score = 100;
       }
       // Check if pathname starts with tab route (for nested routes)
-      else if (pathname.startsWith(tab.route as string)) {
+      if (pathname.startsWith(routeStr)) {
         score = 80;
       }
       // Check if pathname contains the tab name
@@ -70,7 +71,7 @@ export default function FloatingTabBar({
         score = 60;
       }
       // Check for partial matches in the route
-      else if (tab.route.includes('/(tabs)/') && pathname.includes(tab.route.split('/(tabs)/')[1])) {
+      else if (routeStr.includes('/(tabs)/') && pathname.includes(routeStr.split('/(tabs)/')[1])) {
         score = 40;
       }
 
@@ -138,7 +139,7 @@ export default function FloatingTabBar({
           backgroundColor: theme.dark
             ? 'rgba(28, 28, 30, 0.95)'
             : 'rgba(255, 255, 255, 0.6)',
-          backdropFilter: 'blur(10px)',
+          backdropFilter: 'blur(10px)' as any,
         },
       }),
     },
