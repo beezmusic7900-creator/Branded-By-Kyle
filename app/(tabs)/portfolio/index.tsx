@@ -9,7 +9,7 @@ import {
   ImageBackground,
   ImageSourcePropType,
 } from 'react-native';
-import { Image } from 'react-native';
+import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -67,6 +67,36 @@ const PORTFOLIO_ITEMS: PortfolioItem[] = [
     image: require('../../../assets/images/033a0edf-f449-4e25-a7c3-ae4b4cf6f3ae.jpeg'),
     caption: 'Betty Boop Nurse',
     category: 'Neo-Traditional',
+  },
+  {
+    id: '6',
+    image: require('../../../assets/images/dcecead8-1681-451c-be83-5652e34e5151.jpeg'),
+    caption: 'Blindfolded Figure',
+    category: 'Portraits',
+  },
+  {
+    id: '7',
+    image: require('../../../assets/images/57770ded-0f13-439d-94aa-0a94cd3518ec.jpeg'),
+    caption: 'Horror Icons',
+    category: 'Neo-Traditional',
+  },
+  {
+    id: '8',
+    image: require('../../../assets/images/5d8c6f06-6cb7-4c09-ac40-27b6c13727a9.jpeg'),
+    caption: 'Jesus & Dove',
+    category: 'Portraits',
+  },
+  {
+    id: '9',
+    image: require('../../../assets/images/c54d87a1-87c8-4cc1-9a2a-2e76c3ede244.jpeg'),
+    caption: 'Anime Chest Piece',
+    category: 'Neo-Traditional',
+  },
+  {
+    id: '10',
+    image: require('../../../assets/images/5e539714-0419-4c58-a235-77541bc30ddd.jpeg'),
+    caption: 'Grim Reaper Clock',
+    category: 'Portraits',
   },
 ];
 
