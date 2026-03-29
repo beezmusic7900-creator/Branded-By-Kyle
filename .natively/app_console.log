@@ -301,3 +301,9 @@ Require cycles are allowed, but can result in uninitialized values. Consider ref
 [2026-03-29T21:39:22.003Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
 [2026-03-29T21:39:45.068Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
 [2026-03-29T21:39:45.061Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}
+[2026-03-29T21:41:50.132Z] [iOS] [WARN] Disconnected from Metro (1001: "Stream end encountered").
+
+To reconnect:
+- Ensure that Metro is running and available on the same network
+- Reload this app (will trigger further help if Metro cannot be connected to)
+      
