@@ -89,7 +89,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
     }
     setLoading(true);
     try {
-      if (email.trim().toLowerCase() === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      if (email.trim().toLowerCase() === ADMIN_EMAIL.toLowerCase() && password.trim() === ADMIN_PASSWORD) {
         await SecureStore.setItemAsync(ADMIN_TOKEN_KEY, "authenticated");
         console.log("[AdminLogin] Login successful");
         onLogin();
