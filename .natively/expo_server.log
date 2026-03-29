@@ -15731,3 +15731,372 @@ Unable to resolve asset "./assets/images/adaptive-icon.png" from "android.adapti
 iOS ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
 2026-03-29T06:35:36.270Z expo:start:server:middleware:serveStatic Maybe serve static: /
 | 2026-03-29T06:35:37.618Z expo:babel:exports Found assignment to module.exports or exports at 26
+2026-03-29T06:35:38.289Z expo:start:server:middleware:serveStatic Maybe serve static: /
+iOS ./index.ts ▓░░░░░░░░░░░░░░░  9.0% (3/7)
+| 2026-03-29T06:35:38.843Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-03-29T06:35:38.927Z expo:babel:exports Found assignment to module.exports or exports at 518
+2026-03-29T06:35:38.950Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-jsx-dev-runtime.production.js
+| 2026-03-29T06:35:38.944Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:38.957Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/_ctx.ios.js /expo-project/app ../../../../../app
+| 2026-03-29T06:35:38.964Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-03-29T06:35:38.967Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react.production.js
+| 2026-03-29T06:35:38.993Z expo:babel:exports Found assignment to module.exports or exports at 32
+| 2026-03-29T06:35:39.006Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-03-29T06:35:39.018Z expo:babel:exports Found assignment to module.exports or exports at 13
+| 2026-03-29T06:35:39.020Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-03-29T06:35:39.135Z expo:babel:exports Found assignment to module.exports or exports at 325
+| 2026-03-29T06:35:39.191Z expo:babel:exports Found assignment to module.exports or exports at 30
+| 2026-03-29T06:35:39.239Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-03-29T06:35:39.240Z expo:babel:exports Found assignment to module.exports or exports at 13
+| 2026-03-29T06:35:39.248Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:39.257Z expo:babel:exports Found assignment to module.exports or exports at 14
+| 2026-03-29T06:35:39.262Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-03-29T06:35:39.269Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:39.280Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:39.314Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-03-29T06:35:39.321Z expo:babel:exports Found assignment to module.exports or exports at 739
+| 2026-03-29T06:35:39.353Z expo:babel:exports Found assignment to module.exports or exports at 129
+| 2026-03-29T06:35:39.421Z expo:babel:exports Found assignment to module.exports or exports at 1217
+| 2026-03-29T06:35:39.498Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:39.515Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:39.524Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:39.527Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:39.530Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:39.548Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-03-29T06:35:39.554Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:39.556Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:39.557Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:39.568Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:39.599Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:39.600Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/onboard/Tutorial.js /expo-project/app ../../../../../../../app
+| 2026-03-29T06:35:39.601Z expo:babel:exports Found assignment to module.exports or exports at 49
+| 2026-03-29T06:35:39.605Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-03-29T06:35:39.607Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/onboard/Tutorial.js /expo-project/app ../../../../../../../app
+| 2026-03-29T06:35:39.624Z expo:babel:exports Found assignment to module.exports or exports at 8
+2026-03-29T06:35:40.311Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-03-29T06:35:40.398Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-03-29T06:35:40.414Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-03-29T06:35:40.422Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-03-29T06:35:40.427Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:40.431Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-03-29T06:35:40.434Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-03-29T06:35:40.459Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-03-29T06:35:40.462Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-03-29T06:35:40.539Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:40.548Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:40.561Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-03-29T06:35:40.572Z expo:babel:exports Found assignment to module.exports or exports at 362
+| 2026-03-29T06:35:40.575Z expo:babel:exports Found assignment to module.exports or exports at 460
+| 2026-03-29T06:35:40.609Z expo:babel:exports Found assignment to module.exports or exports at 19
+| 2026-03-29T06:35:40.678Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-03-29T06:35:40.680Z expo:babel:exports Found assignment to module.exports or exports at 443
+| 2026-03-29T06:35:40.781Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.789Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-03-29T06:35:40.793Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.799Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:40.804Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:40.803Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:40.837Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.839Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.844Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:40.851Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.856Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:40.861Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.863Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.878Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.880Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:40.880Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.887Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-03-29T06:35:40.889Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.891Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.892Z expo:babel:exports Found assignment to module.exports or exports at 39
+| 2026-03-29T06:35:40.893Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.909Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.912Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:40.914Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:40.915Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.920Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:40.929Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.932Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:40.938Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:41.043Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-03-29T06:35:41.115Z expo:babel:exports Found assignment to module.exports or exports at 51
+| 2026-03-29T06:35:41.186Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-03-29T06:35:41.300Z expo:babel:exports Found assignment to module.exports or exports at 17
+| 2026-03-29T06:35:41.354Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:41.363Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:41.363Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-03-29T06:35:41.365Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:41.366Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-03-29T06:35:41.366Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-03-29T06:35:41.430Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:41.620Z expo:babel:exports Found assignment to module.exports or exports at 50
+| 2026-03-29T06:35:41.722Z expo:babel:exports Found assignment to module.exports or exports at 26
+| 2026-03-29T06:35:41.740Z expo:babel:exports Found assignment to module.exports or exports at 89
+| 2026-03-29T06:35:41.749Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:41.753Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:41.760Z expo:babel:exports Found assignment to module.exports or exports at 144
+| 2026-03-29T06:35:41.766Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-03-29T06:35:41.769Z expo:babel:exports Found assignment to module.exports or exports at 1
+| 2026-03-29T06:35:41.778Z expo:babel:env-vars Referencing environment variable in /expo-project/utils/supabase.ts: EXPO_PUBLIC_SUPABASE_URL
+| 2026-03-29T06:35:41.779Z expo:babel:env-vars Referencing environment variable in /expo-project/utils/supabase.ts: EXPO_PUBLIC_SUPABASE_ANON_KEY
+| 2026-03-29T06:35:41.813Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-03-29T06:35:41.818Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-jsx-runtime.production.js
+| 2026-03-29T06:35:41.825Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:41.831Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-03-29T06:35:41.956Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:41.966Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:41.968Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:41.971Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:41.972Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:41.985Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-03-29T06:35:41.988Z expo:babel:exports Found assignment to module.exports or exports at 38
+| 2026-03-29T06:35:41.990Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:41.998Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:42.004Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:42.003Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-03-29T06:35:42.007Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:42.013Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:42.014Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-03-29T06:35:42.036Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-03-29T06:35:42.037Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:42.040Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:42.044Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-03-29T06:35:42.088Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:42.094Z expo:babel:exports Found assignment to module.exports or exports at 3
+iOS ./index.ts ▓▓▓▓▓▓▓░░░░░░░░░ 44.4% ( 614/2517)
+| 2026-03-29T06:35:42.439Z expo:babel:exports Found assignment to module.exports or exports at 3
+2026-03-29T06:35:43.273Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T06:35:43.426Z expo:start:server:metro:multi-platform Skipping production module: ../implementations/ReactNativeRenderer-prod
+2026-03-29T06:35:43.430Z expo:start:server:metro:multi-platform Skipping production module: ../implementations/ReactFabric-prod
+| 2026-03-29T06:35:43.424Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:43.433Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:43.434Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:43.444Z expo:babel:exports Found assignment to module.exports or exports at 55
+| 2026-03-29T06:35:43.463Z expo:babel:exports Found assignment to module.exports or exports at 484
+| 2026-03-29T06:35:43.470Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:43.471Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.474Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.486Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.695Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:43.703Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:43.707Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-03-29T06:35:43.708Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-03-29T06:35:43.777Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-03-29T06:35:43.781Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-refresh-runtime.production.min.js
+| 2026-03-29T06:35:43.801Z expo:babel:exports Found assignment to module.exports or exports at 160
+| 2026-03-29T06:35:43.801Z expo:babel:exports Found assignment to module.exports or exports at 84
+| 2026-03-29T06:35:43.812Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:43.817Z expo:babel:exports Found assignment to module.exports or exports at 170
+| 2026-03-29T06:35:43.842Z expo:babel:exports Found assignment to module.exports or exports at 325
+| 2026-03-29T06:35:43.869Z expo:babel:exports Found assignment to module.exports or exports at 360
+| 2026-03-29T06:35:43.886Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:43.911Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-03-29T06:35:43.924Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-is.production.js
+| 2026-03-29T06:35:43.913Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:43.923Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:43.924Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:43.933Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:43.935Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:43.942Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.942Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.946Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.948Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.951Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:43.952Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.955Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.956Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:43.960Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:43.962Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:43.967Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:43.972Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-03-29T06:35:43.976Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-03-29T06:35:43.976Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-03-29T06:35:43.977Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:43.979Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-03-29T06:35:43.996Z expo:babel:exports Found assignment to module.exports or exports at 39
+| 2026-03-29T06:35:44.010Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-03-29T06:35:44.014Z expo:babel:exports Found assignment to module.exports or exports at 90
+| 2026-03-29T06:35:44.023Z expo:babel:exports Found assignment to module.exports or exports at 7
+2026-03-29T06:35:45.303Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-03-29T06:35:45.707Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:45.733Z expo:babel:exports Found assignment to module.exports or exports at 140
+| 2026-03-29T06:35:45.745Z expo:babel:exports Found assignment to module.exports or exports at 51
+| 2026-03-29T06:35:45.754Z expo:babel:exports Found assignment to module.exports or exports at 103
+| 2026-03-29T06:35:46.090Z expo:babel:exports Found assignment to module.exports or exports at 52
+| 2026-03-29T06:35:46.129Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.138Z expo:babel:exports Found assignment to module.exports or exports at 645
+| 2026-03-29T06:35:46.141Z expo:babel:exports Found assignment to module.exports or exports at 182
+| 2026-03-29T06:35:46.147Z expo:babel:exports Found assignment to module.exports or exports at 20
+| 2026-03-29T06:35:46.155Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-03-29T06:35:46.157Z expo:babel:exports Found assignment to module.exports or exports at 22
+| 2026-03-29T06:35:46.157Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-03-29T06:35:46.163Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.165Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-03-29T06:35:46.165Z expo:babel:exports Found assignment to module.exports or exports at 80
+| 2026-03-29T06:35:46.170Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.179Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.180Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.184Z expo:babel:exports Found assignment to module.exports or exports at 59
+| 2026-03-29T06:35:46.196Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:46.200Z expo:babel:exports Found assignment to module.exports or exports at 39
+2026-03-29T06:35:46.203Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-is.production.min.js
+| 2026-03-29T06:35:46.200Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:46.201Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:46.220Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:46.236Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.242Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.243Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:46.251Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:46.254Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.254Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.258Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:46.259Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.267Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:46.450Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-03-29T06:35:46.462Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-is.production.min.js
+| 2026-03-29T06:35:46.457Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:46.518Z expo:babel:exports Found assignment to module.exports or exports at 16643
+| 2026-03-29T06:35:46.536Z expo:babel:exports Found assignment to module.exports or exports at 16925
+| 2026-03-29T06:35:46.599Z expo:babel:exports Found assignment to module.exports or exports at 170
+iOS ./index.ts ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 91.5% (2809/2937)
+| 2026-03-29T06:35:46.943Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.943Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.970Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-03-29T06:35:46.986Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.986Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:46.995Z expo:babel:exports Found assignment to module.exports or exports at 65
+| 2026-03-29T06:35:47.011Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:47.014Z expo:babel:exports Found assignment to module.exports or exports at 617
+| 2026-03-29T06:35:47.026Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.026Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:47.039Z expo:babel:exports Found assignment to module.exports or exports at 595
+| 2026-03-29T06:35:47.056Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.052Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.056Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:47.060Z expo:babel:exports Found assignment to module.exports or exports at 192
+| 2026-03-29T06:35:47.066Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-03-29T06:35:47.099Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.231Z expo:babel:exports Found assignment to module.exports or exports at 152
+| 2026-03-29T06:35:47.249Z expo:babel:exports Found assignment to module.exports or exports at 49
+| 2026-03-29T06:35:47.338Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-03-29T06:35:47.342Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T06:35:47.347Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/scheduler.native.production.js
+| 2026-03-29T06:35:47.338Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.349Z expo:babel:exports Found assignment to module.exports or exports at 75
+| 2026-03-29T06:35:47.349Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.357Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-03-29T06:35:47.362Z expo:babel:exports Found assignment to module.exports or exports at 93
+| 2026-03-29T06:35:47.363Z expo:babel:exports Found assignment to module.exports or exports at 113
+| 2026-03-29T06:35:47.372Z expo:babel:exports Found assignment to module.exports or exports at 154
+| 2026-03-29T06:35:47.408Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.418Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.514Z expo:babel:exports Found assignment to module.exports or exports at 625
+| 2026-03-29T06:35:47.534Z expo:babel:exports Found assignment to module.exports or exports at 496
+| 2026-03-29T06:35:47.543Z expo:babel:exports Found assignment to module.exports or exports at 63
+| 2026-03-29T06:35:47.544Z expo:babel:exports Found assignment to module.exports or exports at 3028
+| 2026-03-29T06:35:47.613Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.617Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:47.623Z expo:babel:exports Found assignment to module.exports or exports at 331
+| 2026-03-29T06:35:47.625Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-03-29T06:35:47.680Z expo:babel:exports Found assignment to module.exports or exports at 31
+| 2026-03-29T06:35:47.876Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-03-29T06:35:47.884Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-03-29T06:35:47.888Z expo:babel:exports Found assignment to module.exports or exports at 81
+| 2026-03-29T06:35:47.901Z expo:babel:exports Found assignment to module.exports or exports at 15
+| 2026-03-29T06:35:47.919Z expo:babel:exports Found assignment to module.exports or exports at 3
+2026-03-29T06:35:47.946Z expo:metro:withMetroResolvers Custom resolver (requestPostRewrites) threw: FailedToResolveNameError. (module: @react-native-masked-view/masked-view, platform: ios, env: undefined, origin: /expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js)
+2026-03-29T06:35:47.947Z expo:metro:withMetroResolvers Custom resolver (requestPostRewrites) threw: FailedToResolveNameError. (module: @react-native-masked-view/masked-view, platform: ios, env: undefined, origin: /expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js)
+2026-03-29T06:35:47.957Z expo:metro:withMetroResolvers Number of explored stacks: 2
+2026-03-29T06:35:47.958Z expo:metro:withMetroResolvers Found inverse graph: {
+  "frames": [
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js",
+      "request": "@react-native-masked-view/masked-view"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedView.ios.js",
+      "request": "./MaskedViewNative.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/Header/HeaderBackButton.js",
+      "request": "../MaskedView"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/index.js",
+      "request": "./Header/HeaderBackButton.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+bottom-tabs@7.15.5_@react-navigation+native@7.1.33_react-native@0.81._33b556446670c68e6441b15a2e173dbe/node_modules/@react-navigation/bottom-tabs/lib/module/views/BottomTabView.js",
+      "request": "@react-navigation/elements"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+bottom-tabs@7.15.5_@react-navigation+native@7.1.33_react-native@0.81._33b556446670c68e6441b15a2e173dbe/node_modules/@react-navigation/bottom-tabs/lib/module/index.js",
+      "request": "./views/BottomTabView.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/views/ErrorBoundary.js",
+      "request": "@react-navigation/bottom-tabs"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/exports.js",
+      "request": "./views/ErrorBoundary"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/index.js",
+      "request": "./exports"
+    },
+    {
+      "origin": "/expo-project/app/(tabs)/portfolio/_layout.tsx",
+      "request": "expo-router"
+    },
+    {
+      "origin": "/expo-project/app?ctx=3ab07f305c4346b25020dd398f4d6d4dc9229acb",
+      "request": "/expo-project/app/(tabs)/portfolio/_layout.tsx"
+    }
+  ],
+  "serverRoot": true
+}
+| 2026-03-29T06:35:47.968Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-03-29T06:35:47.996Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:48.000Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:48.007Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:48.030Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-03-29T06:35:48.034Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:48.039Z expo:babel:exports Found assignment to module.exports or exports at 78
+| 2026-03-29T06:35:48.053Z expo:babel:exports Found assignment to module.exports or exports at 215
+| 2026-03-29T06:35:48.080Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-03-29T06:35:48.082Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-03-29T06:35:48.089Z expo:babel:exports Found assignment to module.exports or exports at 32
+| 2026-03-29T06:35:48.138Z expo:babel:exports Found assignment to module.exports or exports at 17
+| 2026-03-29T06:35:48.140Z expo:babel:exports Found assignment to module.exports or exports at 42
+| 2026-03-29T06:35:48.140Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-03-29T06:35:48.145Z expo:babel:exports Found assignment to module.exports or exports at 136
+| 2026-03-29T06:35:48.146Z expo:babel:exports Found assignment to module.exports or exports at 319
+| 2026-03-29T06:35:48.147Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-03-29T06:35:48.148Z expo:babel:exports Found assignment to module.exports or exports at 1
+| 2026-03-29T06:35:48.150Z expo:babel:exports Found assignment to exports at 9
+| 2026-03-29T06:35:48.158Z expo:babel:exports Found assignment to module.exports or exports at 1316
+| 2026-03-29T06:35:48.161Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-03-29T06:35:48.163Z expo:babel:exports Found assignment to module.exports or exports at 54
+| 2026-03-29T06:35:48.170Z expo:babel:exports Found assignment to module.exports or exports at 22
+| 2026-03-29T06:35:48.172Z expo:babel:exports Found assignment to module.exports or exports at 1563
+| 2026-03-29T06:35:48.174Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:48.175Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:48.175Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:48.176Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:48.176Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:48.176Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-03-29T06:35:48.181Z expo:babel:exports Found assignment to module.exports or exports at 7
+2026-03-29T06:35:48.618Z expo:metro-config:serializer:env-var Injecting environment variables in virtual module.
+iOS Bundled 13467ms index.ts (3333 modules)
+2026-03-29T06:35:49.365Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [Newly] Setting up error logging...
+ LOG  [Newly] Log server URL: https://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev/natively-logs
+ LOG  [Newly] Platform: ios
+2026-03-29T06:35:51.378Z expo:start:server:middleware:serveStatic Maybe serve static: /
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-03-29T06:35:50.480Z] [iOS] [LOG] Running "main" with {"rootTag":21,"initialProps":{"exp":{"manifestString":"{\"runtimeVersion\":\"exposdk:54.0.0\",\"id\":\"5b1193c2-8f94-4e12-ab65-29599a536bbc\",\"createdAt\":\"2026-03-29T06:35:34.793Z\",\"launchAsset\":{\"key\":\"bundle\",\"contentType\":\"application\\/javascript\",\"url\":\"https:\\/\\/c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\\/index.ts.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&unstable_transformProfile=hermes-stable\"},\"extra\":{\"eas\":{},\"scopeKey\":\"@anonymous\\/branded-by-kyle-d0206bb4-e31e-4c8e-969e-4072ef3d72bd\",\"expoClient\":{\"extra\":{\"router\":{}},\"orientation\":\"portrait\",\"version\":\"1.0.0\",\"userInterfaceStyle\":\"automatic\",\"newArchEnabled\":true,\"ios\":{\"bundleIdentifier\":\"com.brandedbykyletattoo.app\",\"supportsTablet\":true},\"experiments\":{\"typedRoutes\":true},\"_internal\":{\"packageJsonPath\":\"\\/expo-project\\/package.json\",\"projectRoot\":\"\\/expo-project\",\"staticConfigPath\":\"\\/expo-project\\/app.json\",\"pluginHistory\":{\"expo-font\":{\"name\":\"expo-font\",\"version\":\"14.0.11\"},\"expo-splash-screen\":{\"name\":\"expo-splash-screen\",\"version\":\"31.0.13\"}},\"isDebug\":true,\"dynamicConfigPath\":{}},\"hostUri\":\"c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\",\"android\":{\"package\":\"com.brandedbykyletattoo.app\",\"adaptiveIcon\":{\"foregroundImage\":\".\\/assets\\/images\\/adaptive-icon.png\",\"backgroundColor\":\"#0A0A0A\"}},\"plugins\":[\"expo-router\",\"expo-font\",[\"expo-splash-screen\",{\"imageWidth\":200,\"resizeMode\":\"contain\",\"backgroundColor\":\"#FFFFFF\",\"image\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\"}]],\"scheme\":\"brandedbykyle\",\"slug\":\"branded-by-kyle\",\"icon\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\",\"splash\":{\"image\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\",\"resizeMode\":\"contain\",\"backgroundColor\":\"#FFFFFF\"},\"web\":{\"bundler\":\"metro\",\"output\":\"static\"},\"platforms\":[\"ios\",\"android\",\"web\"],\"sdkVersion\":\"54.0.0\",\"name\":\"Branded By Kyle\"},\"expoGo\":{\"developer\":{\"projectRoot\":\"\\/expo-project\",\"tool\":\"expo-cli\"},\"mainModuleName\":\"index.ts\",\"packagerOpts\":{\"dev\":true},\"debuggerHost\":\"c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\"}},\"metadata\":{},\"assets\":[],\"isVerified\":true}","shell":false,"initialUri":"exp://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev","appOwnership":"expo"}},"fabric":true}
+2026-03-29T06:35:53.393Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T06:35:55.408Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T06:35:57.432Z expo:start:server:middleware:serveStatic Maybe serve static: /
