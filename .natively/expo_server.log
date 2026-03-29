@@ -7144,3 +7144,45 @@ Logs for your project will appear below.
 2026-03-29T05:59:27.445Z expo:start:server:middleware:serveStatic Maybe serve static: /
 2026-03-29T05:59:27.822Z expo:start:server:middleware:serveStatic Maybe serve static: /
 2026-03-29T05:59:37.830Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T05:59:41.456Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/splash-icon.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0A0A0A',
+  dark: {}
+}
+2026-03-29T05:59:41.462Z expo:start:server:middleware:manifest Resolved entry point: index.ts (project root: /expo-project)
+2026-03-29T05:59:41.463Z expo:start:server:urlCreator URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-03-29T05:59:41.463Z expo:start:server:urlCreator URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-03-29T05:59:41.463Z expo:start:server:metro:router Using app as the root directory for Expo Router.
+2026-03-29T05:59:41.464Z expo:start:server:urlCreator URL: https://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-03-29T05:59:41.739Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T05:59:41.961Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T05:59:42.191Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T05:59:48.280Z expo:start:server:middleware:serveStatic Maybe serve static: /
+Unable to resolve asset "./assets/images/icon.png" from "icon" in your app.json or app.config.js
+2026-03-29T05:59:49.798Z expo:start:server:middleware:resolveRuntimeVersion Using expo-updates runtimeversion:resolve CLI for runtime version resolution
+2026-03-29T05:59:49.807Z expo:codesigning WARN: Expo Application Services (EAS) is not configured for your project. Configuring EAS enables a more secure development experience amongst many other benefits. Learn more: https://docs.expo.dev/eas/
+2026-03-29T05:59:50.400Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T05:59:52.416Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T05:59:54.433Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T05:59:56.454Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-03-29T05:59:57.430Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/splash-icon.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0A0A0A',
+  dark: {}
+}
+2026-03-29T05:59:57.434Z expo:start:server:middleware:manifest Resolved entry point: index.ts (project root: /expo-project)
+2026-03-29T05:59:57.434Z expo:start:server:urlCreator URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-03-29T05:59:57.435Z expo:start:server:urlCreator URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-03-29T05:59:57.435Z expo:start:server:metro:router Using app as the root directory for Expo Router.
+2026-03-29T05:59:57.435Z expo:start:server:urlCreator URL: https://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+Unable to resolve asset "./assets/images/icon.png" from "icon" in your app.json or app.config.js
+2026-03-29T05:59:57.437Z expo:start:server:middleware:resolveRuntimeVersion Using expo-updates runtimeversion:resolve CLI for runtime version resolution
+2026-03-29T05:59:57.439Z expo:codesigning WARN: Expo Application Services (EAS) is not configured for your project. Configuring EAS enables a more secure development experience amongst many other benefits. Learn more: https://docs.expo.dev/eas/
+[METRO] Request: GET /index.ts.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&unstable_transformProfile=hermes-stable
+2026-03-29T05:59:58.290Z expo:start:server:metro:multi-platform Enabling alias: react-native-vector-icons -> @expo/vector-icons
+iOS ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+2026-03-29T05:59:58.472Z expo:start:server:middleware:serveStatic Maybe serve static: /
