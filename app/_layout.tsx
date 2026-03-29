@@ -95,11 +95,11 @@ export default function RootLayout() {
                   name="book"
                   options={{
                     presentation: "modal",
-                    headerShown: true,
+                    headerShown: false,
                   }}
                 />
                 {/* Admin panel */}
-                <Stack.Screen name="admin/index" options={{ headerShown: false }} />
+                <Stack.Screen name="admin" options={{ headerShown: false }} />
               </Stack>
             </GestureHandlerRootView>
           </WidgetProvider>
