@@ -6,11 +6,14 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  ImageBackground,
   ImageSourcePropType,
 } from 'react-native';
 import { Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
+
+const BG = require('../../../assets/images/58f69f1a-4699-4acb-8d6c-e139c289ff00.webp');
 
 const BLUE = '#2979FF';
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -99,7 +102,8 @@ export default function PortfolioScreen() {
   }
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <ImageBackground source={BG} style={[styles.container, { paddingTop: insets.top }]} resizeMode="cover">
+      <View style={styles.overlay} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 120 }]}
@@ -149,14 +153,18 @@ export default function PortfolioScreen() {
           ))}
         </View>
       </ScrollView>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#0D1B2A',
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.55)',
   },
   scrollContent: {
     paddingHorizontal: 20,

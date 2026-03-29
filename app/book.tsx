@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 import { Image } from "expo-image";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -19,6 +20,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { X, CheckCircle, AlertCircle, Calendar, User, Mail, Phone, FileText } from "lucide-react-native";
 import { submitBooking, BookingPayload } from "@/utils/supabase";
 
+const BG = require("../assets/images/58f69f1a-4699-4acb-8d6c-e139c289ff00.webp");
 const logoImage = require("@/assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png");
 
 // ─── Palette ────────────────────────────────────────────────────────────────
@@ -241,7 +243,8 @@ export default function BookScreen() {
   // ── Success state ──────────────────────────────────────────────────────────
   if (success) {
     return (
-      <View style={[styles.successContainer, { backgroundColor: C.background, paddingBottom: insets.bottom + 32 }]}>
+      <ImageBackground source={BG} style={{ flex: 1 }} resizeMode="cover">
+      <View style={[styles.successContainer, { backgroundColor: 'rgba(0,0,0,0.55)', paddingBottom: insets.bottom + 32 }]}>
         <Stack.Screen options={{ headerShown: false }} />
         <Animated.View style={[styles.successContent, { opacity: successOpacity }]}>
           <View style={[styles.successIconRing, { backgroundColor: "rgba(48,209,88,0.12)", borderColor: "rgba(48,209,88,0.3)" }]}>
@@ -259,13 +262,16 @@ export default function BookScreen() {
           </AnimBtn>
         </Animated.View>
       </View>
+      </ImageBackground>
     );
   }
 
   // ── Form ───────────────────────────────────────────────────────────────────
   return (
+    <ImageBackground source={BG} style={{ flex: 1 }} resizeMode="cover">
+    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)' }}>
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: C.background }}
+      style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <Stack.Screen
@@ -499,6 +505,8 @@ export default function BookScreen() {
         </Text>
       </ScrollView>
     </KeyboardAvoidingView>
+    </View>
+    </ImageBackground>
   );
 }
 

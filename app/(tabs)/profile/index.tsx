@@ -14,7 +14,7 @@ import { User, Star, DollarSign, CheckCircle } from 'lucide-react-native';
 const BLUE = '#2979FF';
 const CARD_BG = 'rgba(30,30,30,0.85)';
 
-const bgImage = require('@/assets/images/6bc221b7-8868-4bab-854d-98cc25e404ee.jpeg');
+const bgImage = require('../../../assets/images/58f69f1a-4699-4acb-8d6c-e139c289ff00.webp');
 const logoImage = require('@/assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png');
 
 function resolveImageSource(source: string | number | ImageSourcePropType | undefined): ImageSourcePropType {
