@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { SystemBars } from "react-native-edge-to-edge";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColorScheme, Alert } from "react-native";
@@ -38,15 +37,14 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
+  const wasConnected = React.useRef<boolean | null>(null);
   React.useEffect(() => {
-    if (
-      !networkState.isConnected &&
-      networkState.isInternetReachable === false
-    ) {
-      Alert.alert(
-        "🔌 You are offline",
-        "You can keep using the app! Your changes will be saved locally and synced when you are back online."
-      );
+    const isOffline = networkState.isConnected === false && networkState.isInternetReachable === false;
+    if (wasConnected.current === true && isOffline) {
+      Alert.alert('🔌 You are offline', 'Please check your internet connection.');
+    }
+    if (networkState.isConnected !== null) {
+      wasConnected.current = networkState.isConnected;
     }
   }, [networkState.isConnected, networkState.isInternetReachable]);
 
@@ -78,15 +76,16 @@ export default function RootLayout() {
       notification: "rgb(255, 69, 58)", // System Red (Dark Mode)
     },
   };
+
   return (
     <>
       <StatusBar style="auto" animated />
-        <ThemeProvider
-          value={colorScheme === "dark" ? CustomDarkTheme : CustomDefaultTheme}
-        >
-          <SafeAreaProvider>
-            <WidgetProvider>
-              <GestureHandlerRootView>
+      <ThemeProvider
+        value={colorScheme === "dark" ? CustomDarkTheme : CustomDefaultTheme}
+      >
+        <SafeAreaProvider>
+          <WidgetProvider>
+            <GestureHandlerRootView>
               <Stack>
                 {/* Main app with tabs */}
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -99,11 +98,10 @@ export default function RootLayout() {
                   }}
                 />
               </Stack>
-              <SystemBars style={"auto"} />
-              </GestureHandlerRootView>
-            </WidgetProvider>
-          </SafeAreaProvider>
-        </ThemeProvider>
+            </GestureHandlerRootView>
+          </WidgetProvider>
+        </SafeAreaProvider>
+      </ThemeProvider>
     </>
   );
 }

@@ -1,15 +1,10 @@
 import React from 'react';
-import { Stack } from 'expo-router';
+import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        animation: 'none',
-      }}
-    >
-      <Stack.Screen key="home" name="(home)" />
-    </Stack>
+    <Tabs screenOptions={{ headerShown: false, tabBarStyle: { display: 'none' } }}>
+      <Tabs.Screen name="(home)" />
+    </Tabs>
   );
 }

@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
     padding: 14,
     alignItems: "center",
     gap: 6,
-    boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+    shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.3, shadowRadius: 3, elevation: 3,
   },
   statValue: {
     fontSize: 17,
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
     height: 58,
     justifyContent: "center",
     alignItems: "center",
-    boxShadow: "0 4px 20px rgba(201,169,110,0.35)",
+    shadowColor: '#C9A96E', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.35, shadowRadius: 20, elevation: 8,
   },
   bookBtnInner: {
     flexDirection: "row",
@@ -482,7 +482,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: C.divider,
     padding: 20,
-    boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
+    shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 3,
   },
   aboutText: {
     fontSize: 15,
