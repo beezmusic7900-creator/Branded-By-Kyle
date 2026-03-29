@@ -26,9 +26,9 @@ function resolveImageSource(source: string | number | ImageSourcePropType | unde
   return source as ImageSourcePropType;
 }
 
-type Category = 'All' | 'Color' | 'Full Chest Piece' | 'Portraits' | 'Custom' | 'Cover Ups';
+type Category = 'All' | 'Color' | 'Portraits' | 'Neo-Traditional';
 
-const FILTERS: Category[] = ['All', 'Color', 'Full Chest Piece', 'Portraits', 'Custom', 'Cover Ups'];
+const FILTERS: Category[] = ['All', 'Color', 'Portraits', 'Neo-Traditional'];
 
 interface PortfolioItem {
   id: string;
@@ -40,45 +40,33 @@ interface PortfolioItem {
 const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     id: '1',
-    image: require('@/assets/images/0a2ea7a9-8938-440e-86a5-ca2c5d835257.jpeg'),
-    caption: 'Vibrant eye tattoo with electric blue and rainbow...',
+    image: require('../../../assets/images/6f697cdc-e6c2-41e2-a10a-4347c0fe5a37.jpeg'),
+    caption: 'Vibrant Eye',
     category: 'Color',
   },
   {
     id: '2',
-    image: require('@/assets/images/ea9519a4-0cf7-4376-a900-a5078265b87f.jpeg'),
-    caption: 'Realistic portrait with "Mommy" script',
+    image: require('../../../assets/images/ef4612ba-fa15-4117-a867-aad3a06cabfb.jpeg'),
+    caption: 'Mommy Portrait',
     category: 'Portraits',
   },
   {
     id: '3',
-    image: require('@/assets/images/dff1232d-63a6-440a-833a-bae2be576d81.jpeg'),
-    caption: 'Detailed portrait tattoo',
+    image: require('../../../assets/images/649f26f4-677f-41ab-bec7-aacdf5fe8117.jpeg'),
+    caption: 'Portrait & Reference',
     category: 'Portraits',
   },
   {
     id: '4',
-    image: require('@/assets/images/640c6610-bbc3-4cf2-b55b-a7cbb2952c39.jpeg'),
-    caption: 'Intricate full chest piece with Greek key pattern',
-    category: 'Full Chest Piece',
+    image: require('../../../assets/images/c5205a19-eb3a-4e40-b551-ad3c70e5513b.jpeg'),
+    caption: 'Portrait with Script',
+    category: 'Portraits',
   },
   {
     id: '5',
-    image: require('@/assets/images/b03db91a-b58d-41e9-a499-682890ff57a2.jpeg'),
-    caption: 'Custom black and grey design',
-    category: 'Custom',
-  },
-  {
-    id: '6',
-    image: require('@/assets/images/7090ff25-2cd9-4f9d-a605-2eedb3849c4b.jpeg'),
-    caption: 'Stunning cover-up transformation',
-    category: 'Cover Ups',
-  },
-  {
-    id: '7',
-    image: require('@/assets/images/398ce7de-bcec-468d-ada7-0d6cb1ab9c60.jpeg'),
-    caption: 'Bold custom color piece',
-    category: 'Color',
+    image: require('../../../assets/images/033a0edf-f449-4e25-a7c3-ae4b4cf6f3ae.jpeg'),
+    caption: 'Betty Boop Nurse',
+    category: 'Neo-Traditional',
   },
 ];
 

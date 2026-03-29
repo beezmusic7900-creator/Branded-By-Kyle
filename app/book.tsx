@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,35 +12,29 @@ import {
   Platform,
   TouchableOpacity,
   ImageBackground,
+  Linking,
 } from "react-native";
 import { Image } from "expo-image";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Stack, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { X, CheckCircle, AlertCircle, Calendar, User, Mail, Phone, FileText } from "lucide-react-native";
-import { submitBooking, BookingPayload } from "@/utils/supabase";
+import { supabase } from "@/utils/supabase";
 
 const BG = require("../assets/images/58f69f1a-4699-4acb-8d6c-e139c289ff00.webp");
 const logoImage = require("@/assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png");
 
-// ─── Palette ────────────────────────────────────────────────────────────────
-const LIGHT = {
-  background: "#0A0A0A",
-  surface: "#141414",
-  surfaceSecondary: "#1C1C1C",
-  text: "#F5F0EB",
-  textSecondary: "#A09890",
-  textTertiary: "#5C5550",
-  primary: "#C9A96E",
-  primaryMuted: "rgba(201,169,110,0.12)",
-  danger: "#FF453A",
-  success: "#30D158",
-  border: "rgba(201,169,110,0.15)",
-  divider: "rgba(255,255,255,0.06)",
-  inputBg: "#1C1C1C",
-  inputBorder: "rgba(255,255,255,0.08)",
-  inputFocusBorder: "#C9A96E",
-};
+const BLUE = "#2979FF";
+const BG_COLOR = "#0A0A0A";
+const SURFACE = "#141414";
+const SURFACE2 = "#1C1C1C";
+const TEXT = "#F5F0EB";
+const TEXT_SEC = "#A09890";
+const TEXT_TERT = "#5C5550";
+const DANGER = "#FF453A";
+const SUCCESS = "#30D158";
+const BORDER = "rgba(255,255,255,0.08)";
+const INPUT_FOCUS = BLUE;
 
 const TATTOO_STYLES = [
   "Traditional",
@@ -55,7 +49,10 @@ const TATTOO_STYLES = [
   "Other",
 ];
 
-// ─── Animated Pressable ──────────────────────────────────────────────────────
+const SQUARE_PAYMENT_URL = "https://square.link/u/jRrxMkF3";
+const DEPOSIT_SECONDS = 30 * 60;
+
+// ─── Animated Button ─────────────────────────────────────────────────────────
 function AnimBtn({
   onPress,
   style,
@@ -79,10 +76,7 @@ function AnimBtn({
       <Pressable
         onPressIn={pressIn}
         onPressOut={pressOut}
-        onPress={() => {
-          console.log("[BookAppointment] Button pressed");
-          onPress();
-        }}
+        onPress={onPress}
         disabled={disabled}
         style={style}
         accessibilityRole="button"
@@ -94,7 +88,7 @@ function AnimBtn({
   );
 }
 
-// ─── Styled Input ────────────────────────────────────────────────────────────
+// ─── Form Input ───────────────────────────────────────────────────────────────
 function FormInput({
   label,
   value,
@@ -119,16 +113,15 @@ function FormInput({
   icon?: React.ReactNode;
 }) {
   const [focused, setFocused] = useState(false);
-  const C = LIGHT;
   return (
     <View style={{ marginBottom: 16 }}>
-      <Text style={[styles.label, { color: C.textSecondary }]}>{label}</Text>
+      <Text style={[styles.label, { color: TEXT_SEC }]}>{label}</Text>
       <View
         style={[
           styles.inputWrapper,
           {
-            backgroundColor: C.inputBg,
-            borderColor: error ? C.danger : focused ? C.inputFocusBorder : C.inputBorder,
+            backgroundColor: SURFACE2,
+            borderColor: error ? DANGER : focused ? INPUT_FOCUS : BORDER,
           },
         ]}
       >
@@ -137,7 +130,7 @@ function FormInput({
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholder}
-          placeholderTextColor={C.textTertiary}
+          placeholderTextColor={TEXT_TERT}
           keyboardType={keyboardType ?? "default"}
           autoCapitalize={autoCapitalize ?? "sentences"}
           multiline={multiline}
@@ -147,7 +140,7 @@ function FormInput({
           style={[
             styles.input,
             {
-              color: C.text,
+              color: TEXT,
               paddingLeft: icon ? 0 : 14,
               height: multiline ? undefined : 48,
               minHeight: multiline ? 80 : undefined,
@@ -158,19 +151,30 @@ function FormInput({
       </View>
       {!!error && (
         <View style={styles.errorRow}>
-          <AlertCircle size={12} color={C.danger} />
-          <Text style={[styles.errorText, { color: C.danger }]}>{error}</Text>
+          <AlertCircle size={12} color={DANGER} />
+          <Text style={[styles.errorText, { color: DANGER }]}>{error}</Text>
         </View>
       )}
     </View>
   );
 }
 
-// ─── Main Screen ─────────────────────────────────────────────────────────────
-export default function BookScreen() {
-  const router = useRouter();
+// ─── Step 1: Date & Info Form ─────────────────────────────────────────────────
+function Step1({
+  onContinue,
+}: {
+  onContinue: (data: {
+    name: string;
+    email: string;
+    phone: string;
+    style: string;
+    description: string;
+    date: Date;
+    bookingId: string;
+  }) => void;
+}) {
   const insets = useSafeAreaInsets();
-  const C = LIGHT;
+  const router = useRouter();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -179,13 +183,42 @@ export default function BookScreen() {
   const [description, setDescription] = useState("");
   const [preferredDate, setPreferredDate] = useState<Date | null>(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
-
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [unavailableDates, setUnavailableDates] = useState<Set<string>>(new Set());
+  const [dateWarning, setDateWarning] = useState<string | null>(null);
 
-  const successOpacity = useRef(new Animated.Value(0)).current;
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+
+  useEffect(() => {
+    async function fetchUnavailable() {
+      console.log("[BookStep1] Fetching unavailable dates from Supabase");
+      try {
+        const [bookingsRes, blackoutsRes] = await Promise.all([
+          supabase.from("bookings").select("preferred_date").eq("status", "confirmed"),
+          supabase.from("blackout_dates").select("date"),
+        ]);
+        console.log("[BookStep1] Unavailable dates fetched", {
+          confirmedBookings: bookingsRes.data?.length,
+          blackouts: blackoutsRes.data?.length,
+        });
+        const dates = new Set<string>();
+        (bookingsRes.data ?? []).forEach((row: { preferred_date: string }) => {
+          if (row.preferred_date) dates.add(row.preferred_date.split("T")[0]);
+        });
+        (blackoutsRes.data ?? []).forEach((row: { date: string }) => {
+          if (row.date) dates.add(row.date.split("T")[0]);
+        });
+        setUnavailableDates(dates);
+      } catch (err) {
+        console.warn("[BookStep1] Failed to fetch unavailable dates", err);
+      }
+    }
+    fetchUnavailable();
+  }, []);
 
   const validate = useCallback((): boolean => {
     const newErrors: Record<string, string> = {};
@@ -200,128 +233,118 @@ export default function BookScreen() {
     return Object.keys(newErrors).length === 0;
   }, [name, email, phone, selectedStyle, description, preferredDate]);
 
-  const handleSubmit = useCallback(async () => {
-    console.log("[BookAppointment] handleSubmit called");
+  const handleContinue = useCallback(async () => {
+    console.log("[BookStep1] Continue pressed");
     setSubmitError(null);
-
     if (!validate()) {
-      console.log("[BookAppointment] Validation failed");
+      console.log("[BookStep1] Validation failed");
       return;
     }
-
-    const payload: BookingPayload = {
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      phone: phone.trim(),
-      tattoo_style: selectedStyle,
-      description: description.trim(),
-      preferred_date: preferredDate ? preferredDate.toISOString() : "",
-    };
-
-    console.log("[BookAppointment] Starting network request to Supabase", payload);
     setLoading(true);
-
     try {
-      const result = await submitBooking(payload);
-      console.log("[BookAppointment] Booking success", result);
-      setSuccess(true);
-      Animated.timing(successOpacity, { toValue: 1, duration: 400, useNativeDriver: true }).start();
+      const dateStr = preferredDate!.toISOString().split("T")[0];
+      console.log("[BookStep1] Inserting booking into Supabase", { name, email, style: selectedStyle, date: dateStr });
+      const { data, error } = await supabase
+        .from("bookings")
+        .insert({
+          name: name.trim(),
+          email: email.trim().toLowerCase(),
+          phone: phone.trim(),
+          tattoo_style: selectedStyle,
+          description: description.trim(),
+          preferred_date: dateStr,
+          status: "pending_payment",
+          deposit_paid: false,
+        })
+        .select()
+        .single();
+      if (error) {
+        console.error("[BookStep1] Supabase insert error", error);
+        throw new Error(error.message ?? "Failed to create booking");
+      }
+      console.log("[BookStep1] Booking created", { id: data?.id });
+      onContinue({
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        phone: phone.trim(),
+        style: selectedStyle,
+        description: description.trim(),
+        date: preferredDate!,
+        bookingId: data.id,
+      });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
-      console.error("[BookAppointment] Booking failed", message);
+      console.error("[BookStep1] Failed to create booking", message);
       setSubmitError(message);
     } finally {
       setLoading(false);
     }
-  }, [validate, name, email, phone, selectedStyle, description, preferredDate, successOpacity]);
+  }, [validate, name, email, phone, selectedStyle, description, preferredDate, onContinue]);
 
-  const handleClose = useCallback(() => {
-    console.log("[BookAppointment] Close pressed");
-    router.back();
-  }, [router]);
+  const handleDateChange = useCallback(
+    (_: unknown, date?: Date) => {
+      if (Platform.OS !== "ios") setShowDatePicker(false);
+      if (date) {
+        console.log("[BookStep1] Date selected:", date.toISOString());
+        const dateStr = date.toISOString().split("T")[0];
+        if (unavailableDates.has(dateStr)) {
+          setDateWarning("This date is unavailable. Please choose another.");
+        } else {
+          setDateWarning(null);
+        }
+        setPreferredDate(date);
+        setErrors((prev) => ({ ...prev, date: "" }));
+      } else {
+        setShowDatePicker(false);
+      }
+    },
+    [unavailableDates]
+  );
 
-  // ── Success state ──────────────────────────────────────────────────────────
-  if (success) {
-    return (
-      <ImageBackground source={BG} style={{ flex: 1 }} resizeMode="cover">
-      <View style={[styles.successContainer, { backgroundColor: 'rgba(0,0,0,0.55)', paddingBottom: insets.bottom + 32 }]}>
-        <Stack.Screen options={{ headerShown: false }} />
-        <Animated.View style={[styles.successContent, { opacity: successOpacity }]}>
-          <View style={[styles.successIconRing, { backgroundColor: "rgba(48,209,88,0.12)", borderColor: "rgba(48,209,88,0.3)" }]}>
-            <CheckCircle size={48} color={C.success} strokeWidth={1.5} />
-          </View>
-          <Text style={[styles.successTitle, { color: C.text }]}>Request Sent!</Text>
-          <Text style={[styles.successSubtitle, { color: C.textSecondary }]}>
-            {"Kyle will review your request and reach out within 48 hours to confirm your appointment."}
-          </Text>
-          <AnimBtn
-            onPress={handleClose}
-            style={[styles.successBtn, { backgroundColor: C.primary }]}
-          >
-            <Text style={[styles.successBtnText, { color: "#0A0A0A" }]}>Done</Text>
-          </AnimBtn>
-        </Animated.View>
-      </View>
-      </ImageBackground>
-    );
-  }
+  const dateDisplay = preferredDate
+    ? preferredDate.toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "long", day: "numeric" })
+    : "Select a date";
 
-  // ── Form ───────────────────────────────────────────────────────────────────
   return (
-    <ImageBackground source={BG} style={{ flex: 1 }} resizeMode="cover">
-    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)' }}>
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <Stack.Screen
         options={{
           title: "Book Appointment",
-          headerStyle: { backgroundColor: C.surface },
-          headerTitleStyle: { color: C.text, fontWeight: "700" },
-          headerTintColor: C.primary,
+          headerStyle: { backgroundColor: SURFACE },
+          headerTitleStyle: { color: TEXT, fontWeight: "700" },
+          headerTintColor: BLUE,
           headerLeft: () => (
             <TouchableOpacity
-              onPress={handleClose}
+              onPress={() => { console.log("[BookStep1] Close pressed"); router.back(); }}
               hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-              accessibilityLabel="Close booking form"
-              accessibilityRole="button"
               style={{ padding: 4 }}
             >
-              <X size={22} color={C.primary} />
+              <X size={22} color={BLUE} />
             </TouchableOpacity>
           ),
         }}
       />
-
       <ScrollView
-        contentContainerStyle={[
-          styles.scrollContent,
-          { paddingBottom: insets.bottom + 40 },
-        ]}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 40 }]}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        {/* Header */}
         <View style={styles.formHeader}>
           <Image source={logoImage} style={styles.headerLogo} contentFit="contain" />
-          <Text style={[styles.formTitle, { color: C.text }]}>Book a Session</Text>
-          <Text style={[styles.formSubtitle, { color: C.textSecondary }]}>
-            Fill in your details and Kyle will get back to you within 48 hours.
+          <Text style={[styles.formTitle, { color: TEXT }]}>Book a Session</Text>
+          <Text style={[styles.formSubtitle, { color: TEXT_SEC }]}>
+            Fill in your details below to request an appointment.
           </Text>
         </View>
 
-        {/* Submit error banner */}
         {!!submitError && (
           <View style={[styles.errorBanner, { backgroundColor: "rgba(255,69,58,0.1)", borderColor: "rgba(255,69,58,0.3)" }]}>
-            <AlertCircle size={16} color={C.danger} />
-            <Text style={[styles.errorBannerText, { color: C.danger }]}>{submitError}</Text>
+            <AlertCircle size={16} color={DANGER} />
+            <Text style={[styles.errorBannerText, { color: DANGER }]}>{submitError}</Text>
           </View>
         )}
 
-        {/* Contact info */}
-        <Text style={[styles.sectionLabel, { color: C.primary }]}>Contact Info</Text>
-
+        <Text style={[styles.sectionLabel, { color: BLUE }]}>Contact Info</Text>
         <FormInput
           label="Full Name"
           value={name}
@@ -329,7 +352,7 @@ export default function BookScreen() {
           placeholder="Your full name"
           autoCapitalize="words"
           error={errors.name}
-          icon={<User size={16} color={C.textTertiary} style={{ marginLeft: 14, marginRight: 8 }} />}
+          icon={<User size={16} color={TEXT_TERT} style={{ marginLeft: 14, marginRight: 8 }} />}
         />
         <FormInput
           label="Email Address"
@@ -339,7 +362,7 @@ export default function BookScreen() {
           keyboardType="email-address"
           autoCapitalize="none"
           error={errors.email}
-          icon={<Mail size={16} color={C.textTertiary} style={{ marginLeft: 14, marginRight: 8 }} />}
+          icon={<Mail size={16} color={TEXT_TERT} style={{ marginLeft: 14, marginRight: 8 }} />}
         />
         <FormInput
           label="Phone Number"
@@ -349,15 +372,13 @@ export default function BookScreen() {
           keyboardType="phone-pad"
           autoCapitalize="none"
           error={errors.phone}
-          icon={<Phone size={16} color={C.textTertiary} style={{ marginLeft: 14, marginRight: 8 }} />}
+          icon={<Phone size={16} color={TEXT_TERT} style={{ marginLeft: 14, marginRight: 8 }} />}
         />
 
-        {/* Tattoo details */}
-        <Text style={[styles.sectionLabel, { color: C.primary, marginTop: 8 }]}>Tattoo Details</Text>
+        <Text style={[styles.sectionLabel, { color: BLUE, marginTop: 8 }]}>Tattoo Details</Text>
 
-        {/* Style picker */}
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.label, { color: C.textSecondary }]}>Style</Text>
+          <Text style={[styles.label, { color: TEXT_SEC }]}>Style</Text>
           <View style={styles.styleGrid}>
             {TATTOO_STYLES.map((style) => {
               const isSelected = selectedStyle === style;
@@ -365,24 +386,19 @@ export default function BookScreen() {
                 <AnimBtn
                   key={style}
                   onPress={() => {
-                    console.log("[BookAppointment] Style selected:", style);
+                    console.log("[BookStep1] Style selected:", style);
                     setSelectedStyle(style);
                     setErrors((prev) => ({ ...prev, style: "" }));
                   }}
                   style={[
                     styles.styleChip,
                     {
-                      backgroundColor: isSelected ? C.primary : C.surfaceSecondary,
-                      borderColor: isSelected ? C.primary : C.inputBorder,
+                      backgroundColor: isSelected ? BLUE : SURFACE2,
+                      borderColor: isSelected ? BLUE : BORDER,
                     },
                   ]}
                 >
-                  <Text
-                    style={[
-                      styles.styleChipText,
-                      { color: isSelected ? "#0A0A0A" : C.textSecondary },
-                    ]}
-                  >
+                  <Text style={[styles.styleChipText, { color: isSelected ? "#fff" : TEXT_SEC }]}>
                     {style}
                   </Text>
                 </AnimBtn>
@@ -391,8 +407,8 @@ export default function BookScreen() {
           </View>
           {!!errors.style && (
             <View style={styles.errorRow}>
-              <AlertCircle size={12} color={C.danger} />
-              <Text style={[styles.errorText, { color: C.danger }]}>{errors.style}</Text>
+              <AlertCircle size={12} color={DANGER} />
+              <Text style={[styles.errorText, { color: DANGER }]}>{errors.style}</Text>
             </View>
           )}
         </View>
@@ -405,107 +421,331 @@ export default function BookScreen() {
           multiline
           numberOfLines={4}
           error={errors.description}
-          icon={<FileText size={16} color={C.textTertiary} style={{ marginLeft: 14, marginRight: 8, marginTop: 14 }} />}
+          icon={<FileText size={16} color={TEXT_TERT} style={{ marginLeft: 14, marginRight: 8, marginTop: 14 }} />}
         />
 
-        {/* Date picker field */}
+        {/* Date picker */}
         <View style={{ marginBottom: 16 }}>
-          <Text style={[styles.label, { color: C.textSecondary }]}>Preferred Date</Text>
+          <Text style={[styles.label, { color: TEXT_SEC }]}>Preferred Date</Text>
           <TouchableOpacity
             onPress={() => {
-              console.log("[BookAppointment] Date picker opened");
+              console.log("[BookStep1] Date picker opened");
               setShowDatePicker(true);
             }}
             accessibilityRole="button"
-            accessibilityLabel="Select preferred date"
           >
             <View
               style={[
                 styles.inputWrapper,
                 {
-                  backgroundColor: C.inputBg,
-                  borderColor: errors.date ? C.danger : C.inputBorder,
+                  backgroundColor: SURFACE2,
+                  borderColor: errors.date ? DANGER : BORDER,
                 },
               ]}
             >
               <View style={styles.inputIcon}>
-                <Calendar size={16} color={C.textTertiary} style={{ marginLeft: 14, marginRight: 8 }} />
+                <Calendar size={16} color={TEXT_TERT} style={{ marginLeft: 14, marginRight: 8 }} />
               </View>
               <Text
                 style={[
                   styles.input,
-                  {
-                    color: preferredDate ? C.text : C.textTertiary,
-                    paddingLeft: 0,
-                    height: 48,
-                    lineHeight: 48,
-                  },
+                  { color: preferredDate ? TEXT : TEXT_TERT, paddingLeft: 0, height: 48, lineHeight: 48 },
                 ]}
               >
-                {preferredDate
-                  ? preferredDate.toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "long", day: "numeric" })
-                  : "Select a date"}
+                {dateDisplay}
               </Text>
             </View>
           </TouchableOpacity>
+          {!!dateWarning && (
+            <View style={styles.errorRow}>
+              <AlertCircle size={12} color="#F5A623" />
+              <Text style={[styles.errorText, { color: "#F5A623" }]}>{dateWarning}</Text>
+            </View>
+          )}
           {!!errors.date && (
             <View style={styles.errorRow}>
-              <AlertCircle size={12} color={C.danger} />
-              <Text style={[styles.errorText, { color: C.danger }]}>{errors.date}</Text>
+              <AlertCircle size={12} color={DANGER} />
+              <Text style={[styles.errorText, { color: DANGER }]}>{errors.date}</Text>
             </View>
           )}
         </View>
 
         {showDatePicker && (
           <DateTimePicker
-            value={preferredDate ?? new Date()}
+            value={preferredDate ?? tomorrow}
             mode="date"
             display={Platform.OS === "ios" ? "inline" : "default"}
-            minimumDate={new Date()}
-            onChange={(_, date) => {
-              setShowDatePicker(Platform.OS === "ios" ? true : false);
-              if (date) {
-                console.log("[BookAppointment] Date selected:", date.toISOString());
-                setPreferredDate(date);
-                setErrors((prev) => ({ ...prev, date: "" }));
-                if (Platform.OS !== "ios") setShowDatePicker(false);
-              } else {
-                setShowDatePicker(false);
-              }
-            }}
+            minimumDate={tomorrow}
+            onChange={handleDateChange}
           />
         )}
         {showDatePicker && Platform.OS === "ios" && (
           <TouchableOpacity
             onPress={() => setShowDatePicker(false)}
-            style={[styles.submitBtn, { backgroundColor: C.surfaceSecondary, marginTop: 0, marginBottom: 16 }]}
+            style={[styles.submitBtn, { backgroundColor: SURFACE2, marginTop: 0, marginBottom: 16 }]}
           >
-            <Text style={[styles.submitBtnText, { color: C.primary }]}>Done</Text>
+            <Text style={[styles.submitBtnText, { color: BLUE }]}>Done</Text>
           </TouchableOpacity>
         )}
 
-        {/* Submit */}
         <AnimBtn
-          onPress={handleSubmit}
+          onPress={handleContinue}
           disabled={loading}
-          style={[
-            styles.submitBtn,
-            { backgroundColor: loading ? "rgba(201,169,110,0.5)" : C.primary },
-          ]}
+          style={[styles.submitBtn, { backgroundColor: loading ? "rgba(41,121,255,0.5)" : BLUE }]}
         >
           {loading ? (
-            <ActivityIndicator color="#0A0A0A" />
+            <ActivityIndicator color="#fff" />
           ) : (
-            <Text style={[styles.submitBtnText, { color: "#0A0A0A" }]}>Send Booking Request</Text>
+            <Text style={[styles.submitBtnText, { color: "#fff" }]}>Continue to Deposit →</Text>
           )}
         </AnimBtn>
 
-        <Text style={[styles.disclaimer, { color: C.textTertiary }]}>
-          By submitting, you agree that Kyle may contact you via email or phone to discuss your appointment.
+        <Text style={[styles.disclaimer, { color: TEXT_TERT }]}>
+          A $100 non-refundable deposit is required to secure your booking.
         </Text>
       </ScrollView>
     </KeyboardAvoidingView>
+  );
+}
+
+// ─── Step 2: Deposit Payment ──────────────────────────────────────────────────
+function Step2({
+  name,
+  date,
+  style,
+  bookingId,
+  onConfirmed,
+  onExpired,
+}: {
+  name: string;
+  date: Date;
+  style: string;
+  bookingId: string;
+  onConfirmed: () => void;
+  onExpired: () => void;
+}) {
+  const [secondsLeft, setSecondsLeft] = useState(DEPOSIT_SECONDS);
+  const [confirming, setConfirming] = useState(false);
+  const [confirmError, setConfirmError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSecondsLeft((s) => {
+        if (s <= 1) {
+          clearInterval(interval);
+          console.log("[BookStep2] Timer expired");
+          onExpired();
+          return 0;
+        }
+        return s - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [onExpired]);
+
+  const minutes = Math.floor(secondsLeft / 60);
+  const seconds = secondsLeft % 60;
+  const timerDisplay = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  const dateDisplay = date.toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric", year: "numeric" });
+
+  const handlePayDeposit = useCallback(() => {
+    console.log("[BookStep2] Pay deposit button pressed — opening Square link");
+    Linking.openURL(SQUARE_PAYMENT_URL);
+  }, []);
+
+  const handleIvePaid = useCallback(async () => {
+    console.log("[BookStep2] 'I've completed my payment' pressed — confirming booking", { bookingId });
+    setConfirmError(null);
+    setConfirming(true);
+    try {
+      const { error } = await supabase
+        .from("bookings")
+        .update({ status: "confirmed", deposit_paid: true })
+        .eq("id", bookingId);
+      if (error) {
+        console.error("[BookStep2] Supabase update error", error);
+        throw new Error(error.message ?? "Failed to confirm booking");
+      }
+      console.log("[BookStep2] Booking confirmed successfully");
+      onConfirmed();
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Something went wrong.";
+      console.error("[BookStep2] Confirm failed", message);
+      setConfirmError(message);
+    } finally {
+      setConfirming(false);
+    }
+  }, [bookingId, onConfirmed]);
+
+  return (
+    <ScrollView
+      contentContainerStyle={[styles.scrollContent, { paddingBottom: 60 }]}
+      showsVerticalScrollIndicator={false}
+    >
+      <Stack.Screen
+        options={{
+          title: "Deposit",
+          headerStyle: { backgroundColor: SURFACE },
+          headerTitleStyle: { color: TEXT, fontWeight: "700" },
+          headerTintColor: BLUE,
+          headerLeft: () => null,
+        }}
+      />
+
+      {/* Summary card */}
+      <View style={[styles.summaryCard, { backgroundColor: SURFACE2, borderColor: BORDER }]}>
+        <Text style={[styles.summaryTitle, { color: TEXT_SEC }]}>Booking Summary</Text>
+        <View style={styles.summaryRow}>
+          <Text style={[styles.summaryKey, { color: TEXT_SEC }]}>Name</Text>
+          <Text style={[styles.summaryVal, { color: TEXT }]}>{name}</Text>
+        </View>
+        <View style={styles.summaryRow}>
+          <Text style={[styles.summaryKey, { color: TEXT_SEC }]}>Date</Text>
+          <Text style={[styles.summaryVal, { color: TEXT }]}>{dateDisplay}</Text>
+        </View>
+        <View style={styles.summaryRow}>
+          <Text style={[styles.summaryKey, { color: TEXT_SEC }]}>Style</Text>
+          <Text style={[styles.summaryVal, { color: TEXT }]}>{style}</Text>
+        </View>
+      </View>
+
+      {/* Deposit info */}
+      <Text style={[styles.depositAmount, { color: TEXT }]}>$100 Non-Refundable Deposit Required</Text>
+      <Text style={[styles.depositExplain, { color: TEXT_SEC }]}>
+        Your appointment is held for 30 minutes. Complete your deposit now to secure your booking.
+      </Text>
+
+      {/* Countdown */}
+      <View style={[styles.timerBox, { backgroundColor: SURFACE2, borderColor: secondsLeft < 60 ? DANGER : BLUE }]}>
+        <Text style={[styles.timerLabel, { color: TEXT_SEC }]}>Time remaining</Text>
+        <Text style={[styles.timerValue, { color: secondsLeft < 60 ? DANGER : BLUE }]}>{timerDisplay}</Text>
+      </View>
+
+      {!!confirmError && (
+        <View style={[styles.errorBanner, { backgroundColor: "rgba(255,69,58,0.1)", borderColor: "rgba(255,69,58,0.3)", marginBottom: 16 }]}>
+          <AlertCircle size={16} color={DANGER} />
+          <Text style={[styles.errorBannerText, { color: DANGER }]}>{confirmError}</Text>
+        </View>
+      )}
+
+      {/* Pay button */}
+      <AnimBtn
+        onPress={handlePayDeposit}
+        style={[styles.submitBtn, { backgroundColor: BLUE }]}
+      >
+        <Text style={[styles.submitBtnText, { color: "#fff" }]}>Pay $100 Deposit</Text>
+      </AnimBtn>
+
+      {/* Confirm payment button */}
+      <AnimBtn
+        onPress={handleIvePaid}
+        disabled={confirming}
+        style={[styles.outlineBtn, { borderColor: BLUE }]}
+      >
+        {confirming ? (
+          <ActivityIndicator color={BLUE} />
+        ) : (
+          <Text style={[styles.outlineBtnText, { color: BLUE }]}>I've completed my payment</Text>
+        )}
+      </AnimBtn>
+    </ScrollView>
+  );
+}
+
+// ─── Step 3: Confirmation ─────────────────────────────────────────────────────
+function Step3({ name, date, email }: { name: string; date: Date; email: string }) {
+  const router = useRouter();
+  const fadeIn = useRef(new Animated.Value(0)).current;
+  const dateDisplay = date.toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric", year: "numeric" });
+
+  useEffect(() => {
+    Animated.timing(fadeIn, { toValue: 1, duration: 500, useNativeDriver: true }).start();
+  }, [fadeIn]);
+
+  const thankYouText = `Thank you ${name}! Your appointment on ${dateDisplay} is confirmed. Kyle will contact you at ${email} within 24 hours with further details.`;
+
+  return (
+    <View style={styles.successContainer}>
+      <Stack.Screen
+        options={{
+          title: "Confirmed",
+          headerStyle: { backgroundColor: SURFACE },
+          headerTitleStyle: { color: TEXT, fontWeight: "700" },
+          headerTintColor: BLUE,
+          headerLeft: () => null,
+        }}
+      />
+      <Animated.View style={[styles.successContent, { opacity: fadeIn }]}>
+        <View style={[styles.successIconRing, { backgroundColor: "rgba(48,209,88,0.12)", borderColor: "rgba(48,209,88,0.3)" }]}>
+          <CheckCircle size={48} color={SUCCESS} strokeWidth={1.5} />
+        </View>
+        <Text style={[styles.successTitle, { color: TEXT }]}>Booking Confirmed!</Text>
+        <Text style={[styles.successSubtitle, { color: TEXT_SEC }]}>{thankYouText}</Text>
+        <AnimBtn
+          onPress={() => {
+            console.log("[BookStep3] Done pressed");
+            router.back();
+          }}
+          style={[styles.submitBtn, { backgroundColor: BLUE, width: "100%" }]}
+        >
+          <Text style={[styles.submitBtnText, { color: "#fff" }]}>Done</Text>
+        </AnimBtn>
+      </Animated.View>
     </View>
+  );
+}
+
+// ─── Main Screen ──────────────────────────────────────────────────────────────
+export default function BookScreen() {
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [bookingData, setBookingData] = useState<{
+    name: string;
+    email: string;
+    phone: string;
+    style: string;
+    description: string;
+    date: Date;
+    bookingId: string;
+  } | null>(null);
+
+  const handleStep1Continue = useCallback(
+    (data: { name: string; email: string; phone: string; style: string; description: string; date: Date; bookingId: string }) => {
+      console.log("[Book] Advancing to Step 2 (deposit)");
+      setBookingData(data);
+      setStep(2);
+    },
+    []
+  );
+
+  const handleStep2Confirmed = useCallback(() => {
+    console.log("[Book] Advancing to Step 3 (confirmation)");
+    setStep(3);
+  }, []);
+
+  const handleExpired = useCallback(() => {
+    console.log("[Book] Deposit timer expired — returning to Step 1");
+    setStep(1);
+    setBookingData(null);
+  }, []);
+
+  return (
+    <ImageBackground source={BG} style={{ flex: 1 }} resizeMode="cover">
+      <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.72)" }}>
+        {step === 1 && <Step1 onContinue={handleStep1Continue} />}
+        {step === 2 && bookingData && (
+          <Step2
+            name={bookingData.name}
+            date={bookingData.date}
+            style={bookingData.style}
+            bookingId={bookingData.bookingId}
+            onConfirmed={handleStep2Confirmed}
+            onExpired={handleExpired}
+          />
+        )}
+        {step === 3 && bookingData && (
+          <Step3 name={bookingData.name} date={bookingData.date} email={bookingData.email} />
+        )}
+      </View>
     </ImageBackground>
   );
 }
@@ -551,7 +791,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 12,
     borderWidth: 1,
-    ...(Platform.OS === "ios" && { borderCurve: "continuous" as any }),
     overflow: "hidden",
   },
   inputIcon: {
@@ -608,7 +847,6 @@ const styles = StyleSheet.create({
   submitBtn: {
     height: 56,
     borderRadius: 14,
-    ...(Platform.OS === "ios" && { borderCurve: "continuous" as any }),
     justifyContent: "center",
     alignItems: "center",
     marginTop: 8,
@@ -619,10 +857,85 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: -0.2,
   },
+  outlineBtn: {
+    height: 48,
+    borderRadius: 14,
+    borderWidth: 1.5,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  outlineBtnText: {
+    fontSize: 15,
+    fontWeight: "600",
+  },
   disclaimer: {
     fontSize: 12,
     lineHeight: 18,
     textAlign: "center",
+  },
+  // Summary card
+  summaryCard: {
+    borderRadius: 14,
+    borderWidth: 1,
+    padding: 18,
+    marginBottom: 24,
+    marginTop: 8,
+  },
+  summaryTitle: {
+    fontSize: 11,
+    fontWeight: "700",
+    letterSpacing: 1.2,
+    textTransform: "uppercase",
+    marginBottom: 14,
+  },
+  summaryRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  summaryKey: {
+    fontSize: 14,
+  },
+  summaryVal: {
+    fontSize: 14,
+    fontWeight: "600",
+    flexShrink: 1,
+    textAlign: "right",
+    marginLeft: 12,
+  },
+  // Deposit
+  depositAmount: {
+    fontSize: 20,
+    fontWeight: "800",
+    textAlign: "center",
+    marginBottom: 10,
+    letterSpacing: -0.3,
+  },
+  depositExplain: {
+    fontSize: 15,
+    lineHeight: 22,
+    textAlign: "center",
+    marginBottom: 24,
+  },
+  timerBox: {
+    borderRadius: 14,
+    borderWidth: 2,
+    padding: 20,
+    alignItems: "center",
+    marginBottom: 28,
+  },
+  timerLabel: {
+    fontSize: 12,
+    fontWeight: "600",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    marginBottom: 6,
+  },
+  timerValue: {
+    fontSize: 48,
+    fontWeight: "800",
+    letterSpacing: -1,
   },
   // Success
   successContainer: {
@@ -657,18 +970,5 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     textAlign: "center",
     marginBottom: 40,
-  },
-  successBtn: {
-    height: 56,
-    borderRadius: 14,
-    ...(Platform.OS === "ios" && { borderCurve: "continuous" as any }),
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 48,
-    width: "100%",
-  },
-  successBtnText: {
-    fontSize: 17,
-    fontWeight: "700",
   },
 });

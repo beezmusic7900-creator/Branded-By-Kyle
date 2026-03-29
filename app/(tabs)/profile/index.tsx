@@ -6,9 +6,11 @@ import {
   StyleSheet,
   ImageBackground,
   ImageSourcePropType,
+  TouchableOpacity,
 } from 'react-native';
 import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import { User, Star, DollarSign, CheckCircle } from 'lucide-react-native';
 
 const BLUE = '#2979FF';
@@ -30,6 +32,7 @@ const aboutText2 = 'I believe every tattoo should be a masterpiece, which is why
 
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
   return (
     <ImageBackground source={resolveImageSource(bgImage)} style={styles.bg} resizeMode="cover">
@@ -87,6 +90,16 @@ export default function ProfileScreen() {
           <Text style={styles.cardText}>Deposit: $100 (non-refundable)</Text>
           <Text style={styles.cardItalic}>Deposit required to secure booking</Text>
         </View>
+        {/* Admin link — small, unobtrusive */}
+        <TouchableOpacity
+          onPress={() => {
+            console.log('[Profile] Admin link pressed');
+            router.push('/admin');
+          }}
+          style={styles.adminLink}
+        >
+          <Text style={styles.adminLinkText}>Admin</Text>
+        </TouchableOpacity>
       </ScrollView>
     </ImageBackground>
   );
@@ -189,5 +202,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: BLUE,
     fontWeight: '700',
+  },
+  adminLink: {
+    marginTop: 24,
+    marginBottom: 8,
+    alignSelf: 'center',
+    padding: 8,
+  },
+  adminLinkText: {
+    fontSize: 12,
+    color: '#444',
+    letterSpacing: 0.5,
   },
 });

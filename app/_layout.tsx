@@ -98,6 +98,8 @@ export default function RootLayout() {
                     headerShown: true,
                   }}
                 />
+                {/* Admin panel */}
+                <Stack.Screen name="admin/index" options={{ headerShown: false }} />
               </Stack>
             </GestureHandlerRootView>
           </WidgetProvider>
