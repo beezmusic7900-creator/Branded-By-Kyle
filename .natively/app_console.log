@@ -278,3 +278,26 @@ To reconnect:
 [2026-03-29T21:33:32.026Z] [iOS] [LOG] [InternalBytecode.js:1] [Admin] Auth check {"authenticated":false}
 [2026-03-29T21:33:55.340Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}
 [2026-03-29T21:33:55.360Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
+[2026-03-29T21:38:05.085Z] [iOS] [WARN] Require cycle: app/(tabs)/(home)/index.ios.tsx -> app/(tabs)/(home)/index.ios.tsx
+
+Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+[2026-03-29T21:38:05.110Z] [iOS] [ERROR] {}
+[2026-03-29T21:38:05.124Z] [iOS] [WARN] Route "./(tabs)/(home)/index.ios.tsx" is missing the required default export. Ensure a React component is exported as default.
+[2026-03-29T21:38:04.971Z] [iOS] [LOG] Running "main" with {"rootTag":21,"initialProps":{"exp":{"manifestString":"{\"runtimeVersion\":\"exposdk:54.0.0\",\"launchAsset\":{\"key\":\"bundle\",\"contentType\":\"application\\/javascript\",\"url\":\"https:\\/\\/c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\\/index.ts.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&unstable_transformProfile=hermes-stable\"},\"metadata\":{},\"extra\":{\"eas\":{},\"scopeKey\":\"@anonymous\\/branded-by-kyle-d0206bb4-e31e-4c8e-969e-4072ef3d72bd\",\"expoClient\":{\"extra\":{\"router\":{}},\"orientation\":\"portrait\",\"version\":\"1.0.0\",\"userInterfaceStyle\":\"automatic\",\"newArchEnabled\":true,\"ios\":{\"bundleIdentifier\":\"com.brandedbykyletattoo.app\",\"supportsTablet\":true},\"experiments\":{\"typedRoutes\":true},\"_internal\":{\"packageJsonPath\":\"\\/expo-project\\/package.json\",\"projectRoot\":\"\\/expo-project\",\"staticConfigPath\":\"\\/expo-project\\/app.json\",\"pluginHistory\":{\"expo-font\":{\"name\":\"expo-font\",\"version\":\"14.0.11\"},\"expo-splash-screen\":{\"name\":\"expo-splash-screen\",\"version\":\"31.0.13\"}},\"isDebug\":true,\"dynamicConfigPath\":{}},\"hostUri\":\"c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\",\"android\":{\"package\":\"com.brandedbykyletattoo.app\",\"adaptiveIcon\":{\"foregroundImage\":\".\\/assets\\/images\\/adaptive-icon.png\",\"backgroundColor\":\"#0A0A0A\"}},\"plugins\":[\"expo-router\",\"expo-font\",[\"expo-splash-screen\",{\"imageWidth\":200,\"resizeMode\":\"contain\",\"backgroundColor\":\"#0D1B2A\",\"image\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\"}]],\"scheme\":\"brandedbykyle\",\"slug\":\"branded-by-kyle\",\"icon\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\",\"splash\":{\"image\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\",\"resizeMode\":\"contain\",\"backgroundColor\":\"#0D1B2A\"},\"web\":{\"bundler\":\"metro\",\"output\":\"static\"},\"platforms\":[\"ios\",\"android\",\"web\"],\"sdkVersion\":\"54.0.0\",\"name\":\"Branded By Kyle\"},\"expoGo\":{\"developer\":{\"projectRoot\":\"\\/expo-project\",\"tool\":\"expo-cli\"},\"mainModuleName\":\"index.ts\",\"packagerOpts\":{\"dev\":true},\"debuggerHost\":\"c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\"}},\"isVerified\":true,\"assets\":[],\"createdAt\":\"2026-03-29T21:37:54.012Z\",\"id\":\"c963c83c-0ea8-4126-85ec-262d95f611c1\"}","shell":false,"initialUri":"exp://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev","appOwnership":"expo"}},"fabric":true}
+[2026-03-29T21:38:16.539Z] [iOS] [LOG] [TabBar] Tab pressed: Profile
+[2026-03-29T21:38:19.294Z] [iOS] [LOG] [Profile] Admin link pressed
+[2026-03-29T21:38:19.347Z] [iOS] [LOG] [InternalBytecode.js:1] [Admin] Auth check {"authenticated":false}
+[2026-03-29T21:38:43.705Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
+[2026-03-29T21:38:43.696Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}
+[2026-03-29T21:39:10.728Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
+[2026-03-29T21:39:10.722Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}
+[2026-03-29T21:39:11.626Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
+[2026-03-29T21:39:11.620Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}
+[2026-03-29T21:39:20.614Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}
+[2026-03-29T21:39:20.621Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
+[2026-03-29T21:39:21.715Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}
+[2026-03-29T21:39:21.996Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}
+[2026-03-29T21:39:21.722Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
+[2026-03-29T21:39:22.003Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
+[2026-03-29T21:39:45.068Z] [iOS] [WARN] [InternalBytecode.js:1] [AdminLogin] Invalid credentials
+[2026-03-29T21:39:45.061Z] [iOS] [LOG] [InternalBytecode.js:1] [AdminLogin] Login pressed {"email":"brandedbykyle@gmail.com"}

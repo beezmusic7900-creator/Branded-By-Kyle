@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -13,7 +13,6 @@ import {
   ImageBackground,
 } from "react-native";
 import { Image } from "expo-image";
-import * as SecureStore from "expo-secure-store";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -36,7 +35,9 @@ const BORDER = "rgba(255,255,255,0.08)";
 
 const ADMIN_EMAIL = "brandedbykyle@gmail.com";
 const ADMIN_PASSWORD = "Kyleesdad2016!";
-const ADMIN_TOKEN_KEY = "admin_auth_token";
+
+// In-memory session — works in Expo Go without native module issues
+let adminSessionActive = false;
 
 type TabName = "bookings" | "blackouts";
 
@@ -90,7 +91,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
     setLoading(true);
     try {
       if (email.trim().toLowerCase() === ADMIN_EMAIL.toLowerCase() && password.trim() === ADMIN_PASSWORD) {
-        await SecureStore.setItemAsync(ADMIN_TOKEN_KEY, "authenticated");
+        adminSessionActive = true;
         console.log("[AdminLogin] Login successful");
         onLogin();
       } else {
@@ -488,34 +489,18 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
 
 // ─── Main Admin Screen ────────────────────────────────────────────────────────
 export default function AdminScreen() {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    async function checkAuth() {
-      const token = await SecureStore.getItemAsync(ADMIN_TOKEN_KEY);
-      console.log("[Admin] Auth check", { authenticated: !!token });
-      setIsAuthenticated(!!token);
-    }
-    checkAuth();
-  }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(adminSessionActive);
 
   const handleLogin = useCallback(() => {
+    adminSessionActive = true;
     setIsAuthenticated(true);
   }, []);
 
-  const handleLogout = useCallback(async () => {
+  const handleLogout = useCallback(() => {
     console.log("[Admin] Logging out");
-    await SecureStore.deleteItemAsync(ADMIN_TOKEN_KEY);
+    adminSessionActive = false;
     setIsAuthenticated(false);
   }, []);
-
-  if (isAuthenticated === null) {
-    return (
-      <View style={{ flex: 1, backgroundColor: BG_COLOR, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator color={BLUE} />
-      </View>
-    );
-  }
 
   if (!isAuthenticated) {
     return <LoginScreen onLogin={handleLogin} />;
