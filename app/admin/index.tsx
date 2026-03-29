@@ -13,7 +13,7 @@ import {
   ImageBackground,
 } from "react-native";
 import { Image } from "expo-image";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SecureStore from "expo-secure-store";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -90,7 +90,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
     setLoading(true);
     try {
       if (email.trim().toLowerCase() === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-        await AsyncStorage.setItem(ADMIN_TOKEN_KEY, "authenticated");
+        await SecureStore.setItemAsync(ADMIN_TOKEN_KEY, "authenticated");
         console.log("[AdminLogin] Login successful");
         onLogin();
       } else {
@@ -492,7 +492,7 @@ export default function AdminScreen() {
 
   useEffect(() => {
     async function checkAuth() {
-      const token = await AsyncStorage.getItem(ADMIN_TOKEN_KEY);
+      const token = await SecureStore.getItemAsync(ADMIN_TOKEN_KEY);
       console.log("[Admin] Auth check", { authenticated: !!token });
       setIsAuthenticated(!!token);
     }
@@ -505,7 +505,7 @@ export default function AdminScreen() {
 
   const handleLogout = useCallback(async () => {
     console.log("[Admin] Logging out");
-    await AsyncStorage.removeItem(ADMIN_TOKEN_KEY);
+    await SecureStore.deleteItemAsync(ADMIN_TOKEN_KEY);
     setIsAuthenticated(false);
   }, []);
 
