@@ -34,8 +34,8 @@ const SUCCESS = "#30D158";
 const WARNING = "#F5A623";
 const BORDER = "rgba(255,255,255,0.08)";
 
-const ADMIN_EMAIL = "admin@brandedbykyletattoo.com";
-const ADMIN_PASSWORD = "BrandedByKyle2024!";
+const ADMIN_EMAIL = "brandedbykyle@gmail.com";
+const ADMIN_PASSWORD = "Kyleesdad2016!";
 const ADMIN_TOKEN_KEY = "admin_auth_token";
 
 type TabName = "bookings" | "blackouts";

@@ -567,6 +567,42 @@ function Step2({
         throw new Error(error.message ?? "Failed to confirm booking");
       }
       console.log("[BookStep2] Booking confirmed successfully");
+
+      // Send confirmation email
+      try {
+        const { data: bookingData } = await supabase
+          .from('bookings')
+          .select('name, email, phone, tattoo_style, description, preferred_date')
+          .eq('id', bookingId)
+          .single();
+
+        if (bookingData) {
+          await fetch(
+            'https://dxsinzpjaxjurbvstghq.supabase.co/functions/v1/send-booking-confirmation',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'apikey': process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '',
+              },
+              body: JSON.stringify({
+                name: bookingData.name,
+                email: bookingData.email,
+                phone: bookingData.phone,
+                tattoo_style: bookingData.tattoo_style,
+                description: bookingData.description,
+                preferred_date: bookingData.preferred_date,
+                booking_id: bookingId,
+              }),
+            }
+          );
+          console.log('[BookStep2] Confirmation email sent');
+        }
+      } catch (emailErr) {
+        // Email failure should not block the confirmation flow
+        console.warn('[BookStep2] Email send failed (non-fatal):', emailErr);
+      }
+
       onConfirmed();
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Something went wrong.";
