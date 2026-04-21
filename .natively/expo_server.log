@@ -30998,3 +30998,2185 @@ To reconnect:
 2026-03-29T21:45:50.580Z expo:start:server:middleware:serveStatic Maybe serve static: /
 2026-03-29T21:45:52.591Z expo:start:server:middleware:serveStatic Maybe serve static: /
 2026-03-29T21:45:54.603Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:00.064Z expo:env Loaded environment variables from: /expo-project/.env
+2026-04-21T17:08:00.065Z expo:env /expo-project/.env.development does not exist, skipping this env file
+2026-04-21T17:08:00.065Z expo:env /expo-project/.env.local does not exist, skipping this env file
+2026-04-21T17:08:00.065Z expo:env /expo-project/.env.development.local does not exist, skipping this env file
+env: load .env
+env: export EXPO_PUBLIC_SUPABASE_URL EXPO_PUBLIC_SUPABASE_ANON_KEY
+Starting project at /expo-project
+2026-04-21T17:08:00.187Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+2026-04-21T17:08:00.217Z expo:utils:fileNotifier Observing /expo-project/babel.config.js
+2026-04-21T17:08:00.222Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+2026-04-21T17:08:00.340Z expo:start:server:devServer Stopping dev server (bundler: metro)
+2026-04-21T17:08:00.340Z expo:start:server:devServer Stopped dev server (bundler: metro)
+2026-04-21T17:08:00.365Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+2026-04-21T17:08:00.372Z expo:start:server:metro:router Using app as the root directory for Expo Router.
+2026-04-21T17:08:00.689Z expo:metro:config react-native-reanimated package.json: /expo-project/node_modules/.pnpm/react-native-reanimated@4.1.6_@babel+core@7.29.0_react-native-worklets@0.5.1_@babel+cor_33f57d1342a20014f51d3f2af91a6cd5/node_modules/react-native-reanimated/package.json
+2026-04-21T17:08:00.690Z expo:metro:config react-native-worklets package.json: /expo-project/node_modules/.pnpm/react-native-worklets@0.5.1_@babel+core@7.29.0_react-native@0.81.4_@babel+core@7.29.0_@_2fc75f896d132fd8e058bc21874fc962/node_modules/react-native-worklets/package.json
+
+2026-04-21T17:08:00.696Z expo:metro:config react-native-reanimated package.json: /expo-project/node_modules/.pnpm/react-native-reanimated@4.1.6_@babel+core@7.29.0_react-native-worklets@0.5.1_@babel+cor_33f57d1342a20014f51d3f2af91a6cd5/node_modules/react-native-reanimated/package.json
+2026-04-21T17:08:00.696Z expo:metro:config react-native-worklets package.json: /expo-project/node_modules/.pnpm/react-native-worklets@0.5.1_@babel+core@7.29.0_react-native@0.81.4_@babel+core@7.29.0_@_2fc75f896d132fd8e058bc21874fc962/node_modules/react-native-worklets/package.json
+Expo Metro config:
+- Version: 54.0.14
+- Extensions: ts, tsx, mjs, js, jsx, json, cjs, scss, sass, css
+- React Native: /expo-project/node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native
+- Watch Folders: 
+- Node Module Paths: 
+- Sass: null
+- Reanimated: 4.1.6
+- Worklets: 0.5.1
+- Babel Runtime: null
+
+
+Expo Metro config:
+- Version: 54.0.14
+- Extensions: ts, tsx, mjs, js, jsx, json, cjs, scss, sass, css
+- React Native: /expo-project/node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native
+- Watch Folders: 
+- Node Module Paths: 
+- Sass: null
+- Reanimated: 4.1.6
+- Worklets: 0.5.1
+- Babel Runtime: null
+
+2026-04-21T17:08:00.898Z expo:metro:withMetroResolvers Appending 8 custom resolvers to Metro config. (has custom resolver: false)
+2026-04-21T17:08:00.913Z expo:start:server:urlCreator URL: https://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+Starting Metro Bundler
+2026-04-21T17:08:01.225Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+2026-04-21T17:08:01.227Z expo:start:server:middleware:serveStatic Serving static files from: /expo-project/public
+2026-04-21T17:08:01.236Z expo:start:server:urlCreator URL: exp://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-04-21T17:08:01.240Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+2026-04-21T17:08:01.254Z expo:start:server:developmentSession Development session will not ping because the user is not authenticated and there are no devices.
+2026-04-21T17:08:01.254Z expo:utils:fileNotifier Observing /expo-project/metro.config.js
+2026-04-21T17:08:01.255Z expo:start:server:metro:waitForTypescript Watching file changes: [
+  '/expo-project/.env.development.local',
+  '/expo-project/.env.local',
+  '/expo-project/.env.development',
+  '/expo-project/.env'
+]
+2026-04-21T17:08:01.256Z expo:doctor:typescriptSupport Ensuring TypeScript support is setup
+2026-04-21T17:08:01.261Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+2026-04-21T17:08:01.264Z expo:doctor:dependencies:getMissingPackages Required package "typescript" found (no version constraint specified).
+2026-04-21T17:08:01.264Z expo:doctor:dependencies:getMissingPackages Required package "@types/react" found (no version constraint specified).
+2026-04-21T17:08:01.269Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+2026-04-21T17:08:01.271Z expo:typed-routes Ensuring typed routes side-effects are setup (experiments.typedRoutes: true, typesDirectory: /expo-project/.expo/types)
+2026-04-21T17:08:01.278Z expo:start:server:metro:router Using app as the root directory for Expo Router.
+2026-04-21T17:08:01.284Z expo:start:server:metro:metroWatchTypeScriptFiles Waiting for TypeScript files to be added to the project...
+2026-04-21T17:08:01.300Z expo:doctor:dependencies:bundledNativeModules Fetching bundled native modules from the server...
+2026-04-21T17:08:01.524Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:01.568Z expo:doctor:dependencies:validate Checking dependencies for 54.0.0: {
+  '@babel/plugin-proposal-export-namespace-from': '^7.18.9',
+  '@babel/runtime': '^7.26.9',
+  '@bacons/apple-targets': '^3.0.2',
+  '@better-auth/expo': '^1.3.34',
+  '@expo/metro-runtime': '~6.1.1',
+  '@expo/vector-icons': '^15.0.2',
+  '@react-native-async-storage/async-storage': '^3.0.2',
+  '@react-native-community/datetimepicker': '^8.3.0',
+  '@react-navigation/drawer': '^7.1.1',
+  '@react-navigation/native': '^7.0.14',
+  '@react-navigation/native-stack': '^7.2.0',
+  '@supabase/supabase-js': '^2.100.0',
+  '@types/difflib': '^0.2.7',
+  'better-auth': '^1.3.34',
+  difflib: '^0.2.4',
+  eas: '^0.1.0',
+  'eslint-import-resolver-typescript': '^4.4.4',
+  expo: '~54.0.1',
+  'expo-blur': '^15.0.6',
+  'expo-constants': '~18.0.8',
+  'expo-font': '^14.0.7',
+  'expo-glass-effect': '^0.1.1',
+  'expo-haptics': '^15.0.6',
+  'expo-image': '~3.0.11',
+  'expo-image-picker': '^17.0.7',
+  'expo-linear-gradient': '^15.0.6',
+  'expo-linking': '^8.0.7',
+  'expo-network': '^8.0.7',
+  'expo-router': '~6.0.23',
+  'expo-secure-store': '^15.0.7',
+  'expo-splash-screen': '^31.0.8',
+  'expo-status-bar': '~3.0.7',
+  'expo-symbols': '^1.0.6',
+  'expo-system-ui': '^6.0.7',
+  'expo-web-browser': '^15.0.6',
+  leaflet: '^1.9.4',
+  'lucide-react-native': '^0.511.0',
+  react: '19.1.0',
+  'react-dom': '19.1.0',
+  'react-leaflet': '^4.2.1',
+  'react-native': '0.81.4',
+  'react-native-css-interop': '^0.1.22',
+  'react-native-edge-to-edge': '^1.8.1',
+  'react-native-gesture-handler': '^2.24.0',
+  'react-native-reanimated': '~4.1.0',
+  'react-native-safe-area-context': '^5.4.0',
+  'react-native-screens': '~4.16.0',
+  'react-native-svg': '^15.11.2',
+  'react-native-url-polyfill': '^2.0.0',
+  'react-native-web': '~0.21.1',
+  'react-native-webview': '^13.15.0',
+  'react-native-worklets': '0.5.1',
+  'react-router-dom': '^7.1.3',
+  'workbox-cli': '^7.3.0',
+  'workbox-precaching': '^7.3.0',
+  'workbox-webpack-plugin': '^7.3.0',
+  '@babel/core': '^7.20.0',
+  '@eslint/js': '^9.19.0',
+  '@types/leaflet': '^1.9.0',
+  '@types/react': '~19.1.12',
+  '@typescript-eslint/eslint-plugin': '^6.21.0',
+  '@typescript-eslint/parser': '^6.21.0',
+  'babel-plugin-module-resolver': '^5.0.2',
+  eslint: '^8.57.0',
+  'eslint-config-expo': '~10.0.0',
+  'eslint-plugin-import': '^2.31.0',
+  'eslint-plugin-react': '^7.37.4',
+  globals: '^15.14.0',
+  typescript: '^5.9.3',
+  'webpack-cli': '^6.0.1'
+}
+2026-04-21T17:08:01.568Z expo:doctor:dependencies:validate Comparing known versions: [
+  '@expo/metro-runtime',
+  '@expo/vector-icons',
+  '@react-native-async-storage/async-storage',
+  '@react-native-community/datetimepicker',
+  'expo',
+  'expo-blur',
+  'expo-constants',
+  'expo-font',
+  'expo-glass-effect',
+  'expo-haptics',
+  'expo-image',
+  'expo-image-picker',
+  'expo-linear-gradient',
+  'expo-linking',
+  'expo-network',
+  'expo-router',
+  'expo-secure-store',
+  'expo-splash-screen',
+  'expo-status-bar',
+  'expo-symbols',
+  'expo-system-ui',
+  'expo-web-browser',
+  'react',
+  'react-dom',
+  'react-native',
+  'react-native-gesture-handler',
+  'react-native-reanimated',
+  'react-native-safe-area-context',
+  'react-native-screens',
+  'react-native-svg',
+  'react-native-web',
+  'react-native-webview',
+  'react-native-worklets',
+  '@babel/core',
+  '@types/react',
+  'eslint-config-expo',
+  'typescript'
+]
+2026-04-21T17:08:01.568Z expo:doctor:dependencies:validate Skipping packages that cannot be versioned automatically: [
+  '@babel/plugin-proposal-export-namespace-from',
+  '@babel/runtime',
+  '@bacons/apple-targets',
+  '@better-auth/expo',
+  '@react-navigation/drawer',
+  '@react-navigation/native',
+  '@react-navigation/native-stack',
+  '@supabase/supabase-js',
+  '@types/difflib',
+  'better-auth',
+  'difflib',
+  'eas',
+  'eslint-import-resolver-typescript',
+  'leaflet',
+  'lucide-react-native',
+  'react-leaflet',
+  'react-native-css-interop',
+  'react-native-edge-to-edge',
+  'react-native-url-polyfill',
+  'react-router-dom',
+  'workbox-cli',
+  'workbox-precaching',
+  'workbox-webpack-plugin',
+  '@eslint/js',
+  '@types/leaflet',
+  '@typescript-eslint/eslint-plugin',
+  '@typescript-eslint/parser',
+  'babel-plugin-module-resolver',
+  'eslint',
+  'eslint-plugin-import',
+  'eslint-plugin-react',
+  'globals',
+  'webpack-cli'
+]
+2026-04-21T17:08:01.581Z expo:doctor:dependencies:validate Package versions: {
+  '@expo/metro-runtime': '6.1.2',
+  '@expo/vector-icons': '15.1.1',
+  '@react-native-async-storage/async-storage': '3.0.2',
+  '@react-native-community/datetimepicker': '8.6.0',
+  expo: '54.0.33',
+  'expo-blur': '15.0.8',
+  'expo-constants': '18.0.13',
+  'expo-font': '14.0.11',
+  'expo-glass-effect': '0.1.9',
+  'expo-haptics': '15.0.8',
+  'expo-image': '3.0.11',
+  'expo-image-picker': '17.0.10',
+  'expo-linear-gradient': '15.0.8',
+  'expo-linking': '8.0.11',
+  'expo-network': '8.0.8',
+  'expo-router': '6.0.23',
+  'expo-secure-store': '15.0.8',
+  'expo-splash-screen': '31.0.13',
+  'expo-status-bar': '3.0.9',
+  'expo-symbols': '1.0.8',
+  'expo-system-ui': '6.0.9',
+  'expo-web-browser': '15.0.10',
+  react: '19.1.0',
+  'react-dom': '19.1.0',
+  'react-native': '0.81.4',
+  'react-native-gesture-handler': '2.30.0',
+  'react-native-reanimated': '4.1.6',
+  'react-native-safe-area-context': '5.7.0',
+  'react-native-screens': '4.16.0',
+  'react-native-svg': '15.15.3',
+  'react-native-web': '0.21.2',
+  'react-native-webview': '13.16.1',
+  'react-native-worklets': '0.5.1',
+  '@babel/core': '7.29.0',
+  '@types/react': '19.1.17',
+  'eslint-config-expo': '10.0.0',
+  typescript: '5.9.3'
+}
+2026-04-21T17:08:01.585Z expo:doctor:dependencies:validate Incorrect dependencies: [
+  {
+    packageName: '@react-native-async-storage/async-storage',
+    packageType: 'dependencies',
+    expectedVersionOrRange: '2.2.0',
+    actualVersion: '3.0.2'
+  },
+  {
+    packageName: '@react-native-community/datetimepicker',
+    packageType: 'dependencies',
+    expectedVersionOrRange: '8.4.4',
+    actualVersion: '8.6.0'
+  },
+  {
+    packageName: 'react-native',
+    packageType: 'dependencies',
+    expectedVersionOrRange: '0.81.5',
+    actualVersion: '0.81.4'
+  },
+  {
+    packageName: 'react-native-gesture-handler',
+    packageType: 'dependencies',
+    expectedVersionOrRange: '~2.28.0',
+    actualVersion: '2.30.0'
+  },
+  {
+    packageName: 'react-native-safe-area-context',
+    packageType: 'dependencies',
+    expectedVersionOrRange: '~5.6.0',
+    actualVersion: '5.7.0'
+  },
+  {
+    packageName: 'react-native-svg',
+    packageType: 'dependencies',
+    expectedVersionOrRange: '15.12.1',
+    actualVersion: '15.15.3'
+  },
+  {
+    packageName: 'react-native-webview',
+    packageType: 'dependencies',
+    expectedVersionOrRange: '13.15.0',
+    actualVersion: '13.16.1'
+  }
+]
+The following packages should be updated for best compatibility with the installed expo version:
+  @react-native-async-storage/async-storage@3.0.2 - expected version: 2.2.0
+  @react-native-community/datetimepicker@8.6.0 - expected version: 8.4.4
+  react-native@0.81.4 - expected version: 0.81.5
+  react-native-gesture-handler@2.30.0 - expected version: ~2.28.0
+  react-native-safe-area-context@5.7.0 - expected version: ~5.6.0
+  react-native-svg@15.15.3 - expected version: 15.12.1
+  react-native-webview@13.16.1 - expected version: 13.15.0
+Your project may not work correctly until you install the expected versions of the packages.
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+2026-04-21T17:08:01.749Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:01.859Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:02.514Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:02.515Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:03.877Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:05.926Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:09.791Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:15.334Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:17.802Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:19.815Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:21.830Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:23.842Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:25.853Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:27.867Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:29.882Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:31.909Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:33.957Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:36.010Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:38.024Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:40.045Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:42.057Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:44.074Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:46.097Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:48.111Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:50.142Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:50.435Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:52.162Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:54.180Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:56.200Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:08:58.223Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:00.247Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:02.263Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:04.286Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:06.317Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:08.329Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:10.341Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:12.365Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:13.837Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+2026-04-21T17:09:13.840Z expo:start:server:middleware:manifest Resolved entry point: index.ts (project root: /expo-project)
+2026-04-21T17:09:13.840Z expo:start:server:urlCreator URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-04-21T17:09:13.840Z expo:start:server:urlCreator URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-04-21T17:09:13.841Z expo:start:server:metro:router Using app as the root directory for Expo Router.
+2026-04-21T17:09:13.841Z expo:start:server:urlCreator URL: https://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+Unable to resolve asset "./assets/images/adaptive-icon.png" from "android.adaptiveIcon.foregroundImage" in your app.json or app.config.js
+2026-04-21T17:09:13.937Z expo:start:server:middleware:resolveRuntimeVersion Using expo-updates runtimeversion:resolve CLI for runtime version resolution
+2026-04-21T17:09:13.943Z expo:codesigning WARN: Expo Application Services (EAS) is not configured for your project. Configuring EAS enables a more secure development experience amongst many other benefits. Learn more: https://docs.expo.dev/eas/
+[METRO] Request: GET /index.ts.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&unstable_transformProfile=hermes-stable
+2026-04-21T17:09:14.326Z expo:start:server:metro:multi-platform Enabling alias: react-native-vector-icons -> @expo/vector-icons
+iOS ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+2026-04-21T17:09:14.472Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-04-21T17:09:15.125Z expo:babel:exports Found assignment to module.exports or exports at 32
+| 2026-04-21T17:09:15.903Z expo:babel:exports Found assignment to module.exports or exports at 49
+| 2026-04-21T17:09:16.156Z expo:babel:exports Found assignment to module.exports or exports at 8
+2026-04-21T17:09:16.184Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-jsx-dev-runtime.production.js
+2026-04-21T17:09:16.189Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react.production.js
+| 2026-04-21T17:09:16.159Z expo:babel:exports Found assignment to module.exports or exports at 13
+| 2026-04-21T17:09:16.160Z expo:babel:exports Found assignment to module.exports or exports at 26
+| 2026-04-21T17:09:16.177Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:16.180Z expo:babel:exports Found assignment to module.exports or exports at 13
+| 2026-04-21T17:09:16.181Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:16.182Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:16.186Z expo:babel:exports Found assignment to module.exports or exports at 14
+| 2026-04-21T17:09:16.186Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:16.228Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-04-21T17:09:16.229Z expo:babel:exports Found assignment to module.exports or exports at 51
+| 2026-04-21T17:09:16.324Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-04-21T17:09:16.385Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:16.389Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-04-21T17:09:16.390Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-04-21T17:09:16.390Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:16.391Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-04-21T17:09:16.411Z expo:babel:exports Found assignment to module.exports or exports at 1
+| 2026-04-21T17:09:16.413Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:16.421Z expo:babel:exports Found assignment to module.exports or exports at 325
+| 2026-04-21T17:09:16.422Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:16.422Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:09:16.423Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:09:16.427Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:09:16.481Z expo:babel:exports Found assignment to module.exports or exports at 739
+2026-04-21T17:09:16.589Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-04-21T17:09:16.592Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-04-21T17:09:16.593Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-04-21T17:09:16.601Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:16.701Z expo:babel:exports Found assignment to module.exports or exports at 3
+2026-04-21T17:09:16.706Z expo:start:server:metro:multi-platform Skipping production module: ../implementations/ReactNativeRenderer-prod
+2026-04-21T17:09:16.709Z expo:start:server:metro:multi-platform Skipping production module: ../implementations/ReactFabric-prod
+| 2026-04-21T17:09:16.706Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:16.706Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:16.719Z expo:babel:exports Found assignment to module.exports or exports at 55
+| 2026-04-21T17:09:16.740Z expo:babel:exports Found assignment to module.exports or exports at 484
+| 2026-04-21T17:09:16.751Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:16.757Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:16.769Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:16.773Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-04-21T17:09:16.773Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:16.776Z expo:babel:exports Found assignment to module.exports or exports at 90
+| 2026-04-21T17:09:16.804Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:16.812Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/_ctx.ios.js /expo-project/app ../../../../../app
+| 2026-04-21T17:09:16.824Z expo:babel:exports Found assignment to module.exports or exports at 129
+| 2026-04-21T17:09:16.824Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:16.837Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:09:16.839Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:16.881Z expo:babel:exports Found assignment to module.exports or exports at 1217
+| 2026-04-21T17:09:16.905Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:16.917Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:16.925Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:16.958Z expo:babel:exports Found assignment to module.exports or exports at 140
+| 2026-04-21T17:09:16.992Z expo:babel:exports Found assignment to module.exports or exports at 362
+| 2026-04-21T17:09:17.000Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.000Z expo:babel:exports Found assignment to module.exports or exports at 518
+| 2026-04-21T17:09:17.001Z expo:babel:exports Found assignment to module.exports or exports at 33
+| 2026-04-21T17:09:17.008Z expo:babel:exports Found assignment to module.exports or exports at 460
+| 2026-04-21T17:09:17.014Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.030Z expo:babel:exports Found assignment to module.exports or exports at 19
+| 2026-04-21T17:09:17.052Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.059Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.062Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.064Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:17.065Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:17.065Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.067Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.071Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.072Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.076Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-04-21T17:09:17.087Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.087Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/onboard/Tutorial.js /expo-project/app ../../../../../../../app
+| 2026-04-21T17:09:17.088Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:09:17.089Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:09:17.093Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/onboard/Tutorial.js /expo-project/app ../../../../../../../app
+| 2026-04-21T17:09:17.094Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-04-21T17:09:17.110Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:09:17.115Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-04-21T17:09:17.129Z expo:babel:exports Found assignment to module.exports or exports at 443
+| 2026-04-21T17:09:17.184Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.184Z expo:babel:exports Found assignment to module.exports or exports at 144
+| 2026-04-21T17:09:17.191Z expo:babel:exports Found assignment to module.exports or exports at 89
+| 2026-04-21T17:09:17.269Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-04-21T17:09:17.278Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.279Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.289Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.290Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.295Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.295Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.295Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.303Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:17.308Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.311Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:17.318Z expo:babel:exports Found assignment to module.exports or exports at 160
+| 2026-04-21T17:09:17.354Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.361Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.366Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.368Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-04-21T17:09:17.373Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:17.376Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:17.378Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:17.381Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:17.382Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.384Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.386Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.395Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.397Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.398Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:17.399Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.400Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.403Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.413Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.416Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-04-21T17:09:17.416Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.418Z expo:babel:exports Found assignment to module.exports or exports at 39
+| 2026-04-21T17:09:17.421Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+| 2026-04-21T17:09:17.423Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.423Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.427Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:17.430Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.431Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.440Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.465Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:09:17.650Z expo:babel:exports Found assignment to module.exports or exports at 17
+| 2026-04-21T17:09:17.676Z expo:babel:exports Found assignment to module.exports or exports at 16925
+| 2026-04-21T17:09:17.696Z expo:babel:exports Found assignment to module.exports or exports at 16643
+| 2026-04-21T17:09:17.761Z expo:babel:exports Found assignment to module.exports or exports at 5
+2026-04-21T17:09:17.770Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-is.production.min.js
+| 2026-04-21T17:09:17.765Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:17.766Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:17.792Z expo:babel:exports Found assignment to module.exports or exports at 182
+| 2026-04-21T17:09:17.799Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-04-21T17:09:17.805Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-jsx-runtime.production.js
+iOS ./index.ts ▓▓▓▓▓▓▓▓▓▓▓░░░░░ 71.4% (715/927)
+| 2026-04-21T17:09:17.800Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:17.973Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.980Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.980Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:17.983Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:17.989Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:17.996Z expo:babel:exports Found assignment to module.exports or exports at 38
+| 2026-04-21T17:09:17.997Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:18.002Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:18.011Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:09:18.014Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:09:18.016Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:18.017Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:18.020Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:18.033Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:18.048Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-04-21T17:09:18.061Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:18.065Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:18.066Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:18.084Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:09:18.095Z expo:babel:exports Found assignment to module.exports or exports at 625
+| 2026-04-21T17:09:18.108Z expo:babel:env-vars Referencing environment variable in /expo-project/utils/supabase.ts: EXPO_PUBLIC_SUPABASE_URL
+| 2026-04-21T17:09:18.108Z expo:babel:env-vars Referencing environment variable in /expo-project/utils/supabase.ts: EXPO_PUBLIC_SUPABASE_ANON_KEY
+| 2026-04-21T17:09:18.150Z expo:babel:exports Found assignment to module.exports or exports at 50
+| 2026-04-21T17:09:18.335Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:18.340Z expo:babel:exports Found assignment to module.exports or exports at 6
+2026-04-21T17:09:18.608Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-04-21T17:09:18.657Z expo:babel:exports Found assignment to module.exports or exports at 26
+| 2026-04-21T17:09:19.057Z expo:babel:exports Found assignment to module.exports or exports at 192
+2026-04-21T17:09:19.111Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-is.production.js
+| 2026-04-21T17:09:19.065Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:19.085Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:19.095Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:19.103Z expo:babel:exports Found assignment to module.exports or exports at 325
+| 2026-04-21T17:09:19.106Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:19.126Z expo:babel:exports Found assignment to module.exports or exports at 360
+| 2026-04-21T17:09:19.127Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:19.144Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:19.155Z expo:babel:exports Found assignment to module.exports or exports at 39
+| 2026-04-21T17:09:19.168Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:19.181Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:19.181Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:19.183Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:19.184Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:19.188Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:19.189Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:19.192Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:19.192Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:19.193Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-04-21T17:09:19.198Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:19.198Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:09:19.199Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-04-21T17:09:19.201Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:19.203Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:09:19.227Z expo:babel:exports Found assignment to module.exports or exports at 5
+2026-04-21T17:09:19.251Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-refresh-runtime.production.min.js
+| 2026-04-21T17:09:19.230Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:19.231Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-04-21T17:09:19.246Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:19.257Z expo:babel:exports Found assignment to module.exports or exports at 103
+| 2026-04-21T17:09:19.324Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-04-21T17:09:19.328Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/scheduler.native.production.js
+| 2026-04-21T17:09:19.333Z expo:babel:exports Found assignment to module.exports or exports at 51
+| 2026-04-21T17:09:19.494Z expo:babel:exports Found assignment to module.exports or exports at 20
+| 2026-04-21T17:09:19.504Z expo:babel:exports Found assignment to module.exports or exports at 84
+| 2026-04-21T17:09:19.516Z expo:babel:exports Found assignment to module.exports or exports at 170
+2026-04-21T17:09:20.632Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-04-21T17:09:20.738Z expo:babel:exports Found assignment to module.exports or exports at 59
+| 2026-04-21T17:09:20.738Z expo:babel:exports Found assignment to module.exports or exports at 22
+| 2026-04-21T17:09:20.740Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-04-21T17:09:20.742Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:09:20.745Z expo:babel:exports Found assignment to module.exports or exports at 80
+| 2026-04-21T17:09:20.746Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:20.748Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:09:20.752Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:20.761Z expo:babel:exports Found assignment to module.exports or exports at 39
+| 2026-04-21T17:09:20.762Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:20.766Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:20.768Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:20.768Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:20.773Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:20.775Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:20.775Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:20.775Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:20.780Z expo:babel:exports Found assignment to module.exports or exports at 3
+2026-04-21T17:09:20.795Z expo:start:server:metro:multi-platform Skipping production module: ./cjs/react-is.production.min.js
+| 2026-04-21T17:09:20.786Z expo:babel:exports Found assignment to module.exports or exports at 52
+| 2026-04-21T17:09:20.793Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:20.799Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:20.802Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:20.802Z expo:babel:exports Found assignment to module.exports or exports at 645
+| 2026-04-21T17:09:20.806Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:20.829Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:20.839Z expo:babel:exports Found assignment to module.exports or exports at 331
+| 2026-04-21T17:09:20.883Z expo:babel:exports Found assignment to module.exports or exports at 170
+| 2026-04-21T17:09:21.113Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.171Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:09:21.171Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.176Z expo:babel:exports Found assignment to module.exports or exports at 152
+| 2026-04-21T17:09:21.183Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.184Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.203Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.203Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:21.208Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:21.210Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.213Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:21.217Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.218Z expo:babel:exports Found assignment to module.exports or exports at 65
+| 2026-04-21T17:09:21.221Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.225Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.231Z expo:babel:exports Found assignment to module.exports or exports at 617
+| 2026-04-21T17:09:21.249Z expo:babel:exports Found assignment to module.exports or exports at 595
+| 2026-04-21T17:09:21.329Z expo:babel:exports Found assignment to module.exports or exports at 49
+iOS ./index.ts ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░ 93.7% (2964/3063)
+| 2026-04-21T17:09:21.383Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.390Z expo:babel:exports Found assignment to module.exports or exports at 75
+| 2026-04-21T17:09:21.403Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.408Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.409Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:09:21.413Z expo:babel:exports Found assignment to module.exports or exports at 113
+| 2026-04-21T17:09:21.414Z expo:babel:exports Found assignment to module.exports or exports at 496
+| 2026-04-21T17:09:21.418Z expo:babel:exports Found assignment to module.exports or exports at 154
+| 2026-04-21T17:09:21.425Z expo:babel:exports Found assignment to module.exports or exports at 63
+| 2026-04-21T17:09:21.427Z expo:babel:exports Found assignment to module.exports or exports at 93
+| 2026-04-21T17:09:21.437Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.540Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.567Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.570Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-04-21T17:09:21.570Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:09:21.575Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:09:21.579Z expo:babel:exports Found assignment to module.exports or exports at 81
+2026-04-21T17:09:21.598Z expo:metro:withMetroResolvers Custom resolver (requestPostRewrites) threw: FailedToResolveNameError. (module: @react-native-masked-view/masked-view, platform: ios, env: undefined, origin: /expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js)
+2026-04-21T17:09:21.599Z expo:metro:withMetroResolvers Custom resolver (requestPostRewrites) threw: FailedToResolveNameError. (module: @react-native-masked-view/masked-view, platform: ios, env: undefined, origin: /expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js)
+2026-04-21T17:09:21.608Z expo:metro:withMetroResolvers Number of explored stacks: 2
+2026-04-21T17:09:21.609Z expo:metro:withMetroResolvers Found inverse graph: {
+  "frames": [
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js",
+      "request": "@react-native-masked-view/masked-view"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedView.ios.js",
+      "request": "./MaskedViewNative.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/Header/HeaderBackButton.js",
+      "request": "../MaskedView"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/index.js",
+      "request": "./Header/HeaderBackButton.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+bottom-tabs@7.15.5_@react-navigation+native@7.1.33_react-native@0.81._33b556446670c68e6441b15a2e173dbe/node_modules/@react-navigation/bottom-tabs/lib/module/views/BottomTabView.js",
+      "request": "@react-navigation/elements"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+bottom-tabs@7.15.5_@react-navigation+native@7.1.33_react-native@0.81._33b556446670c68e6441b15a2e173dbe/node_modules/@react-navigation/bottom-tabs/lib/module/index.js",
+      "request": "./views/BottomTabView.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/views/ErrorBoundary.js",
+      "request": "@react-navigation/bottom-tabs"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/exports.js",
+      "request": "./views/ErrorBoundary"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/index.js",
+      "request": "./exports"
+    },
+    {
+      "origin": "/expo-project/app/(tabs)/(home)/_layout.tsx",
+      "request": "expo-router"
+    },
+    {
+      "origin": "/expo-project/app?ctx=3ab07f305c4346b25020dd398f4d6d4dc9229acb",
+      "request": "/expo-project/app/(tabs)/(home)/_layout.tsx"
+    }
+  ],
+  "serverRoot": true
+}
+| 2026-04-21T17:09:21.584Z expo:babel:exports Found assignment to module.exports or exports at 15
+| 2026-04-21T17:09:21.605Z expo:babel:exports Found assignment to module.exports or exports at 31
+| 2026-04-21T17:09:21.608Z expo:babel:exports Found assignment to module.exports or exports at 3028
+| 2026-04-21T17:09:21.748Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-04-21T17:09:21.800Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.801Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-04-21T17:09:21.812Z expo:babel:exports Found assignment to module.exports or exports at 78
+| 2026-04-21T17:09:21.827Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:09:21.829Z expo:babel:exports Found assignment to module.exports or exports at 215
+| 2026-04-21T17:09:21.829Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.833Z expo:babel:exports Found assignment to module.exports or exports at 32
+| 2026-04-21T17:09:21.856Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.856Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.860Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:09:21.870Z expo:babel:exports Found assignment to module.exports or exports at 1
+| 2026-04-21T17:09:21.876Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:09:21.888Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-04-21T17:09:21.888Z expo:babel:exports Found assignment to module.exports or exports at 42
+| 2026-04-21T17:09:21.889Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-04-21T17:09:21.889Z expo:babel:exports Found assignment to module.exports or exports at 17
+| 2026-04-21T17:09:21.891Z expo:babel:exports Found assignment to module.exports or exports at 319
+| 2026-04-21T17:09:21.893Z expo:babel:exports Found assignment to exports at 9
+| 2026-04-21T17:09:21.894Z expo:babel:exports Found assignment to module.exports or exports at 136
+| 2026-04-21T17:09:21.905Z expo:babel:exports Found assignment to module.exports or exports at 22
+| 2026-04-21T17:09:21.906Z expo:babel:exports Found assignment to module.exports or exports at 54
+| 2026-04-21T17:09:21.912Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:21.913Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:21.913Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:21.913Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:21.914Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:21.914Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:09:21.916Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:09:21.921Z expo:babel:exports Found assignment to module.exports or exports at 1316
+| 2026-04-21T17:09:21.930Z expo:babel:exports Found assignment to module.exports or exports at 1563
+| 2026-04-21T17:09:21.933Z expo:babel:exports Found assignment to module.exports or exports at 4
+2026-04-21T17:09:22.256Z expo:metro-config:serializer:env-var Injecting environment variables in virtual module.
+iOS Bundled 8033ms index.ts (3342 modules)
+2026-04-21T17:09:22.657Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:24.698Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [Newly] Setting up error logging...
+ LOG  [Newly] Log server URL: https://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev/natively-logs
+ LOG  [Newly] Platform: ios
+ WARN  Require cycle: app/(tabs)/(home)/index.ios.tsx -> app/(tabs)/(home)/index.ios.tsx
+
+Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+ WARN  Route "./(tabs)/(home)/index.ios.tsx" is missing the required default export. Ensure a React component is exported as default.
+ ERROR  [RangeError: Maximum call stack size exceeded (native stack depth)] 
+
+Code: index.ios.tsx
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mexport[39m { [36mdefault[39m } [36mfrom[39m [32m'./index'[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m
+ [90m 2 |[39m[0m
+Call Stack
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  Object.defineProperties$argument_1.tabsHomeIndexIosTsx.get (app:4:78)
+  metroContext (app:20:15)
+  node.loadRoute (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutesCore.js:233:48)
+  getDirectoryTree (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutesCore.js:306:49)
+  getDirectoryTree (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutesCore.js:210:39)
+  getRoutes (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutesCore.js:23:43)
+  getRoutes (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutes.js:20:41)
+  useStore (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/global-state/router-store.js:141:48)
+  ContextNavigator (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/ExpoRoot.js:128:46)
+  callComponent.reactStackBottomFrame (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15887:29)
+  renderWithHooks (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:3857:40)
+  updateFunctionComponent (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:7289:34)
+  beginWork (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:8541:41)
+  runWithFiberInDEV (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:683:21)
+  performUnitOfWork (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:12220:39)
+  workLoopSync (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:12044:58)
+  renderRootSync (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:12024:23)
+  performWorkOnRoot (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:11551:27)
+  performWorkOnRootViaSchedulerTask (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:3073:24) 
+
+Code: ExpoRoot.js
+[0m [90m 85 |[39m           [33m<[39m[33m/[39m[33mParentWrapper[39m[33m>[39m)[33m;[39m
+ [90m 86 |[39m     }[33m,[39m [[33mParentWrapper[39m])[33m;[39m
+[31m[1m>[22m[39m[90m 87 |[39m     [36mreturn[39m [33m<[39m[33mContextNavigator[39m {[33m...[39mprops} wrapper[33m=[39m{wrapper}[33m/[39m[33m>[39m[33m;[39m
+ [90m    |[39m            [31m[1m^[22m[39m
+ [90m 88 |[39m }
+ [90m 89 |[39m [36mfunction[39m [33mAutoStatusBar[39m() {
+ [90m 90 |[39m     [36mreturn[39m [33m<[39m[33mreact_native_1[39m[33m.[39m[33mStatusBar[39m barStyle[33m=[39m{([35m0[39m[33m,[39m react_native_1[33m.[39museColorScheme)() [33m===[39m [32m'light'[39m [33m?[39m [32m'dark-content'[39m [33m:[39m [32m'light-content'[39m}[33m/[39m[33m>[39m[33m;[39m[0m
+Call Stack
+  ExpoRoot (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/ExpoRoot.js:87:12)
+  App (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/qualified-entry.js:21:7)
+  WithDevTools (node_modules/.pnpm/expo@54.0.33_@babel+core@7.29.0_@expo+metro-runtime@6.1.2_expo-router@6.0.23_react-nati_cb0fe12dc6b12885f6ac50e5ff7817f5/node_modules/expo/src/launch/withDevTools.ios.tsx:32:11)
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:24.675Z] [iOS] [WARN] Require cycle: app/(tabs)/(home)/index.ios.tsx -> app/(tabs)/(home)/index.ios.tsx
+
+Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:24.704Z] [iOS] [WARN] Route "./(tabs)/(home)/index.ios.tsx" is missing the required default export. Ensure a React component is exported as default.
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:24.589Z] [iOS] [LOG] Running "main" with {"rootTag":21,"initialProps":{"exp":{"manifestString":"{\"assets\":[],\"isVerified\":true,\"id\":\"c1b8b205-72da-4877-ba89-6b6aceeb1d45\",\"metadata\":{},\"extra\":{\"eas\":{},\"scopeKey\":\"@anonymous\\/branded-by-kyle-87bf76e7-d514-49a5-b9d0-322e700aacac\",\"expoClient\":{\"extra\":{\"router\":{}},\"orientation\":\"portrait\",\"version\":\"1.0.0\",\"userInterfaceStyle\":\"automatic\",\"newArchEnabled\":true,\"ios\":{\"bundleIdentifier\":\"com.brandedbykyletattoo.app\",\"supportsTablet\":true},\"experiments\":{\"typedRoutes\":true},\"_internal\":{\"packageJsonPath\":\"\\/expo-project\\/package.json\",\"projectRoot\":\"\\/expo-project\",\"staticConfigPath\":\"\\/expo-project\\/app.json\",\"pluginHistory\":{\"expo-font\":{\"name\":\"expo-font\",\"version\":\"14.0.11\"},\"expo-splash-screen\":{\"name\":\"expo-splash-screen\",\"version\":\"31.0.13\"}},\"isDebug\":true,\"dynamicConfigPath\":{}},\"hostUri\":\"c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\",\"android\":{\"package\":\"com.brandedbykyletattoo.app\",\"adaptiveIcon\":{\"foregroundImage\":\".\\/assets\\/images\\/adaptive-icon.png\",\"backgroundColor\":\"#0A0A0A\"}},\"plugins\":[\"expo-router\",\"expo-font\",[\"expo-splash-screen\",{\"imageWidth\":200,\"resizeMode\":\"contain\",\"backgroundColor\":\"#0D1B2A\",\"image\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\"}]],\"scheme\":\"brandedbykyle\",\"slug\":\"branded-by-kyle\",\"icon\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\",\"splash\":{\"image\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\",\"resizeMode\":\"contain\",\"backgroundColor\":\"#0D1B2A\"},\"web\":{\"bundler\":\"metro\",\"output\":\"static\"},\"platforms\":[\"ios\",\"android\",\"web\"],\"sdkVersion\":\"54.0.0\",\"name\":\"Branded By Kyle\"},\"expoGo\":{\"developer\":{\"projectRoot\":\"\\/expo-project\",\"tool\":\"expo-cli\"},\"mainModuleName\":\"index.ts\",\"packagerOpts\":{\"dev\":true},\"debuggerHost\":\"c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\"}},\"runtimeVersion\":\"exposdk:54.0.0\",\"createdAt\":\"2026-04-21T17:09:13.944Z\",\"launchAsset\":{\"key\":\"bundle\",\"contentType\":\"application\\/javascript\",\"url\":\"https:\\/\\/c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\\/index.ts.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&unstable_transformProfile=hermes-stable\"}}","shell":false,"initialUri":"exp://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev","appOwnership":"expo"}},"fabric":true}
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:24.695Z] [iOS] [ERROR] {}
+2026-04-21T17:09:26.713Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:28.742Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:30.771Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:32.792Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [Home] Book Appointment button pressed
+ LOG  [BookStep1] Fetching unavailable dates from Supabase
+ LOG  [BookStep1] Unavailable dates fetched {"blackouts": undefined, "confirmedBookings": undefined}
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:33.326Z] [iOS] [LOG] [Home] Book Appointment button pressed
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:33.634Z] [iOS] [LOG] [InternalBytecode.js:1] [BookStep1] Unavailable dates fetched {}
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:33.393Z] [iOS] [LOG] [InternalBytecode.js:1] [BookStep1] Fetching unavailable dates from Supabase
+2026-04-21T17:09:34.810Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:36.837Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:38.854Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [BookStep1] Continue pressed
+ LOG  [BookStep1] Validation failed
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:40.171Z] [iOS] [LOG] [InternalBytecode.js:1] [BookStep1] Validation failed
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:09:40.168Z] [iOS] [LOG] [InternalBytecode.js:1] [BookStep1] Continue pressed
+2026-04-21T17:09:40.868Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:42.881Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:44.901Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:46.922Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:48.958Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:50.991Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:53.005Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:55.033Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:57.059Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:09:59.077Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [BookStep1] Style selected: Realism
+2026-04-21T17:10:01.091Z expo:start:server:middleware:serveStatic Maybe serve static: /
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:10:00.673Z] [iOS] [LOG] [BookStep1] Style selected: Realism
+2026-04-21T17:10:03.455Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:05.468Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [BookStep1] Date picker opened
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:10:06.050Z] [iOS] [LOG] [BookStep1] Date picker opened
+2026-04-21T17:10:07.491Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:09.530Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:11.548Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:13.586Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:15.613Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [BookStep1] Date selected: 2026-04-24T05:00:00.000Z
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:10:16.423Z] [iOS] [LOG] [BookStep1] Date selected: 2026-04-24T05:00:00.000Z
+2026-04-21T17:10:17.631Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:19.643Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [BookStep1] Date selected: 2026-05-08T05:00:00.000Z
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:10:20.773Z] [iOS] [LOG] [BookStep1] Date selected: 2026-05-08T05:00:00.000Z
+2026-04-21T17:10:21.662Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:23.675Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:25.704Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [BookStep1] Continue pressed
+ LOG  [BookStep1] Inserting booking into Supabase {"date": "2026-05-08", "email": "hfv@gmail.com", "name": "A", "style": "Realism"}
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:10:26.771Z] [iOS] [LOG] [InternalBytecode.js:1] [BookStep1] Inserting booking into Supabase {"name":"A","email":"hfv@gmail.com","style":"Realism","date":"2026-05-08"}
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:10:26.768Z] [iOS] [LOG] [InternalBytecode.js:1] [BookStep1] Continue pressed
+ ERROR  [BookStep1] Failed to create booking TypeError: Network request failed 
+
+Code: errorLogger.ts
+[0m [90m 341 |[39m
+ [90m 342 |[39m     [90m// Always call original first[39m
+[31m[1m>[22m[39m[90m 343 |[39m     originalConsoleError[33m.[39mapply(console[33m,[39m args)[33m;[39m
+ [90m     |[39m                               [31m[1m^[22m[39m
+ [90m 344 |[39m
+ [90m 345 |[39m     [36mconst[39m source [33m=[39m getCallerInfo()[33m;[39m
+ [90m 346 |[39m     queueLog([32m'error'[39m[33m,[39m message[33m,[39m source)[33m;[39m[0m
+Call Stack
+  construct (<native>)
+  apply (<native>)
+  _construct (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/construct.js:4:65)
+  Wrapper (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/wrapNativeSuper.js:15:23)
+  construct (<native>)
+  _callSuper (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/callSuper.js:5:108)
+  NamelessError (node_modules/.pnpm/@expo+metro-runtime@6.1.2_expo@54.0.33_react-dom@19.1.0_react@19.1.0__react-native@0.81_7a1143fca80a4da046e5e7e59ac71ecb/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:102:20)
+  captureCurrentStack (node_modules/.pnpm/@expo+metro-runtime@6.1.2_expo@54.0.33_react-dom@19.1.0_react@19.1.0__react-native@0.81_7a1143fca80a4da046e5e7e59ac71ecb/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:106:27)
+  HMRClient.log (node_modules/.pnpm/@expo+metro-runtime@6.1.2_expo@54.0.33_react-dom@19.1.0_react@19.1.0__react-native@0.81_7a1143fca80a4da046e5e7e59ac71ecb/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:39:79)
+  console.level (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Core/setUpDeveloperTools.js:41:24)
+  apply (<native>)
+  console.error (utils/errorLogger.ts:343:31)
+  handleContinue (app/book.tsx:277:20)
+  next (<native>)
+  asyncGeneratorStep (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+  _next (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:27)
+  tryCallOne (address at (InternalBytecode.js:1:1180)
+  anonymous (address at (InternalBytecode.js:1:1874)
+2026-04-21T17:10:27.738Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-04-21T17:10:27.771Z expo:babel:exports Found assignment to module.exports or exports at 32
+| 2026-04-21T17:10:27.783Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-04-21T17:10:27.784Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-04-21T17:10:27.789Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:27.800Z expo:babel:exports Found assignment to module.exports or exports at 49
+| 2026-04-21T17:10:27.884Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/_ctx.ios.js /expo-project/app ../../../../../app
+| 2026-04-21T17:10:27.937Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:27.948Z expo:babel:exports Found assignment to module.exports or exports at 129
+| 2026-04-21T17:10:27.961Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:27.963Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:27.969Z expo:babel:exports Found assignment to module.exports or exports at 33
+| 2026-04-21T17:10:27.970Z expo:babel:exports Found assignment to module.exports or exports at 26
+| 2026-04-21T17:10:27.973Z expo:babel:exports Found assignment to module.exports or exports at 518
+| 2026-04-21T17:10:27.978Z expo:babel:exports Found assignment to module.exports or exports at 13
+| 2026-04-21T17:10:27.981Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-04-21T17:10:27.992Z expo:babel:exports Found assignment to module.exports or exports at 13
+| 2026-04-21T17:10:27.997Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:27.999Z expo:babel:exports Found assignment to module.exports or exports at 1217
+| 2026-04-21T17:10:27.999Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:28.007Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.020Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:28.025Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:10:28.047Z expo:babel:exports Found assignment to module.exports or exports at 14
+| 2026-04-21T17:10:28.054Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:28.069Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-04-21T17:10:28.073Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:10:28.077Z expo:babel:exports Found assignment to module.exports or exports at 160
+| 2026-04-21T17:10:28.096Z expo:babel:exports Found assignment to module.exports or exports at 51
+| 2026-04-21T17:10:28.145Z expo:babel:exports Found assignment to module.exports or exports at 739
+| 2026-04-21T17:10:28.146Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.155Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-04-21T17:10:28.158Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-04-21T17:10:28.181Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:28.184Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.194Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.196Z expo:babel:exports Found assignment to module.exports or exports at 19
+| 2026-04-21T17:10:28.201Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.203Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.210Z expo:babel:exports Found assignment to module.exports or exports at 3
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:10:27.685Z] [iOS] [ERROR] [InternalBytecode.js:1] [BookStep1] Supabase insert error {"message":"TypeError: Network request failed","details":"TypeError: Network request failed\n    at anonymous (https://ta-01kprfqe9n3j5m1anbnwkfszz3-8081-xtejemq3lme8e91ky931jyeuj.w.modal.host/index.ts.bundle//&platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&unstable_transformProfile=hermes-stable:14652:33)","hint":"","code":""}
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:10:27.687Z] [iOS] [ERROR] [InternalBytecode.js:1] [BookStep1] Failed to create booking TypeError: Network request failed
+| 2026-04-21T17:10:28.242Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.253Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.255Z expo:babel:exports Found assignment to module.exports or exports at 325
+| 2026-04-21T17:10:28.257Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.261Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+| 2026-04-21T17:10:28.271Z expo:babel:exports Found assignment to module.exports or exports at 362
+| 2026-04-21T17:10:28.271Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:28.271Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.281Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:28.283Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:28.308Z expo:babel:exports Found assignment to module.exports or exports at 460
+| 2026-04-21T17:10:28.330Z expo:babel:exports Found assignment to module.exports or exports at 17
+| 2026-04-21T17:10:28.334Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:28.361Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.362Z expo:babel:exports Found assignment to module.exports or exports at 182
+| 2026-04-21T17:10:28.363Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.372Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.373Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.387Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:28.391Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:10:28.394Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:28.404Z expo:babel:exports Found assignment to module.exports or exports at 55
+| 2026-04-21T17:10:28.409Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.414Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.414Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.428Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.428Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/onboard/Tutorial.js /expo-project/app ../../../../../../../app
+| 2026-04-21T17:10:28.433Z expo:babel:router getExpoRouterAppRoot /expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/onboard/Tutorial.js /expo-project/app ../../../../../../../app
+| 2026-04-21T17:10:28.476Z expo:babel:exports Found assignment to module.exports or exports at 443
+| 2026-04-21T17:10:28.488Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:28.492Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.509Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:28.521Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:28.590Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.594Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-04-21T17:10:28.595Z expo:babel:exports Found assignment to module.exports or exports at 1
+| 2026-04-21T17:10:28.622Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-04-21T17:10:28.625Z expo:babel:exports Found assignment to module.exports or exports at 10
+| 2026-04-21T17:10:28.643Z expo:babel:exports Found assignment to module.exports or exports at 484
+| 2026-04-21T17:10:28.671Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.684Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:28.691Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:28.693Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:28.702Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-04-21T17:10:28.710Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:10:28.732Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.736Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:28.737Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.739Z expo:babel:exports Found assignment to module.exports or exports at 144
+| 2026-04-21T17:10:28.743Z expo:babel:exports Found assignment to module.exports or exports at 89
+| 2026-04-21T17:10:28.743Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.745Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.749Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:28.751Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:28.752Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.761Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:28.768Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.777Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:28.777Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:28.783Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.802Z expo:babel:env-vars Referencing environment variable in /expo-project/utils/supabase.ts: EXPO_PUBLIC_SUPABASE_URL
+| 2026-04-21T17:10:28.803Z expo:babel:env-vars Referencing environment variable in /expo-project/utils/supabase.ts: EXPO_PUBLIC_SUPABASE_ANON_KEY
+| 2026-04-21T17:10:28.803Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.806Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.820Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.825Z expo:babel:exports Found assignment to module.exports or exports at 50
+| 2026-04-21T17:10:28.833Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-04-21T17:10:28.842Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:28.854Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:28.907Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.911Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.920Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.933Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:28.936Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:28.941Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.962Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:28.970Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.980Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:28.996Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.018Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-04-21T17:10:29.029Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.275Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:29.329Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-04-21T17:10:29.331Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-04-21T17:10:29.335Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.345Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:10:29.354Z expo:babel:exports Found assignment to module.exports or exports at 20
+| 2026-04-21T17:10:29.390Z expo:babel:exports Found assignment to module.exports or exports at 52
+| 2026-04-21T17:10:29.406Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.417Z expo:babel:exports Found assignment to module.exports or exports at 39
+| 2026-04-21T17:10:29.425Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:29.436Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.438Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:29.445Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:29.457Z expo:babel:exports Found assignment to module.exports or exports at 192
+| 2026-04-21T17:10:29.460Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.511Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-04-21T17:10:29.511Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:29.517Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:29.526Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:29.532Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:29.537Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.542Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:29.548Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-04-21T17:10:29.589Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.597Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.598Z expo:babel:exports Found assignment to module.exports or exports at 51
+| 2026-04-21T17:10:29.603Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.606Z expo:babel:exports Found assignment to module.exports or exports at 360
+| 2026-04-21T17:10:29.632Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:29.637Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:29.652Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:29.690Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:29.697Z expo:babel:exports Found assignment to module.exports or exports at 103
+2026-04-21T17:10:29.754Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-04-21T17:10:29.756Z expo:babel:exports Found assignment to module.exports or exports at 38
+| 2026-04-21T17:10:29.790Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:29.805Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:10:29.875Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:30.167Z expo:babel:exports Found assignment to module.exports or exports at 140
+| 2026-04-21T17:10:30.225Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:30.349Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:30.375Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:30.411Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:30.435Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:30.643Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:30.684Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:30.697Z expo:babel:exports Found assignment to module.exports or exports at 80
+| 2026-04-21T17:10:30.843Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:30.860Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:30.905Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:30.912Z expo:babel:exports Found assignment to module.exports or exports at 90
+| 2026-04-21T17:10:30.942Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:30.986Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:31.033Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:10:31.089Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:31.142Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:31.145Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:31.155Z expo:babel:exports Found assignment to module.exports or exports at 325
+| 2026-04-21T17:10:31.173Z expo:babel:exports Found assignment to module.exports or exports at 9
+| 2026-04-21T17:10:31.204Z expo:babel:exports Found assignment to module.exports or exports at 40
+| 2026-04-21T17:10:31.213Z expo:babel:exports Found assignment to module.exports or exports at 645
+| 2026-04-21T17:10:31.216Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:31.217Z expo:babel:exports Found assignment to module.exports or exports at 49
+| 2026-04-21T17:10:31.228Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:31.233Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.234Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.247Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:31.258Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:10:31.262Z expo:babel:exports Found assignment to module.exports or exports at 2
+| 2026-04-21T17:10:31.264Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:31.280Z expo:babel:exports Found assignment to module.exports or exports at 39
+| 2026-04-21T17:10:31.291Z expo:babel:exports Found assignment to module.exports or exports at 37
+| 2026-04-21T17:10:31.297Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.313Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.329Z expo:babel:exports Found assignment to module.exports or exports at 39
+| 2026-04-21T17:10:31.337Z expo:babel:exports Found assignment to module.exports or exports at 22
+| 2026-04-21T17:10:31.341Z expo:babel:exports Found assignment to module.exports or exports at 16643
+| 2026-04-21T17:10:31.341Z expo:babel:exports Found assignment to module.exports or exports at 170
+| 2026-04-21T17:10:31.349Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.357Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.368Z expo:babel:exports Found assignment to module.exports or exports at 59
+| 2026-04-21T17:10:31.371Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-04-21T17:10:31.452Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:31.503Z expo:babel:exports Found assignment to module.exports or exports at 152
+| 2026-04-21T17:10:31.578Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.588Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:31.591Z expo:babel:exports Found assignment to module.exports or exports at 16925
+| 2026-04-21T17:10:31.604Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:31.613Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.627Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.644Z expo:babel:exports Found assignment to module.exports or exports at 36
+| 2026-04-21T17:10:31.656Z expo:babel:exports Found assignment to module.exports or exports at 65
+| 2026-04-21T17:10:31.660Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.675Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.693Z expo:babel:exports Found assignment to module.exports or exports at 625
+| 2026-04-21T17:10:31.707Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:31.711Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:31.714Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:31.718Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.723Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.747Z expo:babel:exports Found assignment to module.exports or exports at 595
+2026-04-21T17:10:31.771Z expo:start:server:middleware:serveStatic Maybe serve static: /
+| 2026-04-21T17:10:31.798Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.859Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.871Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.911Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:31.937Z expo:babel:exports Found assignment to module.exports or exports at 617
+| 2026-04-21T17:10:31.947Z expo:babel:exports Found assignment to module.exports or exports at 63
+| 2026-04-21T17:10:31.988Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.029Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.086Z expo:babel:exports Found assignment to module.exports or exports at 12
+| 2026-04-21T17:10:32.099Z expo:babel:exports Found assignment to module.exports or exports at 113
+| 2026-04-21T17:10:32.112Z expo:babel:exports Found assignment to module.exports or exports at 26
+| 2026-04-21T17:10:32.114Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:32.132Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.148Z expo:babel:exports Found assignment to module.exports or exports at 154
+| 2026-04-21T17:10:32.151Z expo:babel:exports Found assignment to module.exports or exports at 215
+| 2026-04-21T17:10:32.163Z expo:babel:exports Found assignment to module.exports or exports at 6
+| 2026-04-21T17:10:32.173Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:32.210Z expo:babel:exports Found assignment to module.exports or exports at 93
+| 2026-04-21T17:10:32.211Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.224Z expo:babel:exports Found assignment to module.exports or exports at 170
+| 2026-04-21T17:10:32.234Z expo:babel:exports Found assignment to module.exports or exports at 496
+| 2026-04-21T17:10:32.261Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.266Z expo:babel:exports Found assignment to module.exports or exports at 84
+| 2026-04-21T17:10:32.288Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:32.302Z expo:babel:exports Found assignment to module.exports or exports at 42
+| 2026-04-21T17:10:32.305Z expo:babel:exports Found assignment to exports at 9
+| 2026-04-21T17:10:32.313Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.334Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:32.348Z expo:babel:exports Found assignment to module.exports or exports at 15
+| 2026-04-21T17:10:32.359Z expo:babel:exports Found assignment to module.exports or exports at 319
+| 2026-04-21T17:10:32.363Z expo:babel:exports Found assignment to module.exports or exports at 17
+| 2026-04-21T17:10:32.365Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-04-21T17:10:32.373Z expo:babel:exports Found assignment to module.exports or exports at 28
+| 2026-04-21T17:10:32.376Z expo:babel:exports Found assignment to module.exports or exports at 136
+| 2026-04-21T17:10:32.396Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.399Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.402Z expo:babel:exports Found assignment to module.exports or exports at 8
+| 2026-04-21T17:10:32.412Z expo:babel:exports Found assignment to module.exports or exports at 81
+| 2026-04-21T17:10:32.429Z expo:babel:exports Found assignment to module.exports or exports at 22
+2026-04-21T17:10:32.447Z expo:metro:withMetroResolvers Custom resolver (requestPostRewrites) threw: FailedToResolveNameError. (module: @react-native-masked-view/masked-view, platform: ios, env: undefined, origin: /expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js)
+2026-04-21T17:10:32.447Z expo:metro:withMetroResolvers Custom resolver (requestPostRewrites) threw: FailedToResolveNameError. (module: @react-native-masked-view/masked-view, platform: ios, env: undefined, origin: /expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js)
+2026-04-21T17:10:32.458Z expo:metro:withMetroResolvers Number of explored stacks: 2
+2026-04-21T17:10:32.459Z expo:metro:withMetroResolvers Found inverse graph: {
+  "frames": [
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedViewNative.js",
+      "request": "@react-native-masked-view/masked-view"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/MaskedView.ios.js",
+      "request": "./MaskedViewNative.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/Header/HeaderBackButton.js",
+      "request": "../MaskedView"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+elements@2.9.10_@react-navigation+native@7.1.33_react-native@0.81.4_@_ebca3abc7f01c48037cc869cf8c448c8/node_modules/@react-navigation/elements/lib/module/index.js",
+      "request": "./Header/HeaderBackButton.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+bottom-tabs@7.15.5_@react-navigation+native@7.1.33_react-native@0.81._33b556446670c68e6441b15a2e173dbe/node_modules/@react-navigation/bottom-tabs/lib/module/views/BottomTabView.js",
+      "request": "@react-navigation/elements"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/@react-navigation+bottom-tabs@7.15.5_@react-navigation+native@7.1.33_react-native@0.81._33b556446670c68e6441b15a2e173dbe/node_modules/@react-navigation/bottom-tabs/lib/module/index.js",
+      "request": "./views/BottomTabView.js"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/views/ErrorBoundary.js",
+      "request": "@react-navigation/bottom-tabs"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/exports.js",
+      "request": "./views/ErrorBoundary"
+    },
+    {
+      "origin": "/expo-project/node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/index.js",
+      "request": "./exports"
+    },
+    {
+      "origin": "/expo-project/app/(tabs)/(home)/_layout.tsx",
+      "request": "expo-router"
+    },
+    {
+      "origin": "/expo-project/app?ctx=3ab07f305c4346b25020dd398f4d6d4dc9229acb",
+      "request": "/expo-project/app/(tabs)/(home)/_layout.tsx"
+    }
+  ],
+  "serverRoot": true
+}
+| 2026-04-21T17:10:32.443Z expo:babel:exports Found assignment to module.exports or exports at 54
+| 2026-04-21T17:10:32.447Z expo:babel:exports Found assignment to module.exports or exports at 1
+| 2026-04-21T17:10:32.448Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:32.449Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:32.449Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:32.449Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:32.449Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:32.464Z expo:babel:exports Found assignment to module.exports or exports at 5
+| 2026-04-21T17:10:32.465Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:32.577Z expo:babel:exports Found assignment to module.exports or exports at 3028
+| 2026-04-21T17:10:32.602Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.646Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.654Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.680Z expo:babel:exports Found assignment to module.exports or exports at 1563
+| 2026-04-21T17:10:32.720Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.722Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.724Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.732Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:32.737Z expo:babel:exports Found assignment to module.exports or exports at 7
+| 2026-04-21T17:10:32.738Z expo:babel:exports Found assignment to module.exports or exports at 3
+| 2026-04-21T17:10:32.742Z expo:babel:exports Found assignment to module.exports or exports at 31
+| 2026-04-21T17:10:32.749Z expo:babel:exports Found assignment to module.exports or exports at 331
+| 2026-04-21T17:10:32.750Z expo:babel:exports Found assignment to module.exports or exports at 75
+| 2026-04-21T17:10:32.763Z expo:babel:exports Found assignment to module.exports or exports at 11
+| 2026-04-21T17:10:32.792Z expo:babel:exports Found assignment to module.exports or exports at 4
+| 2026-04-21T17:10:32.800Z expo:babel:exports Found assignment to module.exports or exports at 32
+| 2026-04-21T17:10:32.941Z expo:babel:exports Found assignment to module.exports or exports at 18
+| 2026-04-21T17:10:32.958Z expo:babel:exports Found assignment to module.exports or exports at 78
+| 2026-04-21T17:10:33.008Z expo:babel:exports Found assignment to module.exports or exports at 1316
+| 2026-04-21T17:10:33.035Z expo:babel:exports Found assignment to module.exports or exports at 4
+ ERROR  [BookStep1] Supabase insert error 
+
+Call Stack
+  anonymous (https:/ta-01kprfqe9n3j5m1anbnwkfszz3-8081-xtejemq3lme8e91ky931jyeuj.w.modal.host/index.ts.bundle) 
+
+Code: errorLogger.ts
+[0m [90m 341 |[39m
+ [90m 342 |[39m     [90m// Always call original first[39m
+[31m[1m>[22m[39m[90m 343 |[39m     originalConsoleError[33m.[39mapply(console[33m,[39m args)[33m;[39m
+ [90m     |[39m                               [31m[1m^[22m[39m
+ [90m 344 |[39m
+ [90m 345 |[39m     [36mconst[39m source [33m=[39m getCallerInfo()[33m;[39m
+ [90m 346 |[39m     queueLog([32m'error'[39m[33m,[39m message[33m,[39m source)[33m;[39m[0m
+Call Stack
+  construct (<native>)
+  apply (<native>)
+  _construct (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/construct.js:4:65)
+  Wrapper (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/wrapNativeSuper.js:15:23)
+  construct (<native>)
+  _callSuper (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/callSuper.js:5:108)
+  NamelessError (node_modules/.pnpm/@expo+metro-runtime@6.1.2_expo@54.0.33_react-dom@19.1.0_react@19.1.0__react-native@0.81_7a1143fca80a4da046e5e7e59ac71ecb/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:102:20)
+  captureCurrentStack (node_modules/.pnpm/@expo+metro-runtime@6.1.2_expo@54.0.33_react-dom@19.1.0_react@19.1.0__react-native@0.81_7a1143fca80a4da046e5e7e59ac71ecb/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:106:27)
+  HMRClient.log (node_modules/.pnpm/@expo+metro-runtime@6.1.2_expo@54.0.33_react-dom@19.1.0_react@19.1.0__react-native@0.81_7a1143fca80a4da046e5e7e59ac71ecb/node_modules/@expo/metro-runtime/src/metroServerLogs.native.ts:39:79)
+  console.level (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Core/setUpDeveloperTools.js:41:24)
+  apply (<native>)
+  console.error (utils/errorLogger.ts:343:31)
+  handleContinue (app/book.tsx:262:22)
+  next (<native>)
+  asyncGeneratorStep (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/asyncToGenerator.js:3:17)
+  _next (node_modules/.pnpm/@babel+runtime@7.28.6/node_modules/@babel/runtime/helpers/asyncToGenerator.js:17:27)
+  tryCallOne (address at (InternalBytecode.js:1:1180)
+  anonymous (address at (InternalBytecode.js:1:1874)
+2026-04-21T17:10:33.785Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:35.799Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:37.832Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:39.848Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:41.945Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:43.962Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:45.982Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:47.996Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:50.019Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:52.036Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:54.049Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:56.062Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:10:58.081Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:00.101Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:02.120Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:04.135Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:06.151Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:08.179Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:10.206Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:12.222Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:14.236Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:16.261Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:18.274Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:20.295Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:22.314Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:24.341Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:26.353Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:28.371Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:30.384Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:32.427Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:34.451Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:36.463Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:38.480Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:40.494Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:42.516Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:44.534Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:46.554Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:48.566Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:50.587Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:52.607Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:54.621Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:56.633Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:11:58.652Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:00.663Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:02.693Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:04.707Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:06.723Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:08.737Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:10.751Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:12.766Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:14.779Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:16.827Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:18.841Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:20.862Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:22.879Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:24.910Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:26.924Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:28.941Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:30.963Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:32.976Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:34.990Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:37.011Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:39.028Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:41.041Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:43.056Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:45.071Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:47.090Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:49.119Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:51.141Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:53.168Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:55.182Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:57.199Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:12:59.210Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:01.224Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:03.238Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:05.256Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:07.269Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:09.290Z expo:start:server:middleware:serveStatic Maybe serve static: /
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:13:10.104Z] [iOS] [WARN] Disconnected from Metro (1001: "Stream end encountered").
+
+To reconnect:
+- Ensure that Metro is running and available on the same network
+- Reload this app (will trigger further help if Metro cannot be connected to)
+2026-04-21T17:13:11.353Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:13.366Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:15.386Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:17.401Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:19.418Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:21.448Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:23.480Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:25.494Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:27.508Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:29.543Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:31.565Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:33.588Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:35.612Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:37.629Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:39.644Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:41.661Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:43.676Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:45.693Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:47.723Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:49.742Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:51.792Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:53.813Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:55.832Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:57.846Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:13:59.860Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:01.871Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:03.887Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:05.900Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:07.915Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:09.930Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:11.946Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:13.965Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:15.980Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:17.993Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:20.029Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:22.043Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:24.058Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:26.074Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:28.089Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:30.123Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:32.138Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:34.153Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:36.174Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:38.190Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:40.204Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:42.220Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:44.236Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:46.254Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:48.266Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:50.281Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:52.298Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:54.319Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:56.333Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:14:58.349Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:00.362Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:02.384Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:04.456Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:06.470Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:08.482Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:10.494Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:12.509Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:14.527Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:16.540Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:18.557Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:20.571Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:22.590Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:24.619Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:26.646Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:28.658Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:30.685Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:32.696Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:34.713Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:36.724Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:38.745Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:40.762Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:42.776Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:44.805Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:46.825Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:48.853Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:50.865Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:52.889Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:54.911Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:56.925Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:15:58.962Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:00.983Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:03.001Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:05.022Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:07.046Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:09.059Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:11.083Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:13.149Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:15.166Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:17.182Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:19.195Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:21.209Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:23.225Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:25.238Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:27.250Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:29.294Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:31.309Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:33.324Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:35.340Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:37.403Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:39.414Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:41.426Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:43.439Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:45.461Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:47.487Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:49.518Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:51.530Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:53.562Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:55.596Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:57.616Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:16:59.633Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:01.649Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:03.661Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:05.699Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:07.714Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:09.728Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:11.740Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:13.752Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:15.777Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:17.792Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:19.805Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:21.817Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:23.829Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:25.842Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:27.862Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:29.874Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:31.891Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:33.903Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:35.933Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:37.947Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:39.965Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:41.979Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:44.024Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:46.040Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:48.055Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:50.071Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:52.092Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:54.141Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:56.157Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:17:58.170Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:00.183Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:02.204Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:04.221Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:06.239Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:08.257Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:10.292Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:12.312Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:14.345Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:16.413Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:18.432Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:20.447Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:22.463Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:24.494Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:26.511Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:28.533Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:30.547Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:32.561Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:34.583Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:36.604Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:38.619Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:40.645Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:42.665Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:44.711Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:46.734Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:48.748Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:50.778Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:52.791Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:54.877Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:56.897Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:18:58.908Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:00.922Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:02.947Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:04.961Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:06.980Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:09.026Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:11.058Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:13.114Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:15.140Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:17.157Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:19.184Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:21.198Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:23.211Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:25.224Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:27.256Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:29.276Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:31.309Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:33.346Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:35.361Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:37.392Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:39.409Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:41.456Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:43.475Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:45.504Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:47.532Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:49.578Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:51.605Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:53.617Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:55.629Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:57.648Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:19:59.749Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:01.763Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:03.778Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:05.796Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:07.830Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:09.844Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:11.863Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:13.908Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:15.929Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:17.943Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:19.954Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:21.967Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:23.984Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:26.008Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:28.028Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:30.045Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:32.058Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:34.071Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:36.087Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:38.108Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:40.120Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:42.140Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:44.155Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:46.185Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:48.205Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:50.219Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:52.262Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:54.277Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:56.291Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:20:58.312Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:00.343Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:02.397Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:04.424Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:06.440Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:08.459Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:10.490Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:12.501Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:13.153Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/utils/api.ts
+2026-04-21T17:21:14.515Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:16.540Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:17.522Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:17.536Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:18.557Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:20.558Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+2026-04-21T17:21:20.572Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:22.585Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:24.603Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:26.627Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:28.644Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:28.806Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#0D1B2A',
+  dark: {}
+}
+2026-04-21T17:21:28.809Z expo:start:server:middleware:manifest Resolved entry point: index.ts (project root: /expo-project)
+2026-04-21T17:21:28.809Z expo:start:server:urlCreator URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-04-21T17:21:28.809Z expo:start:server:urlCreator URL: c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+2026-04-21T17:21:28.810Z expo:start:server:metro:router Using app as the root directory for Expo Router.
+2026-04-21T17:21:28.810Z expo:start:server:urlCreator URL: https://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev
+Unable to resolve asset "./assets/images/adaptive-icon.png" from "android.adaptiveIcon.foregroundImage" in your app.json or app.config.js
+2026-04-21T17:21:28.811Z expo:start:server:middleware:resolveRuntimeVersion Using expo-updates runtimeversion:resolve CLI for runtime version resolution
+2026-04-21T17:21:28.812Z expo:codesigning WARN: Expo Application Services (EAS) is not configured for your project. Configuring EAS enables a more secure development experience amongst many other benefits. Learn more: https://docs.expo.dev/eas/
+2026-04-21T17:21:29.529Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+[METRO] Request: GET /index.ts.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&unstable_transformProfile=hermes-stable
+iOS ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+| 2026-04-21T17:21:30.000Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+| 2026-04-21T17:21:30.147Z expo:babel:env-vars Referencing environment variable in /expo-project/utils/api.ts: EXPO_PUBLIC_SUPABASE_URL
+2026-04-21T17:21:30.171Z expo:metro-config:serializer:env-var Injecting environment variables in virtual module.
+| 2026-04-21T17:21:30.148Z expo:babel:env-vars Referencing environment variable in /expo-project/utils/api.ts: EXPO_PUBLIC_SUPABASE_ANON_KEY
+iOS Bundled 457ms index.ts (1 module)
+2026-04-21T17:21:30.664Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:32.718Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:34.732Z expo:start:server:middleware:serveStatic Maybe serve static: /
+ LOG  [Newly] Setting up error logging...
+ LOG  [Newly] Log server URL: https://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev/natively-logs
+ LOG  [Newly] Platform: ios
+ WARN  Require cycle: app/(tabs)/(home)/index.ios.tsx -> app/(tabs)/(home)/index.ios.tsx
+
+Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+ WARN  Route "./(tabs)/(home)/index.ios.tsx" is missing the required default export. Ensure a React component is exported as default.
+ ERROR  [RangeError: Maximum call stack size exceeded (native stack depth)] 
+
+Code: index.ios.tsx
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mexport[39m { [36mdefault[39m } [36mfrom[39m [32m'./index'[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m
+ [90m 2 |[39m[0m
+Call Stack
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  <global> (app/(tabs)/(home)/index.ios.tsx:1)
+  Object.defineProperties$argument_1.tabsHomeIndexIosTsx.get (app:4:78)
+  metroContext (app:20:15)
+  node.loadRoute (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutesCore.js:233:48)
+  getDirectoryTree (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutesCore.js:306:49)
+  getDirectoryTree (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutesCore.js:210:39)
+  getRoutes (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutesCore.js:23:43)
+  getRoutes (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/getRoutes.js:20:41)
+  useStore (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/global-state/router-store.js:141:48)
+  ContextNavigator (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/ExpoRoot.js:128:46)
+  callComponent.reactStackBottomFrame (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:15887:29)
+  renderWithHooks (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:3857:40)
+  updateFunctionComponent (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:7289:34)
+  beginWork (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:8541:41)
+  runWithFiberInDEV (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:683:21)
+  performUnitOfWork (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:12220:39)
+  workLoopSync (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:12044:58)
+  renderRootSync (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:12024:23)
+  performWorkOnRoot (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:11551:27)
+  performWorkOnRootViaSchedulerTask (node_modules/.pnpm/react-native@0.81.4_@babel+core@7.29.0_@types+react@19.1.17_react@19.1.0/node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js:3073:24) 
+
+Code: ExpoRoot.js
+[0m [90m 85 |[39m           [33m<[39m[33m/[39m[33mParentWrapper[39m[33m>[39m)[33m;[39m
+ [90m 86 |[39m     }[33m,[39m [[33mParentWrapper[39m])[33m;[39m
+[31m[1m>[22m[39m[90m 87 |[39m     [36mreturn[39m [33m<[39m[33mContextNavigator[39m {[33m...[39mprops} wrapper[33m=[39m{wrapper}[33m/[39m[33m>[39m[33m;[39m
+ [90m    |[39m            [31m[1m^[22m[39m
+ [90m 88 |[39m }
+ [90m 89 |[39m [36mfunction[39m [33mAutoStatusBar[39m() {
+ [90m 90 |[39m     [36mreturn[39m [33m<[39m[33mreact_native_1[39m[33m.[39m[33mStatusBar[39m barStyle[33m=[39m{([35m0[39m[33m,[39m react_native_1[33m.[39museColorScheme)() [33m===[39m [32m'light'[39m [33m?[39m [32m'dark-content'[39m [33m:[39m [32m'light-content'[39m}[33m/[39m[33m>[39m[33m;[39m[0m
+Call Stack
+  ExpoRoot (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/ExpoRoot.js:87:12)
+  App (node_modules/.pnpm/expo-router@6.0.23_2fd4d1cf96871c6bb2299487c89f3106/node_modules/expo-router/build/qualified-entry.js:21:7)
+  WithDevTools (node_modules/.pnpm/expo@54.0.33_@babel+core@7.29.0_@expo+metro-runtime@6.1.2_expo-router@6.0.23_react-nati_cb0fe12dc6b12885f6ac50e5ff7817f5/node_modules/expo/src/launch/withDevTools.ios.tsx:32:11)
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:21:33.929Z] [iOS] [WARN] Route "./(tabs)/(home)/index.ios.tsx" is missing the required default export. Ensure a React component is exported as default.
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:21:33.814Z] [iOS] [LOG] Running "main" with {"rootTag":21,"initialProps":{"exp":{"manifestString":"{\"isVerified\":true,\"metadata\":{},\"runtimeVersion\":\"exposdk:54.0.0\",\"launchAsset\":{\"key\":\"bundle\",\"contentType\":\"application\\/javascript\",\"url\":\"https:\\/\\/c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\\/index.ts.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&unstable_transformProfile=hermes-stable\"},\"createdAt\":\"2026-04-21T17:21:28.813Z\",\"id\":\"530f587f-f1aa-42a3-9724-bce225e86f28\",\"assets\":[],\"extra\":{\"eas\":{},\"scopeKey\":\"@anonymous\\/branded-by-kyle-87bf76e7-d514-49a5-b9d0-322e700aacac\",\"expoClient\":{\"extra\":{\"router\":{}},\"orientation\":\"portrait\",\"version\":\"1.0.0\",\"userInterfaceStyle\":\"automatic\",\"newArchEnabled\":true,\"ios\":{\"bundleIdentifier\":\"com.brandedbykyletattoo.app\",\"supportsTablet\":true},\"experiments\":{\"typedRoutes\":true},\"_internal\":{\"packageJsonPath\":\"\\/expo-project\\/package.json\",\"projectRoot\":\"\\/expo-project\",\"staticConfigPath\":\"\\/expo-project\\/app.json\",\"pluginHistory\":{\"expo-font\":{\"name\":\"expo-font\",\"version\":\"14.0.11\"},\"expo-splash-screen\":{\"name\":\"expo-splash-screen\",\"version\":\"31.0.13\"}},\"isDebug\":true,\"dynamicConfigPath\":{}},\"hostUri\":\"c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\",\"android\":{\"package\":\"com.brandedbykyletattoo.app\",\"adaptiveIcon\":{\"foregroundImage\":\".\\/assets\\/images\\/adaptive-icon.png\",\"backgroundColor\":\"#0A0A0A\"}},\"plugins\":[\"expo-router\",\"expo-font\",[\"expo-splash-screen\",{\"imageWidth\":200,\"resizeMode\":\"contain\",\"backgroundColor\":\"#0D1B2A\",\"image\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\"}]],\"scheme\":\"brandedbykyle\",\"slug\":\"branded-by-kyle\",\"icon\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\",\"splash\":{\"image\":\".\\/assets\\/images\\/7b25c61f-edfd-4567-a346-cb9b175c7378.png\",\"resizeMode\":\"contain\",\"backgroundColor\":\"#0D1B2A\"},\"web\":{\"bundler\":\"metro\",\"output\":\"static\"},\"platforms\":[\"ios\",\"android\",\"web\"],\"sdkVersion\":\"54.0.0\",\"name\":\"Branded By Kyle\"},\"expoGo\":{\"developer\":{\"projectRoot\":\"\\/expo-project\",\"tool\":\"expo-cli\"},\"mainModuleName\":\"index.ts\",\"packagerOpts\":{\"dev\":true},\"debuggerHost\":\"c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev\"}}}","shell":false,"initialUri":"exp://c14bb87b-7216-4302-b8c9-4f9b65473fa3.newly.dev","appOwnership":"expo"}},"fabric":true}
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:21:33.901Z] [iOS] [WARN] Require cycle: app/(tabs)/(home)/index.ios.tsx -> app/(tabs)/(home)/index.ios.tsx
+
+Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:21:33.920Z] [iOS] [ERROR] {}
+2026-04-21T17:21:36.748Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:38.367Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+| 2026-04-21T17:21:38.564Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+2026-04-21T17:21:38.803Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:40.833Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:42.850Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:44.869Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:46.887Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:48.902Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:50.497Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+| 2026-04-21T17:21:50.728Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_URL
+| 2026-04-21T17:21:50.728Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+2026-04-21T17:21:50.954Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:52.969Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:54.999Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:57.034Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:21:59.048Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:01.060Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:03.097Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:05.115Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:07.133Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:09.155Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:11.169Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:13.181Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:15.239Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:17.007Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+| 2026-04-21T17:22:17.204Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_URL
+| 2026-04-21T17:22:17.204Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+2026-04-21T17:22:17.258Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:19.279Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:21.331Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:23.351Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:25.381Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:27.406Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:29.148Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+| 2026-04-21T17:22:29.379Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_URL
+| 2026-04-21T17:22:29.379Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+2026-04-21T17:22:29.420Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:31.456Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:33.472Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:35.499Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:36.188Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+| 2026-04-21T17:22:36.385Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_URL
+| 2026-04-21T17:22:36.386Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+2026-04-21T17:22:37.514Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:39.527Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:41.541Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:43.553Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:45.569Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:47.604Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:49.618Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:51.634Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:53.657Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:55.673Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:57.322Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+| 2026-04-21T17:22:57.558Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_URL
+| 2026-04-21T17:22:57.558Z expo:babel:env-vars Referencing environment variable in /expo-project/app/book.tsx: EXPO_PUBLIC_SUPABASE_ANON_KEY
+2026-04-21T17:22:57.694Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:22:59.709Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:01.737Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:03.755Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:05.775Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:07.805Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:09.822Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:11.836Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:13.850Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:15.864Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:17.875Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:19.887Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:21.899Z expo:start:server:middleware:serveStatic Maybe serve static: /
+[NATIVELY-LOGS] Received POST request
+[NATIVELY-LOGS] Writing log: [2026-04-21T17:23:22.325Z] [iOS] [WARN] Disconnected from Metro (1001: "Stream end encountered").
+
+To reconnect:
+- Ensure that Metro is running and available on the same network
+- Reload this app (will trigger further help if Metro cannot be connected to)
+2026-04-21T17:23:23.922Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:25.937Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:27.958Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:30.059Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:32.137Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:34.152Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:36.165Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:38.179Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:40.219Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:42.232Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:44.253Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:46.267Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:48.287Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:50.311Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:52.327Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:54.350Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:56.365Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:23:58.376Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:00.448Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:02.467Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:04.495Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:06.512Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:08.527Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:10.552Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:12.577Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:14.595Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:16.631Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:18.643Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:20.658Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:22.698Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:24.719Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:26.732Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:28.748Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:30.766Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:32.778Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:34.814Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:36.826Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:38.840Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:40.924Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:42.941Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:44.963Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:45.545Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/app/book.tsx
+2026-04-21T17:24:46.981Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:48.996Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:51.019Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:53.046Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:55.069Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:57.087Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:24:59.101Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:01.128Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:03.162Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:05.176Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:07.197Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:09.227Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:11.243Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:13.264Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:15.293Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:17.317Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:19.370Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:21.386Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:23.398Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:25.412Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:27.431Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:29.521Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:31.534Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:33.556Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:35.567Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:37.583Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:39.595Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:41.639Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:43.655Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:45.674Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:47.693Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:49.706Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:51.720Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:53.754Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:55.771Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:57.797Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:25:59.854Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:01.866Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:03.885Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:05.900Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:07.914Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:09.933Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:11.947Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:14.001Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:16.022Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:18.038Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:20.052Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:22.065Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:24.081Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:26.220Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:28.232Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:30.264Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:32.292Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:34.308Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:36.335Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:38.353Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:40.395Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:42.416Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:44.442Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:46.455Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:48.470Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:50.503Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:52.531Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:54.545Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:56.581Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:26:58.601Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:00.632Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:02.648Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:04.703Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:06.723Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:08.740Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:10.756Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:12.789Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:14.804Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:16.847Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:18.868Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:20.884Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:22.901Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:24.919Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:26.955Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:28.976Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:31.026Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:33.041Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:35.053Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:37.071Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:39.094Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:41.106Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:43.124Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:45.141Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:47.155Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:49.172Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:51.185Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:53.198Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:55.212Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:57.227Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:27:59.248Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:01.266Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:03.281Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:05.297Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:07.311Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:09.324Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:11.339Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:13.352Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:15.369Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:17.399Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:19.417Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:21.479Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:23.493Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:25.507Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:27.520Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:29.535Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:31.564Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:33.609Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:35.626Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:37.646Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:39.658Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:41.680Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:43.700Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:45.727Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:47.759Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:49.806Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:51.829Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:53.842Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:55.868Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:57.887Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:28:59.909Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:01.923Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:03.942Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:05.959Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:07.979Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:10.009Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:12.037Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:14.102Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:16.123Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:18.176Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:20.200Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:22.216Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:24.235Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:26.248Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:28.263Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:30.285Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:32.302Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:34.330Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:36.346Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:38.364Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:40.396Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:42.423Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:44.444Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:46.469Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:48.485Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:50.513Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:52.525Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:54.537Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:56.576Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:29:58.590Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:00.615Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:02.630Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:04.643Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:06.658Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:08.693Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:10.785Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:12.809Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:14.827Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:16.840Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:18.853Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:20.878Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:22.891Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:24.909Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:26.924Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:28.946Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:30.974Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:32.987Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:35.007Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:37.034Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:39.067Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:41.085Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:43.106Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:45.155Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:47.171Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:49.199Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:51.221Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:53.241Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:55.266Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:57.284Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:30:59.307Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:01.321Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:02.701Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/utils/polyfills/alert.ts
+2026-04-21T17:31:03.343Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:03.433Z expo:start:server:metro:metroWatchTypeScriptFiles Detected TypeScript file changed in the project:  /expo-project/utils/polyfills/fetch.ts
+› Detected a change in metro.config.js. Restart the server to see the new results.
+2026-04-21T17:31:05.372Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:07.390Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:09.409Z expo:start:server:middleware:serveStatic Maybe serve static: /
+› Detected a change in metro.config.js. Restart the server to see the new results.
+2026-04-21T17:31:11.424Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:13.461Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:13.902Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:13.903Z expo:start:server:middleware:serveStatic Maybe serve static: /
+2026-04-21T17:31:15.485Z expo:start:server:middleware:serveStatic Maybe serve static: /

@@ -19,7 +19,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { Stack, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { X, CheckCircle, AlertCircle, Calendar, User, Mail, Phone, FileText } from "lucide-react-native";
-import { supabase } from "@/utils/supabase";
+import { apiCreateBooking, apiConfirmBooking, apiGetUnavailableDates } from '@/utils/api';
 
 const BG = require("../assets/images/58f69f1a-4699-4acb-8d6c-e139c289ff00.webp");
 const logoImage = require("@/assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png");
@@ -195,26 +195,12 @@ function Step1({
 
   useEffect(() => {
     async function fetchUnavailable() {
-      console.log("[BookStep1] Fetching unavailable dates from Supabase");
       try {
-        const [bookingsRes, blackoutsRes] = await Promise.all([
-          supabase.from("bookings").select("preferred_date").eq("status", "confirmed"),
-          supabase.from("blackout_dates").select("date"),
-        ]);
-        console.log("[BookStep1] Unavailable dates fetched", {
-          confirmedBookings: bookingsRes.data?.length,
-          blackouts: blackoutsRes.data?.length,
-        });
-        const dates = new Set<string>();
-        (bookingsRes.data ?? []).forEach((row: { preferred_date: string }) => {
-          if (row.preferred_date) dates.add(row.preferred_date.split("T")[0]);
-        });
-        (blackoutsRes.data ?? []).forEach((row: { date: string }) => {
-          if (row.date) dates.add(row.date.split("T")[0]);
-        });
-        setUnavailableDates(dates);
+        const dates = await apiGetUnavailableDates();
+        setUnavailableDates(new Set(dates));
+        console.log('[BookStep1] Unavailable dates fetched', { count: dates.length });
       } catch (err) {
-        console.warn("[BookStep1] Failed to fetch unavailable dates", err);
+        console.warn('[BookStep1] Failed to fetch unavailable dates', err);
       }
     }
     fetchUnavailable();
@@ -242,27 +228,16 @@ function Step1({
     }
     setLoading(true);
     try {
-      const dateStr = preferredDate!.toISOString().split("T")[0];
-      console.log("[BookStep1] Inserting booking into Supabase", { name, email, style: selectedStyle, date: dateStr });
-      const { data, error } = await supabase
-        .from("bookings")
-        .insert({
-          name: name.trim(),
-          email: email.trim().toLowerCase(),
-          phone: phone.trim(),
-          tattoo_style: selectedStyle,
-          description: description.trim(),
-          preferred_date: dateStr,
-          status: "pending_payment",
-          deposit_paid: false,
-        })
-        .select()
-        .single();
-      if (error) {
-        console.error("[BookStep1] Supabase insert error", error);
-        throw new Error(error.message ?? "Failed to create booking");
-      }
-      console.log("[BookStep1] Booking created", { id: data?.id });
+      const result = await apiCreateBooking({
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        phone: phone.trim(),
+        tattoo_style: selectedStyle,
+        description: description.trim(),
+        preferred_date: preferredDate!.toISOString().split('T')[0],
+      });
+      const bookingId = result.id;
+      console.log("[BookStep1] Booking created", { id: bookingId });
       onContinue({
         name: name.trim(),
         email: email.trim().toLowerCase(),
@@ -270,7 +245,7 @@ function Step1({
         style: selectedStyle,
         description: description.trim(),
         date: preferredDate!,
-        bookingId: data.id,
+        bookingId,
       });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
@@ -511,15 +486,21 @@ function Step1({
 // ─── Step 2: Deposit Payment ──────────────────────────────────────────────────
 function Step2({
   name,
+  email,
+  phone,
   date,
   style,
+  description,
   bookingId,
   onConfirmed,
   onExpired,
 }: {
   name: string;
+  email: string;
+  phone: string;
   date: Date;
   style: string;
+  description: string;
   bookingId: string;
   onConfirmed: () => void;
   onExpired: () => void;
@@ -558,48 +539,26 @@ function Step2({
     setConfirmError(null);
     setConfirming(true);
     try {
-      const { error } = await supabase
-        .from("bookings")
-        .update({ status: "confirmed", deposit_paid: true })
-        .eq("id", bookingId);
-      if (error) {
-        console.error("[BookStep2] Supabase update error", error);
-        throw new Error(error.message ?? "Failed to confirm booking");
-      }
+      await apiConfirmBooking(bookingId);
       console.log("[BookStep2] Booking confirmed successfully");
 
-      // Send confirmation email
+      // Send confirmation email (non-fatal)
       try {
-        const { data: bookingData } = await supabase
-          .from('bookings')
-          .select('name, email, phone, tattoo_style, description, preferred_date')
-          .eq('id', bookingId)
-          .single();
-
-        if (bookingData) {
-          await fetch(
-            'https://dxsinzpjaxjurbvstghq.supabase.co/functions/v1/send-booking-confirmation',
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'apikey': process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '',
-              },
-              body: JSON.stringify({
-                name: bookingData.name,
-                email: bookingData.email,
-                phone: bookingData.phone,
-                tattoo_style: bookingData.tattoo_style,
-                description: bookingData.description,
-                preferred_date: bookingData.preferred_date,
-                booking_id: bookingId,
-              }),
-            }
-          );
-          console.log('[BookStep2] Confirmation email sent');
-        }
+        const bookingData = { name, email, phone, tattoo_style: style, description, preferred_date: date.toISOString().split('T')[0] };
+        await fetch(
+          `${process.env.EXPO_PUBLIC_SUPABASE_URL}/functions/v1/send-booking-confirmation`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '',
+              'Authorization': `Bearer ${process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? ''}`,
+            },
+            body: JSON.stringify({ ...bookingData, booking_id: bookingId }),
+          }
+        );
+        console.log('[BookStep2] Confirmation email sent');
       } catch (emailErr) {
-        // Email failure should not block the confirmation flow
         console.warn('[BookStep2] Email send failed (non-fatal):', emailErr);
       }
 
@@ -611,7 +570,7 @@ function Step2({
     } finally {
       setConfirming(false);
     }
-  }, [bookingId, onConfirmed]);
+  }, [bookingId, name, email, phone, style, description, date, onConfirmed]);
 
   return (
     <ScrollView
@@ -771,8 +730,11 @@ export default function BookScreen() {
         {step === 2 && bookingData && (
           <Step2
             name={bookingData.name}
+            email={bookingData.email}
+            phone={bookingData.phone}
             date={bookingData.date}
             style={bookingData.style}
+            description={bookingData.description}
             bookingId={bookingData.bookingId}
             onConfirmed={handleStep2Confirmed}
             onExpired={handleExpired}
