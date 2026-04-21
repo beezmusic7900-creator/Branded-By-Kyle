@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
   Text,
@@ -15,8 +15,15 @@ import {
 import { Image } from "expo-image";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
-import { supabase } from "@/utils/supabase";
+import {
+  apiAdminGetBookings,
+  apiAdminUpdateBookingStatus,
+  apiAdminGetBlackoutDates,
+  apiAdminCreateBlackoutDate,
+  apiAdminDeleteBlackoutDate,
+  type Booking,
+  type BlackoutDate,
+} from "@/utils/api";
 
 const BG = require("../../assets/images/58f69f1a-4699-4acb-8d6c-e139c289ff00.webp");
 const logoImage = require("@/assets/images/7b25c61f-edfd-4567-a346-cb9b175c7378.png");
@@ -40,25 +47,6 @@ const ADMIN_PASSWORD = "Kyleesdad2016!";
 let adminSessionActive = false;
 
 type TabName = "bookings" | "blackouts";
-
-interface Booking {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  tattoo_style: string;
-  description: string;
-  preferred_date: string;
-  status: string;
-  deposit_paid: boolean;
-  created_at: string;
-}
-
-interface BlackoutDate {
-  id: string;
-  date: string;
-  reason?: string;
-}
 
 // ─── Status Badge ─────────────────────────────────────────────────────────────
 function StatusBadge({ status }: { status: string }) {
@@ -179,13 +167,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     console.log("[AdminDashboard] Fetching bookings");
     setLoadingBookings(true);
     try {
-      const { data, error } = await supabase
-        .from("bookings")
-        .select("*")
-        .order("preferred_date", { ascending: true });
-      if (error) throw error;
-      console.log("[AdminDashboard] Bookings fetched", { count: data?.length });
-      setBookings(data ?? []);
+      const data = await apiAdminGetBookings();
+      console.log("[AdminDashboard] Bookings fetched", { count: data.length });
+      setBookings(data);
     } catch (err) {
       console.error("[AdminDashboard] Failed to fetch bookings", err);
     } finally {
@@ -197,13 +181,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     console.log("[AdminDashboard] Fetching blackout dates");
     setLoadingBlackouts(true);
     try {
-      const { data, error } = await supabase
-        .from("blackout_dates")
-        .select("*")
-        .order("date", { ascending: true });
-      if (error) throw error;
-      console.log("[AdminDashboard] Blackout dates fetched", { count: data?.length });
-      setBlackouts(data ?? []);
+      const data = await apiAdminGetBlackoutDates();
+      console.log("[AdminDashboard] Blackout dates fetched", { count: data.length });
+      setBlackouts(data);
     } catch (err) {
       console.error("[AdminDashboard] Failed to fetch blackout dates", err);
     } finally {
@@ -226,10 +206,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const updateBookingStatus = useCallback(async (id: string, status: string) => {
     console.log("[AdminDashboard] Updating booking status", { id, status });
     try {
-      const { error } = await supabase.from("bookings").update({ status }).eq("id", id);
-      if (error) throw error;
+      const updated = await apiAdminUpdateBookingStatus(id, status);
       console.log("[AdminDashboard] Booking status updated", { id, status });
-      setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status } : b)));
+      setBookings((prev) => prev.map((b) => (b.id === id ? updated : b)));
     } catch (err) {
       console.error("[AdminDashboard] Failed to update booking", err);
       Alert.alert("Error", "Failed to update booking status.");
@@ -245,8 +224,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
         style: "destructive",
         onPress: async () => {
           try {
-            const { error } = await supabase.from("blackout_dates").delete().eq("id", id);
-            if (error) throw error;
+            await apiAdminDeleteBlackoutDate(id);
             console.log("[AdminDashboard] Blackout date deleted", { id });
             setBlackouts((prev) => prev.filter((b) => b.id !== id));
           } catch (err) {
@@ -263,14 +241,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     setAddingBlackout(true);
     try {
       const dateStr = newBlackoutDate.toISOString().split("T")[0];
-      const { data, error } = await supabase
-        .from("blackout_dates")
-        .insert({ date: dateStr, reason: newBlackoutReason.trim() || null })
-        .select()
-        .single();
-      if (error) throw error;
-      console.log("[AdminDashboard] Blackout date added", { id: data?.id });
-      setBlackouts((prev) => [...prev, data]);
+      const data = await apiAdminCreateBlackoutDate(dateStr, newBlackoutReason.trim() || undefined);
+      console.log("[AdminDashboard] Blackout date added", { id: data.id });
+      setBlackouts((prev) => [...prev, data].sort((a, b) => a.date.localeCompare(b.date)));
       setShowAddBlackout(false);
       setNewBlackoutReason("");
     } catch (err) {

@@ -1,14 +1,28 @@
-const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL ?? '';
-const SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '';
+const SUPABASE_URL = 'https://dxsinzpjaxjurbvstghq.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4c2luenBqYXhqdXJidnN0Z2hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2MTg4NDEsImV4cCI6MjA4OTE5NDg0MX0.XpR3Rc_qyF1akZVm24crE7Za19ik6sAR6kIFLJ418RY';
 
-const REST = `${SUPABASE_URL}/rest/v1`;
+const BASE = `${SUPABASE_URL}/functions/v1/booking-api`;
 
-const headers = {
+const hdrs = {
   'Content-Type': 'application/json',
-  'apikey': SUPABASE_ANON_KEY,
   'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-  'Prefer': 'return=representation',
 };
+
+async function call(path: string, init: RequestInit = {}): Promise<Response> {
+  const url = `${BASE}${path}`;
+  console.log('[API]', init.method ?? 'GET', url);
+  const res = await fetch(url, { ...init, headers: { ...hdrs, ...(init.headers ?? {}) } });
+  return res;
+}
+
+async function parseError(_res: Response, text: string, fallback: string): Promise<string> {
+  try {
+    const p = JSON.parse(text);
+    return p?.error ?? p?.message ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
 
 export interface CreateBookingPayload {
   name: string;
@@ -28,68 +42,85 @@ export interface BookingResult {
   created_at: string;
 }
 
-export async function apiCreateBooking(payload: CreateBookingPayload): Promise<BookingResult> {
-  console.log('[API] Creating booking', { name: payload.name, date: payload.preferred_date });
-  const res = await fetch(`${REST}/bookings`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      name: payload.name,
-      email: payload.email,
-      phone: payload.phone || null,
-      tattoo_style: payload.tattoo_style || null,
-      description: payload.description || null,
-      preferred_date: payload.preferred_date,
-      status: 'pending_payment',
-      deposit_paid: false,
-    }),
-  });
+export interface Booking {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  tattoo_style: string;
+  description: string;
+  preferred_date: string;
+  status: string;
+  deposit_paid: boolean;
+  created_at: string;
+}
+
+export interface BlackoutDate {
+  id: string;
+  date: string;
+  reason?: string;
+  created_at: string;
+}
+
+// ── Public ────────────────────────────────────────────────────────────────────
+
+export async function apiGetUnavailableDates(): Promise<string[]> {
+  const res = await call('/api/bookings/unavailable-dates');
   const text = await res.text();
-  console.log('[API] Create booking response', res.status, text);
-  if (!res.ok) {
-    console.error('[API] Create booking failed - status:', res.status, 'body:', text);
-    let msg = 'Failed to create booking';
-    try {
-      const parsed = JSON.parse(text);
-      msg = parsed?.message ?? parsed?.error ?? parsed?.hint ?? msg;
-    } catch {}
-    throw new Error(msg);
-  }
-  const data = JSON.parse(text);
-  return Array.isArray(data) ? data[0] : data;
+  console.log('[API] unavailable-dates', res.status, text);
+  if (!res.ok) return [];
+  try { return JSON.parse(text).dates ?? []; } catch { return []; }
+}
+
+export async function apiCreateBooking(payload: CreateBookingPayload): Promise<BookingResult> {
+  const res = await call('/api/bookings', { method: 'POST', body: JSON.stringify(payload) });
+  const text = await res.text();
+  console.log('[API] create booking', res.status, text);
+  if (!res.ok) throw new Error(await parseError(res, text, 'Failed to create booking'));
+  return JSON.parse(text);
 }
 
 export async function apiConfirmBooking(bookingId: string): Promise<void> {
-  console.log('[API] Confirming booking', { bookingId });
-  const res = await fetch(`${REST}/bookings?id=eq.${encodeURIComponent(bookingId)}`, {
-    method: 'PATCH',
-    headers,
-    body: JSON.stringify({ status: 'confirmed', deposit_paid: true }),
-  });
+  const res = await call(`/api/bookings/${bookingId}/confirm`, { method: 'PATCH' });
   const text = await res.text();
-  console.log('[API] Confirm booking response', res.status, text);
-  if (!res.ok) {
-    console.error('[API] Confirm booking failed - status:', res.status, 'body:', text);
-    let msg = 'Failed to confirm booking';
-    try {
-      const parsed = JSON.parse(text);
-      msg = parsed?.message ?? parsed?.error ?? parsed?.hint ?? msg;
-    } catch {}
-    throw new Error(msg);
-  }
+  console.log('[API] confirm booking', res.status, text);
+  if (!res.ok) throw new Error(await parseError(res, text, 'Failed to confirm booking'));
 }
 
-export async function apiGetUnavailableDates(): Promise<string[]> {
-  console.log('[API] Fetching unavailable dates');
-  const [bookingsRes, blackoutsRes] = await Promise.all([
-    fetch(`${REST}/bookings?status=eq.confirmed&select=preferred_date`, { headers }),
-    fetch(`${REST}/blackout_dates?select=date`, { headers }),
-  ]);
-  const bookings: { preferred_date: string }[] = bookingsRes.ok ? await bookingsRes.json() : [];
-  const blackouts: { date: string }[] = blackoutsRes.ok ? await blackoutsRes.json() : [];
-  const dates = new Set<string>();
-  bookings.forEach(b => { if (b.preferred_date) dates.add(b.preferred_date.split('T')[0]); });
-  blackouts.forEach(b => { if (b.date) dates.add(b.date.split('T')[0]); });
-  console.log('[API] Unavailable dates', { count: dates.size });
-  return Array.from(dates).sort();
+// ── Admin ─────────────────────────────────────────────────────────────────────
+
+export async function apiAdminGetBookings(): Promise<Booking[]> {
+  const res = await call('/api/admin/bookings');
+  if (!res.ok) throw new Error('Failed to fetch bookings');
+  return res.json();
+}
+
+export async function apiAdminUpdateBookingStatus(id: string, status: string): Promise<Booking> {
+  const res = await call(`/api/admin/bookings/${id}`, { method: 'PATCH', body: JSON.stringify({ status }) });
+  const text = await res.text();
+  if (!res.ok) throw new Error(await parseError(res, text, 'Failed to update booking'));
+  return JSON.parse(text);
+}
+
+export async function apiAdminDeleteBooking(id: string): Promise<void> {
+  const res = await call(`/api/admin/bookings/${id}`, { method: 'DELETE' });
+  if (!res.ok) throw new Error('Failed to delete booking');
+}
+
+export async function apiAdminGetBlackoutDates(): Promise<BlackoutDate[]> {
+  const res = await call('/api/admin/blackout-dates');
+  if (!res.ok) throw new Error('Failed to fetch blackout dates');
+  return res.json();
+}
+
+export async function apiAdminCreateBlackoutDate(date: string, reason?: string): Promise<BlackoutDate> {
+  const res = await call('/api/admin/blackout-dates', { method: 'POST', body: JSON.stringify({ date, reason }) });
+  const text = await res.text();
+  if (!res.ok) throw new Error(await parseError(res, text, 'Failed to create blackout date'));
+  return JSON.parse(text);
+}
+
+export async function apiAdminDeleteBlackoutDate(id: string): Promise<void> {
+  const res = await call(`/api/admin/blackout-dates/${id}`, { method: 'DELETE' });
+  if (!res.ok) throw new Error('Failed to delete blackout date');
 }

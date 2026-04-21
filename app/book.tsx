@@ -546,13 +546,12 @@ function Step2({
       try {
         const bookingData = { name, email, phone, tattoo_style: style, description, preferred_date: date.toISOString().split('T')[0] };
         await fetch(
-          `${process.env.EXPO_PUBLIC_SUPABASE_URL}/functions/v1/send-booking-confirmation`,
+          'https://dxsinzpjaxjurbvstghq.supabase.co/functions/v1/send-booking-confirmation',
           {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'apikey': process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '',
-              'Authorization': `Bearer ${process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? ''}`,
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR4c2luenBqYXhqdXJidnN0Z2hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2MTg4NDEsImV4cCI6MjA4OTE5NDg0MX0.XpR3Rc_qyF1akZVm24crE7Za19ik6sAR6kIFLJ418RY',
             },
             body: JSON.stringify({ ...bookingData, booking_id: bookingId }),
           }
