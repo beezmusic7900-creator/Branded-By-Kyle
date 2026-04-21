@@ -47,8 +47,12 @@ export async function apiCreateBooking(payload: CreateBookingPayload): Promise<B
   const text = await res.text();
   console.log('[API] Create booking response', res.status, text);
   if (!res.ok) {
+    console.error('[API] Create booking failed - status:', res.status, 'body:', text);
     let msg = 'Failed to create booking';
-    try { msg = JSON.parse(text)?.message ?? msg; } catch {}
+    try {
+      const parsed = JSON.parse(text);
+      msg = parsed?.message ?? parsed?.error ?? parsed?.hint ?? msg;
+    } catch {}
     throw new Error(msg);
   }
   const data = JSON.parse(text);
@@ -65,8 +69,12 @@ export async function apiConfirmBooking(bookingId: string): Promise<void> {
   const text = await res.text();
   console.log('[API] Confirm booking response', res.status, text);
   if (!res.ok) {
+    console.error('[API] Confirm booking failed - status:', res.status, 'body:', text);
     let msg = 'Failed to confirm booking';
-    try { msg = JSON.parse(text)?.message ?? msg; } catch {}
+    try {
+      const parsed = JSON.parse(text);
+      msg = parsed?.message ?? parsed?.error ?? parsed?.hint ?? msg;
+    } catch {}
     throw new Error(msg);
   }
 }
